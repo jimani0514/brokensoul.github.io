@@ -1,78 +1,135 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>인증 중개 페이지</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // URL 해시나 쿼리 파라미터에서 인증 정보 추출
-        const hash = window.location.hash.substring(1);
-        const query = window.location.search.substring(1);
-        
-        // 인증 정보를 가져오는 함수
-        function extractAuthData() {
-            // 해시에서 토큰 추출 시도
-            if(hash && hash.includes('access_token=')) {
-                return hash;
-            }
-            
-            // 쿼리에서 코드 추출 시도
-            if(query && query.includes('code=')) {
-                return query;
-            }
-            
-            return null;
-        }
-        
-        const authData = extractAuthData();
-        
-        if(authData) {
-            // 로그 추가 (디버깅용)
-            console.log('인증 정보 감지됨:', authData);
-            document.getElementById('status').innerText = '인증 정보를 앱으로 전달 중...';
-            
-            // 딥링크로 인증 정보 전달
-            let deeplink = 'mygame://login-callback';
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('status').innerText = '인증 정보 확인 중...';
 
-            // 인증 정보 추가 - 쿼리 파라미터 방식으로 통일 (URL 인코딩 추가)
-            deeplink += '?auth_data=' + encodeURIComponent(authData);
-            
-            // 딥링크에 인증 정보 추가
-            if(authData.startsWith('access_token=')) {
-                deeplink += '#' + authData; // 해시로 추가
-            } else {
-                deeplink += '?' + authData; // 쿼리로 추가
-            }
-            
-            // 모바일 환경인지 체크
-            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-            
-            // 3초 후 딥링크로 이동 (지연 추가)
-            setTimeout(function() {
-                window.location.href = deeplink;
-                
-                // 모바일 환경에만 타임아웃 추가
-                if(isMobile) {
-                    // 딥링크 이동 5초 후에도 페이지가 남아있다면 앱 설치 여부 체크
-                    setTimeout(function() {
-                        document.getElementById('status').innerText = '앱으로 이동 중 문제가 발생했습니다. 앱이 설치되어 있는지 확인해주세요.';
-                    }, 5000);
+            // URL 해시나 쿼리 파라미터에서 인증 정보 추출
+            function extractAuthData() {
+                // 해시에서 토큰 추출 시도
+                const hash = window.location.hash.substring(1);
+                if (hash && hash.includes('access_token=')) {
+                    console.log('해시에서 토큰 발견');
+                    return hash;
                 }
-            }, 1500);
-            
-        } else {
-            document.getElementById('status').innerText = '인증 정보가 없습니다.';
-        }
-    });
+
+                // 쿼리에서 코드 추출 시도
+                const query = window.location.search.substring(1);
+                if (query && query.includes('code=')) {
+                    console.log('쿼리에서 코드 발견');
+                    return query;
+                }
+
+                return null;
+            }
+
+            const authData = extractAuthData();
+
+            if (authData) {
+                // 로그 추가 (디버깅용)
+                console.log('인증 정보 감지됨:', authData);
+                document.getElementById('status').innerText = '인증 정보를 앱으로 전달 중...';
+
+                // 쿠키에 인증 정보 저장 (로컬스토리지는 웹뷰 간 공유되지 않을 수 있음)
+                document.cookie = `auth_data=${encodeURIComponent(authData)};path=/;max-age=300`;
+
+                // 딥링크로 인증 정보 전달
+                let deeplink = 'mygame://login-callback';
+
+                // 딥링크에 인증 정보 추가 - 통일된 방식으로 처리
+                if (authData.startsWith('access_token=')) {
+                    deeplink += '#' + authData; // 해시로 추가 (토큰)
+                    console.log('토큰을 해시로 딥링크에 추가:', deeplink);
+                } else if (authData.includes('code=')) {
+                    // code 파라미터의 경우 query로 추가
+                    const params = new URLSearchParams(authData);
+                    const code = params.get('code');
+                    if (code) {
+                        deeplink += '?code=' + encodeURIComponent(code);
+                        console.log('코드를 쿼리로 딥링크에 추가:', deeplink);
+                    } else {
+                        deeplink += '?' + authData; // 기본 쿼리로 추가
+                    }
+                } else {
+                    // 기타 경우 - 해시로 추가 (기본)
+                    deeplink += '#' + authData;
+                }
+
+                // 현재 URL 도메인 확인
+                const currentDomain = window.location.hostname;
+                document.getElementById('domain').innerText = '현재 도메인: ' + currentDomain;
+
+                // 모바일 환경인지 체크
+                const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+                document.getElementById('device').innerText = '디바이스: ' + (isMobile ? '모바일' : '데스크톱');
+
+                // 딥링크 정보 표시
+                document.getElementById('deeplink').innerText = '딥링크: ' + deeplink;
+
+                // 로컬 스토리지에도 저장 시도
+                try {
+                    localStorage.setItem('auth_data', authData);
+                    localStorage.setItem('auth_timestamp', Date.now().toString());
+                    console.log('로컬 스토리지에 인증 정보 저장됨');
+                } catch (e) {
+                    console.error('로컬 스토리지 저장 실패:', e);
+                }
+
+                // 1초 후 딥링크로 이동 (지연 추가)
+                setTimeout(function () {
+                    document.getElementById('status').innerText = '앱으로 리디렉션 중...';
+
+                    // 먼저 iframe을 통한 딥링크 시도
+                    try {
+                        const iframe = document.createElement('iframe');
+                        iframe.style.display = 'none';
+                        iframe.src = deeplink;
+                        document.body.appendChild(iframe);
+                        console.log('iframe을 통한 딥링크 시도');
+                        setTimeout(function () {
+                            document.body.removeChild(iframe);
+                        }, 500);
+                    } catch (e) {
+                        console.error('iframe 딥링크 실패:', e);
+                    }
+
+                    // 그 다음 location.href 시도
+                    setTimeout(function () {
+                        console.log('location.href를 통한 딥링크 시도');
+                        window.location.href = deeplink;
+
+                        // 모바일 환경에만 타임아웃 추가
+                        if (isMobile) {
+                            // 딥링크 이동 3초 후에도 페이지가 남아있다면 후속 조치
+                            setTimeout(function () {
+                                document.getElementById('status').innerText = '앱으로 돌아가는 중...';
+                                // 백업: 도메인 루트로 이동
+                                console.log('타임아웃 후 도메인 루트로 리디렉션');
+                                window.location.href = 'https://brokensoul.xyz';
+                            }, 3000);
+                        }
+                    }, 500);
+                }, 1000);
+
+            } else {
+                document.getElementById('status').innerText = '인증 정보가 없습니다.';
+                document.getElementById('error').innerText = '인증 정보를 찾을 수 없습니다. URL을 확인해주세요.';
+            }
+        });
     </script>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin-top: 100px;
+            margin-top: 50px;
             background-color: #000;
             color: #fff;
         }
+
         .loader {
             border: 5px solid #333;
             border-top: 5px solid #9c6;
@@ -82,15 +139,40 @@
             animation: spin 1s linear infinite;
             margin: 20px auto;
         }
+
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .debug-info {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .error {
+            color: #ff6666;
+            margin-top: 20px;
         }
     </style>
 </head>
+
 <body>
     <h2>Broken Soul</h2>
     <div class="loader"></div>
     <p id="status">로그인 정보 처리 중...</p>
+    <p id="error" class="error"></p>
+    <div class="debug-info">
+        <p id="domain">도메인: 확인 중...</p>
+        <p id="device">디바이스: 확인 중...</p>
+        <p id="deeplink">딥링크: 확인 중...</p>
+    </div>
 </body>
+
 </html>
