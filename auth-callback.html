@@ -33,6 +33,9 @@
             
             // 딥링크로 인증 정보 전달
             let deeplink = 'mygame://login-callback';
+
+            // 인증 정보 추가 - 쿼리 파라미터 방식으로 통일 (URL 인코딩 추가)
+            deeplink += '?auth_data=' + encodeURIComponent(authData);
             
             // 딥링크에 인증 정보 추가
             if(authData.startsWith('access_token=')) {
