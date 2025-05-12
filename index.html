@@ -1,12 +1,47 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Broken Soul</title>
-  </head>
-  <body>
-    <h1>Broken Soul 사이트에 오신 것을 환영합니다!</h1>
-    <p><a href="/auth-callback.html">[인증 콜백 테스트 페이지]</a></p>
-  </body>
-</html>
+<head>
+    <title>인증 리디렉션</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 현재 URL에서 해시와 쿼리 파라미터 유지하면서 auth-callback.html로 리디렉션
+        const currentUrl = window.location.href;
+        const baseUrl = currentUrl.split('?')[0].split('#')[0];
+        const basePath = baseUrl.substring(0, baseUrl.lastIndexOf('/') + 1);
+        
+        const queryParams = window.location.search;
+        const hashParams = window.location.hash;
+        
+        window.location.href = basePath + 'auth-callback.html' + queryParams + hashParams;
+    });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            background-color: #000;
+            color: #fff;
+        }
+        .loader {
+            border: 5px solid #333;
+            border-top: 5px solid #9c6;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h2>Broken Soul</h2>
+    <div class="loader"></div>
+    <p>인증 처리 중...</p>
+</body>
+</html> 
