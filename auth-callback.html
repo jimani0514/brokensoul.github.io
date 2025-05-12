@@ -1,153 +1,135 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 
 <head>
-    <title>인증 중개 페이지</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('status').innerText = '인증 정보 확인 중...';
-
-            // URL 해시나 쿼리 파라미터에서 인증 정보 추출
-            function extractAuthData() {
-                // 해시에서 토큰 추출 시도
-                const hash = window.location.hash.substring(1);
-                if (hash && hash.includes('access_token=')) {
-                    console.log('해시에서 토큰 발견');
-                    return hash;
-                }
-
-                // 쿼리에서 코드 추출 시도
-                const query = window.location.search.substring(1);
-                if (query && query.includes('code=')) {
-                    console.log('쿼리에서 코드 발견');
-                    return query;
-                }
-
-                return null;
-            }
-
-            const authData = extractAuthData();
-
-            if (authData) {
-                // 로그 추가 (디버깅용)
-                console.log('인증 정보 감지됨:', authData);
-                document.getElementById('status').innerText = '인증 정보를 앱으로 전달 중...';
-
-                // 쿠키에 인증 정보 저장 (로컬스토리지는 웹뷰 간 공유되지 않을 수 있음)
-                document.cookie = `auth_data=${encodeURIComponent(authData)};path=/;max-age=300`;
-
-                // 딥링크로 인증 정보 전달
-                let deeplink = 'mygame://login-callback';
-
-                // 인증 정보 추가 - 쿼리 파라미터 방식으로 통일 (URL 인코딩 추가)
-                deeplink += '?auth_data=' + encodeURIComponent(authData);
-
-                // 딥링크에 인증 정보 추가
-                if (authData.startsWith('access_token=')) {
-                    deeplink += '#' + authData; // 해시로 추가
-                } else {
-                    deeplink += '?' + authData; // 쿼리로 추가
-                }
-
-                // 현재 URL 도메인 확인
-                const currentDomain = window.location.hostname;
-                document.getElementById('domain').innerText = '현재 도메인: ' + currentDomain;
-
-                // 모바일 환경인지 체크
-                const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-                document.getElementById('device').innerText = '디바이스: ' + (isMobile ? '모바일' : '데스크톱');
-
-                // 지연 없이 로컬 스토리지에도 저장 시도
-                try {
-                    localStorage.setItem('auth_data', authData);
-                    localStorage.setItem('auth_timestamp', Date.now().toString());
-                    console.log('로컬 스토리지에 인증 정보 저장됨');
-                } catch (e) {
-                    console.error('로컬 스토리지 저장 실패:', e);
-                }
-
-                // 1초 후 딥링크로 이동 (지연 추가)
-                setTimeout(function () {
-                    // 먼저 iframe을 통한 딥링크 시도
-                    try {
-                        const iframe = document.createElement('iframe');
-                        iframe.style.display = 'none';
-                        iframe.src = deeplink;
-                        document.body.appendChild(iframe);
-                        setTimeout(function () {
-                            document.body.removeChild(iframe);
-                        }, 500);
-                    } catch (e) {
-                        console.error('iframe 딥링크 실패:', e);
-                    }
-
-                    // 그 다음 location.href 시도
-                    setTimeout(function () {
-                        window.location.href = deeplink;
-
-                        // 모바일 환경에만 타임아웃 추가
-                        if (isMobile) {
-                            // 딥링크 이동 5초 후에도 페이지가 남아있다면 후속 조치
-                            setTimeout(function () {
-                                document.getElementById('status').innerText = '앱으로 돌아가는 중...';
-                                // 백업: 도메인 루트로 이동
-                                window.location.href = 'https://brokensoul.xyz';
-                            }, 3000);
-                        }
-                    }, 500);
-                }, 1000);
-
-            } else {
-                document.getElementById('status').innerText = '인증 정보가 없습니다.';
-            }
-        });
-    </script>
+    <title>로그인 처리 중...</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
             text-align: center;
-            margin-top: 50px;
-            background-color: #000;
-            color: #fff;
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-
-        .loader {
-            border: 5px solid #333;
-            border-top: 5px solid #9c6;
-            border-radius: 50%;
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .spinner {
             width: 50px;
             height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            border-top-color: white;
+            border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 20px auto;
         }
-
         @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
+            to { transform: rotate(360deg); }
         }
-
-        .debug-info {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #666;
+        .message {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .redirect-message {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-top: 30px;
         }
     </style>
 </head>
 
 <body>
-    <h2>Broken Soul</h2>
-    <div class="loader"></div>
-    <p id="status">로그인 정보 처리 중...</p>
-    <div class="debug-info">
-        <p id="domain">도메인: 확인 중...</p>
-        <p id="device">디바이스: 확인 중...</p>
+    <div class="container">
+        <h1>로그인 처리 중</h1>
+        <div class="spinner"></div>
+        <div class="message">로그인 정보를 처리하고 있습니다...</div>
+        <div class="redirect-message">앱으로 곧 돌아갑니다.</div>
     </div>
+
+    <script>
+        // 로그인 성공 처리 및 앱으로 리디렉션
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Auth callback 페이지 로드됨');
+            
+            // URL에서 인증 정보 추출
+            const url = window.location.href;
+            console.log('현재 URL:', url);
+            
+            // 액세스 토큰 추출 (해시 또는 쿼리 파라미터)
+            let authData = '';
+            
+            if (window.location.hash && window.location.hash.includes('access_token=')) {
+                console.log('해시에서 인증 데이터 발견');
+                authData = window.location.hash.substring(1);
+            } else if (window.location.search && window.location.search.includes('code=')) {
+                console.log('쿼리에서 인증 코드 발견');
+                authData = window.location.search.substring(1);
+            }
+            
+            if (authData) {
+                console.log('인증 데이터 발견:', authData.substring(0, 20) + '...');
+                
+                // 앱으로 돌아가기 전에 인증 데이터 로컬 저장
+                try {
+                    // 쿠키에 저장 (앱에서 접근 가능하도록)
+                    document.cookie = `auth_data=${encodeURIComponent(authData)}; path=/; max-age=300`;
+                    console.log('인증 데이터를 쿠키에 저장했습니다.');
+                    
+                    // 로컬스토리지에도 저장 (백업용)
+                    localStorage.setItem('auth_data', authData);
+                    localStorage.setItem('auth_timestamp', Date.now().toString());
+                    console.log('인증 데이터를 로컬스토리지에 저장했습니다.');
+                } catch (e) {
+                    console.error('인증 데이터 저장 중 오류:', e);
+                }
+                
+                // 모바일 환경인지 감지
+                const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                console.log('모바일 환경 여부:', isMobile);
+                
+                // 1. 딥링크를 통해 앱으로 이동 시도
+                try {
+                    // iframe을 사용한 딥링크 호출 (새 창 없이)
+                    const iframe = document.createElement('iframe');
+                    iframe.style.display = 'none';
+                    iframe.src = `mygame://login-callback#${authData}`;
+                    document.body.appendChild(iframe);
+                    console.log('딥링크 iframe 생성:', iframe.src.substring(0, 30) + '...');
+                    
+                    // iOS에서 딥링크가 작동하지 않을 경우를 대비해 location.href로도 시도
+                    setTimeout(function() {
+                        window.location.href = `mygame://login-callback#${authData}`;
+                        console.log('location.href로 딥링크 호출 시도');
+                        
+                        // 2. 앱으로 복귀가 실패한 경우 (브라우저 환경이라면) 메인 페이지로 리디렉션
+                        setTimeout(function() {
+                            console.log('딥링크 실패로 가정, 메인 페이지로 리디렉션 시도');
+                            window.location.href = '/';
+                        }, 2000);
+                    }, 500);
+                } catch (e) {
+                    console.error('딥링크 호출 중 오류:', e);
+                    window.location.href = '/';
+                }
+            } else {
+                console.log('인증 데이터를 찾을 수 없습니다. 메인 페이지로 리디렉션합니다.');
+                
+                // 인증 데이터가 없으면 메인 페이지로 리디렉션
+                setTimeout(function() {
+                    window.location.href = '/';
+                }, 1000);
+            }
+        });
+    </script>
 </body>
 
 </html>
