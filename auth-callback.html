@@ -101,15 +101,14 @@
                     // iframe을 사용한 딥링크 호출 (새 창 없이)
                     const iframe = document.createElement('iframe');
                     iframe.style.display = 'none';
-                    iframe.src = `https://xyz.brokensoul.mygame/login-callback#${authData}`;
+                    iframe.src = `mygame://login-callback#${authData}`;
                     document.body.appendChild(iframe);
-                    console.log('딥링크 iframe 생성:', iframe.src.substring(0, 50) + '...');
+                    console.log('딥링크 iframe 생성:', iframe.src.substring(0, 30) + '...');
                     
                     // iOS에서 딥링크가 작동하지 않을 경우를 대비해 location.href로도 시도
                     setTimeout(function() {
-                        console.log('로그인 콜백: iframe이 지원되지 않아 직접 이동');
-                        // ⭐ HTTPS 스킴으로 딥링크 변경 (앱 전용 도메인 사용)
-                        window.location.href = `https://xyz.brokensoul.mygame/login-callback#${authData}`;
+                        window.location.href = `mygame://login-callback#${authData}`;
+                        console.log('location.href로 딥링크 호출 시도');
                         
                         // 2. 앱으로 복귀가 실패한 경우 (브라우저 환경이라면) 메인 페이지로 리디렉션
                         setTimeout(function() {
