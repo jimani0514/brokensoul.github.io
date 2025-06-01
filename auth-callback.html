@@ -101,7 +101,7 @@
                     // iframe을 사용한 딥링크 호출 (새 창 없이)
                     const iframe = document.createElement('iframe');
                     iframe.style.display = 'none';
-                    iframe.src = `https://login-callback#${authData}`;
+                    iframe.src = `mygame://login-callback#${authData}`;
                     document.body.appendChild(iframe);
                     console.log('딥링크 iframe 생성:', iframe.src.substring(0, 30) + '...');
                     
