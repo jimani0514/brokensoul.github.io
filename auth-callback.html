@@ -98,28 +98,30 @@
                 
                 // 1. 딥링크를 통해 앱으로 이동 시도
                 try {
-                    // iframe을 사용한 딥링크 호출 (새 창 없이)
-                    const iframe = document.createElement('iframe');
-                    iframe.style.display = 'none';
-                    iframe.src = `https://brokensoul.xyz/login-callback#${authData}`;
-                    document.body.appendChild(iframe);
-                    console.log('딥링크 iframe 생성:', iframe.src.substring(0, 30) + '...');
+                    // ⭐ 앱이 HTTPS 스킴을 사용하므로 메인 페이지로 직접 이동
+                    console.log('앱으로 리다이렉트 시작');
                     
-                    // iOS에서 딥링크가 작동하지 않을 경우를 대비해 location.href로도 시도
-                    setTimeout(function() {
-                        console.log('로그인 콜백: iframe이 지원되지 않아 직접 이동');
-                        // ⭐ HTTPS 스킴으로 딥링크 변경 (mygame 제거)
-                        window.location.href = `https://brokensoul.xyz/login-callback#${authData}`;
-                        
-                        // 2. 앱으로 복귀가 실패한 경우 (브라우저 환경이라면) 메인 페이지로 리디렉션
-                        setTimeout(function() {
-                            console.log('딥링크 실패로 가정, 메인 페이지로 리디렉션 시도');
-                            window.location.href = '/';
-                        }, 2000);
-                    }, 500);
+                    // 모바일 앱 환경에서는 메인 페이지로 이동하면서 인증 데이터 전달
+                    if (window.AndroidInterface) {
+                        // Android 앱 환경
+                        console.log('Android 앱 환경 감지, 메인 페이지로 이동');
+                        window.location.href = '/';
+                    } else if (window.webkit && window.webkit.messageHandlers) {
+                        // iOS 앱 환경
+                        console.log('iOS 앱 환경 감지, 메인 페이지로 이동');
+                        window.location.href = '/';
+                    } else {
+                        // 웹 브라우저 환경
+                        console.log('웹 브라우저 환경, 메인 페이지로 이동');
+                        window.location.href = '/';
+                    }
+                    
                 } catch (e) {
-                    console.error('딥링크 호출 중 오류:', e);
-                    window.location.href = '/';
+                    console.error('리다이렉트 중 오류:', e);
+                    // 오류 발생 시 메인 페이지로 이동
+                    setTimeout(function() {
+                        window.location.href = '/';
+                    }, 1000);
                 }
             } else {
                 console.log('인증 데이터를 찾을 수 없습니다. 메인 페이지로 리디렉션합니다.');
