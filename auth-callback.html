@@ -98,17 +98,43 @@
                 
                 // 1. 딥링크를 통해 앱으로 이동 시도
                 try {
+                    // ⭐ 모바일 앱 환경에서는 딥링크 대신 메인 페이지로 직접 리다이렉트 (더 안전함)
+                    if (isMobile && window.Capacitor) {
+                        console.log('Capacitor 앱 환경 감지 - 메인 페이지로 직접 리다이렉트');
+                        
+                        // 인증 데이터를 추가로 세션스토리지에도 저장 (안전성 강화)
+                        try {
+                            sessionStorage.setItem('auth_data', authData);
+                            sessionStorage.setItem('auth_redirect_timestamp', Date.now().toString());
+                            console.log('세션스토리지에 인증 데이터 저장 완료');
+                        } catch (e) {
+                            console.error('세션스토리지 저장 실패:', e);
+                        }
+                        
+                        // 1초 후 메인 페이지로 리다이렉트
+                        setTimeout(function() {
+                            console.log('메인 페이지로 리다이렉트 실행');
+                            window.location.href = '/';
+                        }, 1000);
+                        
+                        return; // 딥링크 시도하지 않고 여기서 종료
+                    }
+                    
+                    // ⭐ 브라우저 환경에서만 딥링크 시도
+                    let redirectUrl = `https://localhost/login-callback#${authData}`;
+                    console.log('브라우저 환경 - localhost 리다이렉트:', redirectUrl);
+                    
                     // iframe을 사용한 딥링크 호출 (새 창 없이)
                     const iframe = document.createElement('iframe');
                     iframe.style.display = 'none';
-                    iframe.src = `https://localhost/login-callback#${authData}`;
+                    iframe.src = redirectUrl;
                     document.body.appendChild(iframe);
-                    console.log('딥링크 iframe 생성:', iframe.src.substring(0, 30) + '...');
+                    console.log('딥링크 iframe 생성:', iframe.src.substring(0, 50) + '...');
                     
                     // iOS에서 딥링크가 작동하지 않을 경우를 대비해 location.href로도 시도
                     setTimeout(function() {
-                        window.location.href = `https://localhost/login-callback#${authData}`;
                         console.log('location.href로 딥링크 호출 시도');
+                        window.location.href = redirectUrl;
                         
                         // 2. 앱으로 복귀가 실패한 경우 (브라우저 환경이라면) 메인 페이지로 리디렉션
                         setTimeout(function() {
