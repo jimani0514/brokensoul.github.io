@@ -1,9 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>Broken Soul</title>
+  
+  <!-- Primary Meta Tags -->
+  <title>Broken Soul - 다크 판타지 2D 액션 RPG | 모바일 소울라이크 게임</title>
+  <meta name="title" content="Broken Soul - 다크 판타지 2D 액션 RPG | 모바일 소울라이크 게임" />
+  <meta name="description" content="어둠 속에서 희망의 조각을 찾아라. Broken Soul은 도전적인 보스 전투와 정교한 회피&패리 시스템을 특징으로 하는 모바일 2D 소울라이크 액션 RPG입니다. Google Play에서 무료 다운로드!" />
+  <meta name="keywords" content="Broken Soul, 브로큰 소울, 소울라이크, 2D 액션, RPG, 모바일 게임, 다크 판타지, 보스 전투, 인디 게임, 하드코어 게임, 안드로이드 게임" />
+  <meta name="author" content="Double J Labs" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="Korean" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://brokensoul.xyz/" />
+  <meta property="og:title" content="Broken Soul - 다크 판타지 2D 액션 RPG" />
+  <meta property="og:description" content="어둠 속에서 희망의 조각을 찾아라. 도전적인 보스 전투와 정교한 회피&패리 시스템을 특징으로 하는 모바일 소울라이크 게임" />
+  <meta property="og:image" content="https://brokensoul.xyz/brokensoul.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Broken Soul - Fragments of Hope 게임 로고" />
+  <meta property="og:site_name" content="Broken Soul" />
+  <meta property="og:locale" content="ko_KR" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://brokensoul.xyz/" />
+  <meta property="twitter:title" content="Broken Soul - 다크 판타지 2D 액션 RPG" />
+  <meta property="twitter:description" content="어둠 속에서 희망의 조각을 찾아라. 도전적인 보스 전투와 정교한 회피&패리 시스템을 특징으로 하는 모바일 소울라이크 게임" />
+  <meta property="twitter:image" content="https://brokensoul.xyz/brokensoul.png" />
+  
+  <!-- Additional SEO Meta Tags -->
+  <meta name="theme-color" content="#000000" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="format-detection" content="telephone=no" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://brokensoul.xyz/" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./favicon.png" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+  
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Broken Soul",
+    "alternateName": "Broken Soul: Fragments of Hope",
+    "description": "어둠 속에서 희망의 조각을 찾아라. 도전적인 보스 전투와 정교한 회피&패리 시스템을 특징으로 하는 모바일 2D 소울라이크 액션 RPG",
+    "image": "https://brokensoul.xyz/brokensoul.png",
+    "url": "https://brokensoul.xyz/",
+    "genre": ["Action", "RPG", "Soulslike", "Dark Fantasy"],
+    "gamePlatform": ["Android", "Mobile"],
+    "applicationCategory": "Game",
+    "operatingSystem": "Android",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "KRW",
+      "availability": "https://schema.org/InStock",
+      "url": "https://play.google.com/store/apps/details?id=xyz.brokensoul.mygame"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Double J Labs",
+      "url": "https://brokensoul.xyz/"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Double J Labs"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.5",
+      "ratingCount": "100"
+    },
+    "datePublished": "2025-01-01",
+    "inLanguage": "ko",
+    "keywords": "소울라이크, 2D액션, RPG, 모바일게임, 다크판타지, 보스전투, 인디게임"
+  }
+  </script>
   <style>
     html, body {
       margin: 0;
@@ -29,117 +110,145 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   overflow: hidden;
 }
 
-/* 여기만 추가/수정! */
+/* 전체 컨텐츠를 30%~85% 영역에 배치 */
 .center-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
+  gap: 15px;
   width: 95%;
   position: relative;
-  top: 9%;    /* y값을 중앙에서 9% 아래로 내림 */
+  top: 30%;    /* 30%부터 시작 */
+  height: 55%; /* 30%~85% = 55% 높이 */
+  justify-content: flex-start;
 }
 
-    .event-banner {
-      padding: 12px 32px;
-      background: rgba(30, 34, 70, 0.92);
-      border-radius: 8px;
-      font-size: 1.35rem;
-      font-weight: bold;
-      color: #fff3a0;
-      letter-spacing: 0.05em;
-      box-shadow: 0 2px 8px 0 rgba(0,0,0,0.20);
-      text-align: center;
-      cursor: pointer;
-      transition: background 0.15s;
-      border: 2px solid #fff3a0;
-      text-decoration: none;
-      display: inline-block;
-      width: 100%;          /* 배너도 95%에 맞춤 */
-      max-width: 100%;
-      box-sizing: border-box;
-    }
-    .event-banner:hover {
-      background: #483f1b;
-      color: #fffbe0;
-      border-color: #fffbe0;
-    }
+/* 이벤트 배너들을 좌우로 배치 */
+.event-banners {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 10px;
+}
 
-    .youtube-wrapper {
-      width: 100%;             /* .center-content(95%) 기준 */
-      aspect-ratio: 16 / 9;
-      max-width: 100%;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+.event-banner {
+  flex: 1;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #d4af37;
+  letter-spacing: 0.1em;
+  box-shadow: 0 4px 12px 0 rgba(0,0,0,0.6), inset 0 1px 0 rgba(212, 175, 55, 0.3);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid #8b7355;
+  text-decoration: none;
+  display: inline-block;
+  box-sizing: border-box;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
 
-    .youtube-wrapper iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-    }
+.event-banner:hover {
+  background: rgba(20, 15, 10, 0.95);
+  color: #f4e4bc;
+  border-color: #d4af37;
+  box-shadow: 0 6px 16px 0 rgba(0,0,0,0.8), inset 0 1px 0 rgba(244, 228, 188, 0.4);
+  transform: translateY(-1px);
+}
 
-    .download-btn {
-      width: 200px;
-      margin: 20px 0;
-    }
+.youtube-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
 
-    .footer-links {
-      font-size: 14px;
-      color: white;
-      text-shadow: 0 0 2px black;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
+.youtube-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
 
-    .footer-links a {
-      color: white;
-      text-decoration: underline;
-    }
+.download-btn {
+  width: 160px;
+  margin: 10px 0;
+}
+
+.footer-links {
+  font-size: 12px;
+  color: white;
+  text-shadow: 0 0 2px black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: auto;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: underline;
+}
   </style>
 </head>
 <body>
   <div class="container">
     <div class="center-content">
-      <!-- EVENT BANNER -->
-      <a class="event-banner"
-        href="https://docs.google.com/forms/d/e/1FAIpQLScjP3BRaahk1FFO_qb3SHkVI-nw4QVgPbRTl99s9SrrkUQa9g/viewform?usp=dialog"
-        target="_blank">[Footsteps of Victory EVENT]</a>
-      <div class="youtube-wrapper">
-        <iframe src="https://www.youtube.com/embed/4oMxJJBdzoI?si=3UM-loGUhGZOIZqS"
-                title="YouTube video player"
-                allowfullscreen></iframe>
-      </div>
-    </div>
+              <!-- EVENT BANNERS - 좌우 배치 -->
+        <div class="event-banners">
+          <a class="event-banner"
+            href="https://docs.google.com/forms/d/e/1FAIpQLScjP3BRaahk1FFO_qb3SHkVI-nw4QVgPbRTl99s9SrrkUQa9g/viewform?usp=dialog"
+            target="_blank" 
+            rel="noopener"
+            aria-label="Footsteps of Victory 이벤트 참여하기">Footsteps of Victory</a>
+          <a class="event-banner"
+            href="https://forms.gle/erSZXgiPjwA8jk1eA"
+            target="_blank" 
+            rel="noopener"
+            aria-label="1 Minute Challenge 이벤트 참여하기">1 Minute Challenge</a>
+        </div>
+      
+              <div class="youtube-wrapper">
+          <iframe src="https://www.youtube.com/embed/4oMxJJBdzoI?si=3UM-loGUhGZOIZqS"
+                  title="Broken Soul 게임 플레이 영상 - 다크 판타지 2D 액션 RPG"
+                  loading="lazy"
+                  allowfullscreen></iframe>
+        </div>
 
+        <a href="https://play.google.com/store/apps/details?id=xyz.brokensoul.mygame" 
+           target="_blank" 
+           rel="noopener"
+           aria-label="Google Play에서 Broken Soul 다운로드">
+          <img src="./googleplay.png" 
+               alt="Google Play에서 Broken Soul 다운로드 - 무료 모바일 게임" 
+               class="download-btn"
+               loading="lazy">
+        </a>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-
-    <a href="https://play.google.com/store/apps/details?id=xyz.brokensoul.mygame" target="_blank">
-      <img src="./googleplay.png" alt="Download on Google Play" class="download-btn">
-    </a>
-
-    <div class="footer-links">
-      <a href="https://brokensoul.xyz/privacy.html" target="_blank">Privacy Policy</a>
-      <a href="https://brokensoul.xyz/terms.html" target="_blank">Terms of Use</a>
-      <a href="https://forms.gle/f6BQBnZHYbZTczMc8" target="_blank">Customer Service</a>
-      <br>
-      <br>
-      Copyright  2025. Double J Labs. All rights reserved.
+              <div class="footer-links">
+          <a href="https://brokensoul.xyz/privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
+          <span>|</span>
+          <a href="https://brokensoul.xyz/terms.html" target="_blank" rel="noopener">Terms of Use</a>
+          <span>|</span>
+          <a href="https://forms.gle/f6BQBnZHYbZTczMc8" target="_blank" rel="noopener">Customer Service</a>
+        </div>
+        <div style="text-align: center; font-size: 11px; color: white; text-shadow: 0 0 2px black; margin-top: 8px;">
+          Copyright © 2025. Double J Labs. All rights reserved.
+        </div>
     </div>
   </div>
 </body>
