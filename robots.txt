@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://brokensoul.xyz/sitemap.xml
+
+# Crawl-delay (optional)
+Crawl-delay: 1
+
+# Block unnecessary paths
+Disallow: /www/
+Disallow: /*.log$
+Disallow: /tmp/
+Disallow: /cache/ 
