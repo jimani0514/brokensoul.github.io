@@ -18,10 +18,11 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: calc(100vh * 9 / 16);
+  width: min(95vw, calc(100vh * 9 / 16)); /* 가로화면에서도 95%로 */
   max-width: 1600px;
-  height: 100vh;
   min-width: 320px;
+  height: min(100vh, calc(95vw * 16 / 9)); /* 세로 길이도 16:9 */
+  min-height: 180px;
   transform: translate(-50%, -50%);
   background: url('./brokensoul.png') no-repeat center center;
   background-size: cover;
