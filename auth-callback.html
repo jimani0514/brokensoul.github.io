@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login processing...</title>
+    <title>Login Processing...</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -44,15 +44,22 @@
             opacity: 0.7;
             margin-top: 30px;
         }
+        .debug-info {
+            margin-top: 20px;
+            font-size: 12px;
+            opacity: 0.5;
+            text-align: left;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Login processing</h1>
+        <h1>로그인 처리 중</h1>
         <div class="spinner"></div>
-        <div class="message">Processing login information...</div>
-        <div class="redirect-message">I'll be back to the app soon.</div>
+        <div class="message" id="status-message">로그인 정보를 처리하고 있습니다...</div>
+        <div class="redirect-message">앱으로 곧 돌아갑니다.</div>
+        <div class="debug-info" id="debug-info"></div>
     </div>
 
     <script>
@@ -60,74 +67,352 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Auth callback 페이지 로드됨');
             
+            const statusMessage = document.getElementById('status-message');
+            const debugInfo = document.getElementById('debug-info');
+            
+            function updateStatus(message) {
+                statusMessage.textContent = message;
+                console.log('[AUTH-CALLBACK]', message);
+            }
+            
+            function addDebugInfo(info) {
+                debugInfo.innerHTML += info + '<br>';
+                console.log('[DEBUG]', info);
+            }
+            
             // URL에서 인증 정보 추출
             const url = window.location.href;
-            console.log('현재 URL:', url);
+            addDebugInfo(`현재 URL: ${url.substring(0, 50)}...`);
             
             // 액세스 토큰 추출 (해시 또는 쿼리 파라미터)
             let authData = '';
+            let authType = '';
             
             if (window.location.hash && window.location.hash.includes('access_token=')) {
-                console.log('해시에서 인증 데이터 발견');
+                addDebugInfo('해시에서 인증 데이터 발견');
                 authData = window.location.hash.substring(1);
+                authType = 'token';
             } else if (window.location.search && window.location.search.includes('code=')) {
-                console.log('쿼리에서 인증 코드 발견');
+                addDebugInfo('쿼리에서 인증 코드 발견');
                 authData = window.location.search.substring(1);
+                authType = 'code';
             }
             
             if (authData) {
-                console.log('인증 데이터 발견:', authData.substring(0, 20) + '...');
+                updateStatus('인증 데이터 처리 중...');
+                addDebugInfo(`인증 타입: ${authType}`);
+                addDebugInfo(`인증 데이터 길이: ${authData.length}`);
                 
-                // 앱으로 돌아가기 전에 인증 데이터 로컬 저장
-                try {
-                    // 쿠키에 저장 (앱에서 접근 가능하도록)
-                    document.cookie = `auth_data=${encodeURIComponent(authData)}; path=/; max-age=300`;
-                    console.log('인증 데이터를 쿠키에 저장했습니다.');
-                    
-                    // 로컬스토리지에도 저장 (백업용)
-                    localStorage.setItem('auth_data', authData);
-                    localStorage.setItem('auth_timestamp', Date.now().toString());
-                    console.log('인증 데이터를 로컬스토리지에 저장했습니다.');
-                } catch (e) {
-                    console.error('인증 데이터 저장 중 오류:', e);
-                }
+                // 서버 기반 세션 토큰 전달 시도
+                attemptServerBasedTokenTransfer(authData, authType);
                 
-                // 모바일 환경인지 감지
-                const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-                console.log('모바일 환경 여부:', isMobile);
-                
-                // 1. 딥링크를 통해 앱으로 이동 시도
-                try {
-                    // iframe을 사용한 딥링크 호출 (새 창 없이)
-                    const iframe = document.createElement('iframe');
-                    iframe.style.display = 'none';
-                    iframe.src = `mygame://login-callback#${authData}`;
-                    document.body.appendChild(iframe);
-                    console.log('딥링크 iframe 생성:', iframe.src.substring(0, 30) + '...');
-                    
-                    // iOS에서 딥링크가 작동하지 않을 경우를 대비해 location.href로도 시도
-                    setTimeout(function() {
-                        window.location.href = `mygame://login-callback#${authData}`;
-                        console.log('location.href로 딥링크 호출 시도');
-                        
-                        // 2. 앱으로 복귀가 실패한 경우 (브라우저 환경이라면) 메인 페이지로 리디렉션
-                        setTimeout(function() {
-                            console.log('딥링크 실패로 가정, 메인 페이지로 리디렉션 시도');
-                            window.location.href = '/';
-                        }, 2000);
-                    }, 500);
-                } catch (e) {
-                    console.error('딥링크 호출 중 오류:', e);
-                    window.location.href = '/';
-                }
             } else {
-                console.log('인증 데이터를 찾을 수 없습니다. 메인 페이지로 리디렉션합니다.');
+                updateStatus('인증 데이터를 찾을 수 없습니다.');
+                addDebugInfo('URL에서 인증 정보 추출 실패');
                 
                 // 인증 데이터가 없으면 메인 페이지로 리디렉션
-                setTimeout(function() {
+                setTimeout(() => {
                     window.location.href = '/';
-                }, 1000);
+                }, 2000);
             }
+            
+            // 서버 기반 세션 토큰 전달 함수
+            async function attemptServerBasedTokenTransfer(authData, authType) {
+                try {
+                    updateStatus('서버에 인증 정보 전송 중...');
+                    addDebugInfo('서버 기반 세션 토큰 전달 시도');
+                    
+                    const sessionId = generateSessionId();
+                    const timestamp = Date.now().toString();
+                    const authDataWithTimestamp = `${authData}&timestamp=${timestamp}`;
+                    
+                    // 서버에 인증 정보 전송
+                    const response = await fetch('/api/auth/store-session', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            sessionId: sessionId,
+                            authData: authDataWithTimestamp,
+                            authType: authType,
+                            timestamp: timestamp,
+                            userAgent: navigator.userAgent,
+                            origin: window.location.origin
+                        })
+                    });
+                    
+                    if (response.ok) {
+                        const result = await response.json();
+                        addDebugInfo('서버 저장 성공: ' + result.message);
+                        
+                        // 서버 기반 전달 성공 - 세션 ID로 딥링크 호출
+                        updateStatus('앱으로 복귀 중...');
+                        attemptDeepLinkWithSessionId(sessionId);
+                        
+                    } else {
+                        addDebugInfo('서버 저장 실패: ' + response.status);
+                        throw new Error('서버 저장 실패');
+                    }
+                    
+                } catch (error) {
+                    addDebugInfo('서버 기반 전달 실패: ' + error.message);
+                    console.error('서버 기반 전달 실패:', error);
+                    
+                    // 서버 기반 전달 실패시 기존 방식으로 fallback
+                    updateStatus('기존 방식으로 전환...');
+                    fallbackToDirectTransfer(authData, authType);
+                }
+            }
+            
+            // 세션 ID 생성 함수
+            function generateSessionId() {
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                let result = '';
+                for (let i = 0; i < 32; i++) {
+                    result += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return result;
+            }
+            
+            // 세션 ID를 통한 딥링크 호출
+            function attemptDeepLinkWithSessionId(sessionId) {
+                addDebugInfo(`세션 ID로 딥링크 호출: ${sessionId}`);
+                
+                // 모바일 환경 감지
+                const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                const isAndroid = /Android/i.test(navigator.userAgent);
+                
+                function attemptDeepLink(attempt = 1) {
+                    addDebugInfo(`딥링크 시도 ${attempt}/3 (세션 ID)`);
+                    
+                    try {
+                        // iframe을 사용한 딥링크 호출
+                        const iframe = document.createElement('iframe');
+                        iframe.style.display = 'none';
+                        iframe.src = `mygame://login-callback?session_id=${sessionId}`;
+                        document.body.appendChild(iframe);
+                        
+                        // location.href로도 시도
+                        setTimeout(() => {
+                            try {
+                                window.location.href = `mygame://login-callback?session_id=${sessionId}`;
+                                addDebugInfo('location.href로 세션 ID 딥링크 호출');
+                            } catch (e) {
+                                addDebugInfo('location.href 딥링크 실패: ' + e.message);
+                            }
+                        }, 300);
+                        
+                        // 딥링크 실패 시 재시도
+                        setTimeout(() => {
+                            if (attempt < 3) {
+                                attemptDeepLink(attempt + 1);
+                            } else {
+                                // 모든 딥링크 시도 실패 시 대체 경로
+                                updateStatus('딥링크 실패 - 대체 경로 시도 중...');
+                                fallbackRedirectWithSessionId(sessionId, isAndroid);
+                            }
+                        }, 1500);
+                        
+                    } catch (e) {
+                        addDebugInfo('딥링크 호출 중 오류: ' + e.message);
+                        if (attempt < 3) {
+                            setTimeout(() => attemptDeepLink(attempt + 1), 1000);
+                        } else {
+                            fallbackRedirectWithSessionId(sessionId, isAndroid);
+                        }
+                    }
+                }
+                
+                attemptDeepLink();
+            }
+            
+            // 세션 ID를 통한 대체 리디렉션
+            function fallbackRedirectWithSessionId(sessionId, isAndroid) {
+                addDebugInfo('세션 ID 대체 경로 실행');
+                
+                // 안드로이드 환경에서 Intent 스키마 시도
+                if (isAndroid) {
+                    try {
+                        const intentUrl = `intent://login-callback?session_id=${sessionId}#Intent;scheme=mygame;package=xyz.brokensoul.mygame;end;`;
+                        window.location.href = intentUrl;
+                        addDebugInfo('Android Intent 시도 (세션 ID)');
+                        
+                        // Intent도 실패한 경우 메인 페이지로
+                        setTimeout(() => {
+                            updateStatus('앱을 찾을 수 없습니다 - 메인 페이지로 이동...');
+                            window.location.href = `/?session_id=${sessionId}`;
+                        }, 2000);
+                        
+                    } catch (e) {
+                        addDebugInfo('Android Intent 실패: ' + e.message);
+                        window.location.href = `/?session_id=${sessionId}`;
+                    }
+                } else {
+                    // iOS나 기타 환경에서는 메인 페이지로
+                    window.location.href = `/?session_id=${sessionId}`;
+                }
+            }
+            
+            // 기존 방식으로 fallback
+            function fallbackToDirectTransfer(authData, authType) {
+                addDebugInfo('기존 방식으로 fallback 시작');
+                
+                // 다중 백업 저장소에 인증 데이터 저장
+                const timestamp = Date.now().toString();
+                const authDataWithTimestamp = `${authData}&timestamp=${timestamp}`;
+                
+                let storageSuccessCount = 0;
+                
+                // 1. 쿠키에 저장 (최우선 - 도메인 공유 가능)
+                try {
+                    // 메인 쿠키 (5분 유효)
+                    document.cookie = `auth_data=${encodeURIComponent(authDataWithTimestamp)}; path=/; max-age=300; secure; samesite=none`;
+                    
+                    // 백업 쿠키 (도메인 루트에 저장)
+                    document.cookie = `auth_backup=${encodeURIComponent(authDataWithTimestamp)}; path=/; max-age=300; secure; samesite=none`;
+                    
+                    // 인증 타입별 쿠키
+                    document.cookie = `auth_type=${authType}; path=/; max-age=300; secure; samesite=none`;
+                    
+                    storageSuccessCount++;
+                    addDebugInfo('쿠키 저장 성공 (메인 + 백업)');
+                } catch (e) {
+                    addDebugInfo('쿠키 저장 실패: ' + e.message);
+                }
+                
+                // 2. 로컬스토리지에 저장 (백업용)
+                try {
+                    localStorage.setItem('auth_data', authDataWithTimestamp);
+                    localStorage.setItem('auth_timestamp', timestamp);
+                    localStorage.setItem('auth_type', authType);
+                    
+                    // 추가 백업 키들
+                    localStorage.setItem('auth_backup_data', authDataWithTimestamp);
+                    localStorage.setItem('last_auth_attempt', timestamp);
+                    
+                    storageSuccessCount++;
+                    addDebugInfo('로컬스토리지 저장 성공');
+                } catch (e) {
+                    addDebugInfo('로컬스토리지 저장 실패: ' + e.message);
+                }
+                
+                // 3. 세션스토리지에 저장 (추가 백업)
+                try {
+                    sessionStorage.setItem('auth_data', authDataWithTimestamp);
+                    sessionStorage.setItem('auth_timestamp', timestamp);
+                    sessionStorage.setItem('auth_type', authType);
+                    
+                    storageSuccessCount++;
+                    addDebugInfo('세션스토리지 저장 성공');
+                } catch (e) {
+                    addDebugInfo('세션스토리지 저장 실패: ' + e.message);
+                }
+                
+                // 4. URL Fragment에 저장 (최후 백업)
+                try {
+                    const fragmentData = btoa(authDataWithTimestamp);
+                    window.history.replaceState({}, '', `#auth_fragment=${fragmentData}`);
+                    storageSuccessCount++;
+                    addDebugInfo('URL Fragment 저장 성공');
+                } catch (e) {
+                    addDebugInfo('URL Fragment 저장 실패: ' + e.message);
+                }
+                
+                addDebugInfo(`총 ${storageSuccessCount}/4 저장소에 성공`);
+                
+                // 최소 1개 이상의 저장소에 성공했는지 확인
+                if (storageSuccessCount === 0) {
+                    updateStatus('저장소 접근 실패 - 재시도 중...');
+                    setTimeout(() => location.reload(), 2000);
+                    return;
+                }
+                
+                // 모바일 환경 감지
+                const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                const isAndroid = /Android/i.test(navigator.userAgent);
+                addDebugInfo(`모바일: ${isMobile}, 안드로이드: ${isAndroid}`);
+                
+                updateStatus('앱으로 복귀 중...');
+                
+                // 딥링크 시도 함수
+                function attemptDeepLink(attempt = 1) {
+                    addDebugInfo(`딥링크 시도 ${attempt}/3`);
+                    
+                    try {
+                        // iframe을 사용한 딥링크 호출 (새 창 없이)
+                        const iframe = document.createElement('iframe');
+                        iframe.style.display = 'none';
+                        iframe.src = `mygame://login-callback?auth_data=${encodeURIComponent(authDataWithTimestamp)}&type=${authType}`;
+                        document.body.appendChild(iframe);
+                        
+                        // iOS에서 딥링크가 작동하지 않을 경우를 대비해 location.href로도 시도
+                        setTimeout(() => {
+                            try {
+                                window.location.href = `mygame://login-callback?auth_data=${encodeURIComponent(authDataWithTimestamp)}&type=${authType}`;
+                                addDebugInfo('location.href로 딥링크 호출');
+                            } catch (e) {
+                                addDebugInfo('location.href 딥링크 실패: ' + e.message);
+                            }
+                        }, 300);
+                        
+                        // 딥링크 실패 시 재시도
+                        setTimeout(() => {
+                            if (attempt < 3) {
+                                attemptDeepLink(attempt + 1);
+                            } else {
+                                // 모든 딥링크 시도 실패 시 대체 경로
+                                updateStatus('딥링크 실패 - 대체 경로 시도 중...');
+                                fallbackRedirect();
+                            }
+                        }, 1500);
+                        
+                    } catch (e) {
+                        addDebugInfo('딥링크 호출 중 오류: ' + e.message);
+                        if (attempt < 3) {
+                            setTimeout(() => attemptDeepLink(attempt + 1), 1000);
+                        } else {
+                            fallbackRedirect();
+                        }
+                    }
+                }
+                
+                // 대체 리디렉션 함수
+                function fallbackRedirect() {
+                    addDebugInfo('대체 경로 실행');
+                    
+                    // 안드로이드 환경에서 Intent 스키마 시도
+                    if (isAndroid) {
+                        try {
+                            const intentUrl = `intent://login-callback?auth_data=${encodeURIComponent(authDataWithTimestamp)}&type=${authType}#Intent;scheme=mygame;package=xyz.brokensoul.mygame;end;`;
+                            window.location.href = intentUrl;
+                            addDebugInfo('Android Intent 시도');
+                            
+                            // Intent도 실패한 경우 메인 페이지로
+                            setTimeout(() => {
+                                updateStatus('앱을 찾을 수 없습니다 - 메인 페이지로 이동...');
+                                window.location.href = `/?auth_fallback=${encodeURIComponent(authDataWithTimestamp)}&type=${authType}`;
+                            }, 2000);
+                            
+                        } catch (e) {
+                            addDebugInfo('Android Intent 실패: ' + e.message);
+                            window.location.href = `/?auth_fallback=${encodeURIComponent(authDataWithTimestamp)}&type=${authType}`;
+                        }
+                    } else {
+                        // iOS나 기타 환경에서는 메인 페이지로
+                        window.location.href = `/?auth_fallback=${encodeURIComponent(authDataWithTimestamp)}&type=${authType}`;
+                    }
+                }
+                
+                // 딥링크 시도 시작
+                setTimeout(() => attemptDeepLink(), 500);
+            }
+        });
+        
+        // 페이지 언로드 시 정리
+        window.addEventListener('beforeunload', function() {
+            // 임시 데이터 정리는 앱에서 처리하도록 함
+            console.log('[AUTH-CALLBACK] 페이지 언로드');
         });
     </script>
 </body>
