@@ -16,8 +16,8 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://brokensoul.xyz/" />
-  <meta property="og:title" content="Broken Soul - 소울라이크 2D 액션 RPG" />
-  <meta property="og:description" content="어둠 속에서 희망의 조각을 찾아라. 도전적인 보스 전투와 정교한 회피&패리 시스템을 특징으로 하는 모바일 소울라이크 게임, #soulslike, #mobile soulslike, #모바일 소울라이크" />
+  <meta property="og:title" content="Broken Soul - 다크 판타지 2D 액션 RPG" />
+  <meta property="og:description" content="어둠 속에서 희망의 조각을 찾아라. 도전적인 보스 전투와 정교한 회피&패리 시스템을 특징으로 하는 모바일 소울라이크 게임" />
   <meta property="og:image" content="https://brokensoul.xyz/brokensoul.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -184,8 +184,49 @@
 }
 
 .download-btn {
-  width: 160px;
+  width: auto;
+  height: 54px;
   margin: 10px 0;
+  object-fit: contain;
+}
+
+.main-logo {
+  display: block;
+  max-width: min(80%, 420px);
+  height: auto;
+  margin-bottom: 12px;
+}
+
+.logo-area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: calc(16px * 2);
+  margin-bottom: 16px;
+}
+
+.logo-area a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}
+
+.logo-mobile,
+.logo-pc {
+  height: calc(54px * 2);
+  width: auto;
+  max-width: calc(220px * 2);
+  object-fit: contain;
+}
+
+.store-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
 }
 
 .footer-links {
@@ -205,27 +246,35 @@
   color: white;
   text-decoration: underline;
 }
+
+@media (min-width: 768px) {
+  .store-buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
   </style>
 </head>
 <body>
   <div class="container">
     <div class="center-content">
-              <!-- EVENT BANNERS - 좌우 배치 -->
-        <div class="event-banners">
-          <a class="event-banner"
-            href="https://docs.google.com/forms/d/e/1FAIpQLScjP3BRaahk1FFO_qb3SHkVI-nw4QVgPbRTl99s9SrrkUQa9g/viewform?usp=dialog"
-            target="_blank" 
-            rel="noopener"
-            aria-label="Footsteps of Victory 이벤트 참여하기">Footsteps of Victory</a>
-          <a class="event-banner"
-            href="https://forms.gle/erSZXgiPjwA8jk1eA"
-            target="_blank" 
-            rel="noopener"
-            aria-label="1 Minute Challenge 이벤트 참여하기">1 Minute Challenge</a>
+        <div class="logo-area">
+          <a href="https://play.google.com/store/apps/details?id=xyz.brokensoul.mygame"
+             target="_blank"
+             rel="noopener"
+             aria-label="Google Play로 이동">
+            <img src="./logo.png" class="logo-mobile" alt="Broken Soul 메인 로고">
+          </a>
+          <a href="https://store.steampowered.com/app/4424450/BROKEN_SOUL__Boss_Rush/"
+             target="_blank"
+             rel="noopener"
+             aria-label="Steam으로 이동">
+            <img src="./logo_pc.png" class="logo-pc" alt="Broken Soul PC 버전 로고">
+          </a>
         </div>
       
                       <div class="youtube-wrapper">
-          <iframe src="https://www.youtube.com/embed/UgPRElyt0XE?si=_SVzX3veBzFPAOxU" 
+          <iframe src="https://www.youtube.com/embed/abdUui3P8Ko?si=4SujouZ21naZxvk6" 
                   title="Broken Soul 게임 플레이 영상 - 다크 판타지 2D 액션 RPG" 
                   frameborder="0" 
                   loading="lazy"
@@ -234,15 +283,26 @@
                   allowfullscreen></iframe>
         </div>
 
-        <a href="https://play.google.com/store/apps/details?id=xyz.brokensoul.mygame" 
-           target="_blank" 
-           rel="noopener"
-           aria-label="Google Play에서 Broken Soul 다운로드">
-          <img src="./googleplay.png" 
-               alt="Google Play에서 Broken Soul 다운로드 - 무료 모바일 게임" 
-               class="download-btn"
-               loading="lazy">
-        </a>
+        <div class="store-buttons">
+          <a href="https://play.google.com/store/apps/details?id=xyz.brokensoul.mygame" 
+             target="_blank" 
+             rel="noopener"
+             aria-label="Google Play에서 Broken Soul 모바일 버전 다운로드">
+            <img src="./googleplay.png" 
+                 alt="Google Play에서 Broken Soul 모바일 버전 다운로드" 
+                 class="download-btn"
+                 loading="lazy">
+          </a>
+          <a href="https://store.steampowered.com/app/4424450/BROKEN_SOUL__Boss_Rush/" 
+             target="_blank" 
+             rel="noopener"
+             aria-label="Steam에서 Broken Soul PC 버전 구매/다운로드">
+            <img src="./steam.png" 
+                 alt="Steam에서 Broken Soul PC 버전 구매/다운로드" 
+                 class="download-btn"
+                 loading="lazy">
+          </a>
+        </div>
 
               <div class="footer-links">
           <a href="https://brokensoul.xyz/privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
