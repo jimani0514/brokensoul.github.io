@@ -456,6 +456,17 @@
 }
 
 @media (max-width: 768px) {
+  .logo-title-area {
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 0;
+    margin: 0 0 8px;
+  }
+
+  .logo-title {
+    width: min(51vw, 276px);
+  }
+
   .container {
     width: 100% !important;
     padding: 0 !important;
@@ -463,26 +474,35 @@
 
   .center-content {
     width: 100%;
-    margin-top: clamp(36px, 12vh, 72px);
-    padding-inline: 12px;
+    margin-top: 0;
+    padding-inline: 0;
     gap: 12px;
   }
 
+  .store-pairs {
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 12px;
+    padding: 0 12px;
+  }
+
   .store-pair {
-    width: min(100%, 420px);
+    width: min(48%, 220px);
+    max-width: none;
+  }
+
+  .store-pair a {
+    width: auto;
   }
 
   .logo-mobile,
   .logo-pc {
-    width: min(92vw, 460px);
-  }
-
-  .logo-title {
-    width: min(84vw, 460px);
+    width: min(45vw, 190px);
   }
 
   .download-btn {
-    width: min(45vw, 180px);
+    width: min(27vw, 108px);
   }
 }
   </style>
