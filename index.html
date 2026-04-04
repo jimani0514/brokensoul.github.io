@@ -520,6 +520,148 @@
     width: min(27vw, 108px);
   }
 }
+
+/* =============================================
+   스크린샷 슬라이더 섹션 스타일
+   - Google Play / Steam 버튼 하단에 위치
+   - 한 번에 3장씩 표시, 좌우 버튼으로 이동
+   ============================================= */
+
+/* 슬라이더 전체 감싸는 영역 */
+.screenshot-section {
+  width: 100%;
+  margin: 24px 0 8px;
+  box-sizing: border-box;
+}
+
+/* 제목 텍스트 (선택적으로 표시) */
+.screenshot-section-title {
+  text-align: center;
+  color: #d4af37;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  opacity: 0.75;
+}
+
+/* 좌우 버튼 + 뷰포트를 가로로 배치하는 래퍼 */
+.screenshot-slider-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+/* 실제 이미지가 보이는 창: 넘치는 부분을 숨김 */
+.slider-viewport {
+  flex: 1;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* 이미지들이 가로로 나열되는 트랙 */
+.slider-track {
+  display: flex;
+  gap: 10px;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+/* 개별 스크린샷 아이템 (너비는 JS에서 동적 설정) */
+.slider-item {
+  flex: 0 0 auto;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.slider-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  transition: border-color 0.2s ease;
+}
+
+.slider-item img:hover {
+  border-color: rgba(212, 175, 55, 0.6);
+}
+
+/* 좌/우 네비게이션 버튼 공통 스타일 */
+.slider-nav-btn {
+  background: rgba(0, 0, 0, 0.82);
+  border: 2px solid #8b7355;
+  color: #d4af37;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  user-select: none;
+  line-height: 1;
+  padding: 0;
+}
+
+.slider-nav-btn:hover:not(:disabled) {
+  background: rgba(212, 175, 55, 0.18);
+  border-color: #d4af37;
+}
+
+/* 비활성 버튼 (처음/끝 도달 시) */
+.slider-nav-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+/* 하단 인디케이터 점 영역 */
+.slider-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* 인디케이터 개별 점 버튼 */
+.slider-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.28);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+/* 현재 위치 점 강조 */
+.slider-dot.active {
+  background: #d4af37;
+  transform: scale(1.25);
+}
+
+/* 모바일: 버튼 크기 축소 */
+@media (max-width: 768px) {
+  .screenshot-section {
+    margin: 16px 0 6px;
+    padding: 0 8px;
+  }
+
+  .slider-nav-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+  }
+
+  .slider-track {
+    gap: 7px;
+  }
+}
   </style>
 </head>
 <body>
@@ -575,6 +717,38 @@
             </a>
           </div>
         </div>
+        <!-- ============================================================
+             스크린샷 슬라이더 섹션
+             - screenshot_0.png ~ screenshot_6.png (총 7장)
+             - 한 번에 3장 표시, 좌우 버튼으로 1장씩 이동
+             ============================================================ -->
+        <div class="screenshot-section">
+          <p class="screenshot-section-title">Screenshots</p>
+          <div class="screenshot-slider-wrapper">
+            <!-- 이전(왼쪽) 버튼 -->
+            <button class="slider-nav-btn" id="sliderPrev" aria-label="이전 스크린샷">&#10094;</button>
+
+            <!-- 이미지가 표시되는 뷰포트 (overflow hidden) -->
+            <div class="slider-viewport" id="sliderViewport">
+              <div class="slider-track" id="sliderTrack">
+                <div class="slider-item"><img src="./screenshot_0.png" alt="Broken Soul 게임 스크린샷 1" loading="lazy"></div>
+                <div class="slider-item"><img src="./screenshot_1.png" alt="Broken Soul 게임 스크린샷 2" loading="lazy"></div>
+                <div class="slider-item"><img src="./screenshot_2.png" alt="Broken Soul 게임 스크린샷 3" loading="lazy"></div>
+                <div class="slider-item"><img src="./screenshot_3.png" alt="Broken Soul 게임 스크린샷 4" loading="lazy"></div>
+                <div class="slider-item"><img src="./screenshot_4.png" alt="Broken Soul 게임 스크린샷 5" loading="lazy"></div>
+                <div class="slider-item"><img src="./screenshot_5.png" alt="Broken Soul 게임 스크린샷 6" loading="lazy"></div>
+                <div class="slider-item"><img src="./screenshot_6.png" alt="Broken Soul 게임 스크린샷 7" loading="lazy"></div>
+              </div>
+            </div>
+
+            <!-- 다음(오른쪽) 버튼 -->
+            <button class="slider-nav-btn" id="sliderNext" aria-label="다음 스크린샷">&#10095;</button>
+          </div>
+
+          <!-- 현재 위치를 나타내는 인디케이터 점 (JS로 생성) -->
+          <div class="slider-indicators" id="sliderIndicators"></div>
+        </div>
+
               <div class="footer-links">
           <a href="https://brokensoul.xyz/privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
           <span>|</span>
@@ -587,6 +761,95 @@
         </div>
     </div>
   </div>
+  <!-- ============================================================
+       스크린샷 슬라이더 JavaScript
+       - 총 7장 이미지를 한 번에 3장씩 보여줌
+       - 좌/우 버튼 클릭 시 1장씩 이동 (최대 이동 인덱스: 4)
+       - 뷰포트 크기 변경 시(resize) 아이템 너비 자동 재계산
+       ============================================================ -->
+  <script>
+  (function () {
+    // ── 설정 상수 ──────────────────────────────────────────────
+    var TOTAL_ITEMS  = 7;   // 전체 스크린샷 수
+    var VISIBLE_ITEMS = 3;  // 동시에 보이는 수
+    var GAP_PX       = 10;  // 아이템 사이 간격 (px), CSS gap과 일치
+    var MAX_INDEX    = TOTAL_ITEMS - VISIBLE_ITEMS; // 최대 이동 인덱스 (= 4)
+
+    // ── DOM 참조 ───────────────────────────────────────────────
+    var track      = document.getElementById('sliderTrack');
+    var viewport   = document.getElementById('sliderViewport');
+    var prevBtn    = document.getElementById('sliderPrev');
+    var nextBtn    = document.getElementById('sliderNext');
+    var indicators = document.getElementById('sliderIndicators');
+
+    var currentIndex = 0; // 현재 첫 번째로 보이는 이미지 인덱스
+
+    // ── 인디케이터 점 생성 (이동 가능한 단계 수만큼) ───────────
+    for (var i = 0; i <= MAX_INDEX; i++) {
+      (function (idx) {
+        var dot = document.createElement('button');
+        dot.className = 'slider-dot' + (idx === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', (idx + 1) + '번째 위치');
+        dot.addEventListener('click', function () { goTo(idx); });
+        indicators.appendChild(dot);
+      })(i);
+    }
+
+    // ── 각 슬라이더 아이템의 너비를 뷰포트 기준으로 계산·적용 ─
+    function setItemWidths() {
+      var vpWidth  = viewport.offsetWidth;
+      // 3개 아이템과 2개 갭을 뺀 나머지를 3등분
+      var itemW    = (vpWidth - GAP_PX * (VISIBLE_ITEMS - 1)) / VISIBLE_ITEMS;
+      var items    = track.querySelectorAll('.slider-item');
+      for (var j = 0; j < items.length; j++) {
+        items[j].style.width = itemW + 'px';
+      }
+      // 너비 변경 후 애니메이션 없이 즉시 위치 재설정
+      updatePosition(false);
+    }
+
+    // ── 트랙 위치 갱신 ─────────────────────────────────────────
+    function updatePosition(animate) {
+      var vpWidth = viewport.offsetWidth;
+      var itemW   = (vpWidth - GAP_PX * (VISIBLE_ITEMS - 1)) / VISIBLE_ITEMS;
+      var offset  = currentIndex * (itemW + GAP_PX);
+
+      // 애니메이션 여부에 따라 transition 조절
+      track.style.transition = (animate === false)
+        ? 'none'
+        : 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      track.style.transform  = 'translateX(-' + offset + 'px)';
+
+      // 좌/우 버튼 비활성화 처리
+      prevBtn.disabled = (currentIndex === 0);
+      nextBtn.disabled = (currentIndex === MAX_INDEX);
+
+      // 인디케이터 점 활성 상태 갱신
+      var dots = indicators.querySelectorAll('.slider-dot');
+      for (var k = 0; k < dots.length; k++) {
+        if (k === currentIndex) {
+          dots[k].classList.add('active');
+        } else {
+          dots[k].classList.remove('active');
+        }
+      }
+    }
+
+    // ── 특정 인덱스로 이동 ─────────────────────────────────────
+    function goTo(index) {
+      currentIndex = Math.max(0, Math.min(index, MAX_INDEX));
+      updatePosition(true);
+    }
+
+    // ── 버튼 이벤트 바인딩 ─────────────────────────────────────
+    prevBtn.addEventListener('click', function () { goTo(currentIndex - 1); });
+    nextBtn.addEventListener('click', function () { goTo(currentIndex + 1); });
+
+    // ── 초기 실행 및 창 크기 변경 대응 ────────────────────────
+    setItemWidths();
+    window.addEventListener('resize', setItemWidths);
+  })();
+  </script>
 </body>
 </html>
 
