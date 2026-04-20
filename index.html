@@ -142,7 +142,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  padding-top: 120px;
   padding-bottom: 50px;
+  box-sizing: border-box;
 }
 
 /* ?꾩껜 而⑦뀗痢좊? 30%~85% ?곸뿭??諛곗튂 */
@@ -196,17 +198,19 @@
 }
 
 .youtube-wrapper {
+  position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
   max-width: 100%;
   background: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
   margin-bottom: 15px;
 }
 
 .youtube-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   border: none;
@@ -326,7 +330,8 @@
 @media (max-width: 768px) {
   .container {
     width: 100%;
-    padding: 0;
+    padding: 120px 0 50px;
+    box-sizing: border-box;
   }
 
   .center-content {
@@ -373,6 +378,9 @@
   transform: none !important;
   background-size: min(95vw, 1600px, calc(100vh * 16 / 9)) auto !important;
   background-position: center top;
+  padding-top: 120px !important;
+  padding-bottom: 50px !important;
+  box-sizing: border-box !important;
 }
 
 .center-content {
@@ -484,7 +492,8 @@
 
   .container {
     width: 100% !important;
-    padding: 0 !important;
+    padding: 120px 0 50px !important;
+    box-sizing: border-box !important;
   }
 
   .center-content {
@@ -582,6 +591,7 @@
   border-radius: 6px;
   border: 1px solid rgba(212, 175, 55, 0.25);
   transition: border-color 0.2s ease;
+  cursor: pointer;
 }
 
 .slider-item img:hover {
@@ -640,9 +650,251 @@
 }
 
 /* 현재 위치 점 강조 */
-.slider-dot.active {
+  .slider-dot.active {
   background: #d4af37;
   transform: scale(1.25);
+}
+
+/* =============================================
+   상단 GNB + MEDIA 페이지
+   ============================================= */
+.site-gnb {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(95vw, 1600px);
+  max-width: 1600px;
+  z-index: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 20px 22px;
+  box-sizing: border-box;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.2) 65%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.site-gnb-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  pointer-events: auto;
+}
+
+.site-gnb a {
+  color: rgba(209, 201, 184, 0.78);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 2.16rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 4px;
+  border: none;
+  background: none;
+  transition: color 0.22s ease, opacity 0.22s ease;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.88);
+}
+
+.site-gnb a:hover {
+  color: #ebe4d4;
+}
+
+.site-gnb a.active {
+  color: #d4af37;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  border-bottom: 2px solid rgba(212, 175, 55, 0.45);
+  padding-bottom: 4px;
+}
+
+.site-gnb-sep {
+  color: rgba(139, 115, 85, 0.45);
+  font-size: 1.5rem;
+  line-height: 1;
+  user-select: none;
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .site-gnb {
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    transform: none;
+    padding: 20px 12px 16px;
+  }
+
+  .site-gnb a {
+    font-size: 2.04rem;
+    letter-spacing: 0.08em;
+  }
+
+  .site-gnb a.active {
+    letter-spacing: 0.06em;
+  }
+
+  .site-gnb-sep {
+    font-size: 1.35rem;
+  }
+}
+
+.page-panel[hidden] {
+  display: none !important;
+}
+
+/* Games / Character / Media 동일: 컨테이너 전폭 + 내부 콘텐츠 가운데 정렬 */
+.page-panel {
+  align-self: stretch;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.media-page-title {
+  text-align: center;
+  color: #d4af37;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+  opacity: 0.9;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
+}
+
+.media-section {
+  width: 100%;
+  margin-bottom: 22px;
+  box-sizing: border-box;
+}
+
+.media-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.media-section-heading {
+  margin: 0 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(139, 115, 85, 0.35);
+  color: rgba(212, 175, 55, 0.88);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.media-grid {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+.media-card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 12px;
+  background: rgba(27, 38, 27, 0.82);
+  border: 2px solid #8b7355;
+  border-radius: 4px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #d1d1d1;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(212, 175, 55, 0.12);
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+}
+
+.media-card:hover {
+  border-color: #d4af37;
+  background: rgba(35, 42, 32, 0.92);
+  transform: translateY(-1px);
+}
+
+.media-card-thumb {
+  flex: 0 0 112px;
+  width: 112px;
+  min-height: 72px;
+  background: #0d0d0d;
+  object-fit: cover;
+  display: block;
+  align-self: center;
+}
+
+.media-card-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 10px 12px 10px 0;
+  min-width: 0;
+}
+
+.media-card-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  word-break: break-word;
+}
+
+/* Character 페이지 */
+.character-block {
+  width: 100%;
+  margin-bottom: 22px;
+  box-sizing: border-box;
+}
+
+.character-name {
+  margin: 0 0 12px;
+  text-align: center;
+  color: rgba(212, 175, 55, 0.92);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: none;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
+}
+
+/* 스크린샷 확대 보기 (라이트박스) */
+.screenshot-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.92);
+  cursor: zoom-out;
+}
+
+.screenshot-lightbox[hidden] {
+  display: none !important;
+}
+
+.screenshot-lightbox-img {
+  max-width: min(96vw, 1200px);
+  max-height: min(88vh, 900px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.75);
+  cursor: zoom-out;
 }
 
 /* 모바일: 버튼 크기 축소 */
@@ -666,6 +918,17 @@
 </head>
 <body>
   <div class="container">
+    <nav class="site-gnb" aria-label="Main navigation">
+      <div class="site-gnb-inner">
+        <a href="#games" id="nav-games" data-page="games">Games</a>
+        <span class="site-gnb-sep" aria-hidden="true">·</span>
+        <a href="#character" id="nav-character" data-page="character">Character</a>
+        <span class="site-gnb-sep" aria-hidden="true">·</span>
+        <a href="#media" id="nav-media" data-page="media">Media</a>
+      </div>
+    </nav>
+
+    <div id="page-games" class="page-panel">
     <div class="center-content">
         <div class="logo-title-area">
           <img src="./logo_title.png" class="logo-title" alt="Broken Soul - Fragments of Hope | Dark Souls Inspired 2D Soulslike Game">
@@ -760,7 +1023,123 @@
           Copyright 2025. Double J Labs. All rights reserved.
         </div>
     </div>
+    </div>
+
+    <div id="page-character" class="page-panel" hidden>
+      <div class="center-content">
+        <h2 class="media-page-title">Character</h2>
+        <section class="character-block" aria-labelledby="char-heading-nyra">
+          <h3 id="char-heading-nyra" class="character-name">Nyra</h3>
+          <div class="youtube-wrapper">
+            <iframe src="https://www.youtube.com/embed/1yagfXGUnXY?si=NiKtBtdGObufwX38"
+                    title="Nyra — YouTube preview"
+                    frameborder="0"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+          </div>
+        </section>
+        <section class="character-block" aria-labelledby="char-heading-jiny">
+          <h3 id="char-heading-jiny" class="character-name">Jiny</h3>
+          <div class="youtube-wrapper">
+            <iframe src="https://www.youtube.com/embed/mAQqWZQjmjE?si=hespsQ6Tb6CU--86"
+                    title="Jiny — YouTube preview"
+                    frameborder="0"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+          </div>
+        </section>
+        <div class="footer-links" style="margin-top: 24px;">
+          <a href="https://brokensoul.xyz/privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
+          <span>|</span>
+          <a href="https://brokensoul.xyz/terms.html" target="_blank" rel="noopener">Terms of Use</a>
+          <span>|</span>
+          <a href="https://forms.gle/f6BQBnZHYbZTczMc8" target="_blank" rel="noopener">Customer Service</a>
+        </div>
+        <div style="text-align: center; font-size: 11px; color: white; text-shadow: 0 0 2px black; margin-top: 8px;">
+          Copyright 2025. Double J Labs. All rights reserved.
+        </div>
+      </div>
+    </div>
+
+    <div id="page-media" class="page-panel" hidden>
+      <div class="center-content">
+        <h2 class="media-page-title">MEDIA</h2>
+
+        <section class="media-section" aria-labelledby="media-heading-links">
+          <h3 id="media-heading-links" class="media-section-heading">Links</h3>
+          <div class="media-grid">
+            <a class="media-card" href="https://gamesardor.net/top-steam-games-to-look-out-for-in-april-2026/#broken-soul-boss-rush-demo" target="_blank" rel="noopener noreferrer">
+              <img class="media-card-thumb" src="./logo.png" alt="" width="112" height="63" loading="lazy">
+              <div class="media-card-body">
+                <span class="media-card-title">Top Steam Games April 2026 — BROKEN SOUL (Games Ardor)</span>
+              </div>
+            </a>
+            <a class="media-card" href="https://hunted.space/product/broken-soul" target="_blank" rel="noopener noreferrer">
+              <img class="media-card-thumb" src="./logo.png" alt="" width="112" height="63" loading="lazy">
+              <div class="media-card-body">
+                <span class="media-card-title">BROKEN SOUL — 2D soulslike boss rush (Product Hunt)</span>
+              </div>
+            </a>
+            <a class="media-card" href="https://mmo13.ru/games/178903_broken-soul-boss-rush" target="_blank" rel="noopener noreferrer">
+              <img class="media-card-thumb" src="./logo.png" alt="" width="112" height="63" loading="lazy">
+              <div class="media-card-body">
+                <span class="media-card-title">BROKEN SOUL : Boss Rush — MMO13</span>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <section class="media-section" aria-labelledby="media-heading-youtube">
+          <h3 id="media-heading-youtube" class="media-section-heading">Youtube</h3>
+          <div class="media-grid">
+            <a class="media-card" href="https://youtu.be/IOCxnlV3now?si=QtSi4NMCPAKVm6rp" target="_blank" rel="noopener noreferrer">
+              <img class="media-card-thumb" src="https://i.ytimg.com/vi/IOCxnlV3now/hqdefault.jpg" alt="" width="112" height="63" loading="lazy">
+              <div class="media-card-body">
+                <span class="media-card-title">BROKEN SOUL — YouTube video</span>
+              </div>
+            </a>
+            <a class="media-card" href="https://www.youtube.com/watch?v=pgfB7vCtSeg&amp;list=PLokl4fs0RVnPMjIx5RO4YWpuhaHnE_CSi" target="_blank" rel="noopener noreferrer">
+              <img class="media-card-thumb" src="https://i.ytimg.com/vi/pgfB7vCtSeg/hqdefault.jpg" alt="" width="112" height="63" loading="lazy">
+              <div class="media-card-body">
+                <span class="media-card-title">BROKEN SOUL — YouTube playlist</span>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <section class="media-section" aria-labelledby="media-heading-x">
+          <h3 id="media-heading-x" class="media-section-heading">X (Tweet)</h3>
+          <div class="media-grid">
+            <a class="media-card" href="https://x.com/doublejlabs2025" target="_blank" rel="noopener noreferrer">
+              <img class="media-card-thumb" src="./logo.png" alt="" width="112" height="63" loading="lazy">
+              <div class="media-card-body">
+                <span class="media-card-title">Double J Labs — X (Twitter)</span>
+              </div>
+            </a>
+          </div>
+        </section>
+        <div class="footer-links" style="margin-top: 24px;">
+          <a href="https://brokensoul.xyz/privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
+          <span>|</span>
+          <a href="https://brokensoul.xyz/terms.html" target="_blank" rel="noopener">Terms of Use</a>
+          <span>|</span>
+          <a href="https://forms.gle/f6BQBnZHYbZTczMc8" target="_blank" rel="noopener">Customer Service</a>
+        </div>
+        <div style="text-align: center; font-size: 11px; color: white; text-shadow: 0 0 2px black; margin-top: 8px;">
+          Copyright 2025. Double J Labs. All rights reserved.
+        </div>
+      </div>
+    </div>
   </div>
+
+  <div id="screenshotLightbox" class="screenshot-lightbox" role="dialog" aria-modal="true" aria-label="Screenshot enlarged" hidden>
+    <img class="screenshot-lightbox-img" src="" alt="">
+  </div>
+
   <!-- ============================================================
        스크린샷 슬라이더 JavaScript
        - 총 7장 이미지를 한 번에 3장씩 보여줌
@@ -848,10 +1227,86 @@
     // ── 초기 실행 및 창 크기 변경 대응 ────────────────────────
     setItemWidths();
     window.addEventListener('resize', setItemWidths);
+
+    // ── 스크린샷 클릭 시 확대 / 다시 클릭 시 닫기 ─────────────
+    var lightbox = document.getElementById('screenshotLightbox');
+    var lightboxImg = lightbox ? lightbox.querySelector('.screenshot-lightbox-img') : null;
+    if (lightbox && lightboxImg && track) {
+      function openScreenshotLightbox(src, alt) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || '';
+        lightbox.removeAttribute('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeScreenshotLightbox() {
+        lightbox.setAttribute('hidden', '');
+        lightboxImg.src = '';
+        lightboxImg.alt = '';
+        document.body.style.overflow = '';
+      }
+      track.addEventListener('click', function (e) {
+        var t = e.target;
+        if (t.tagName !== 'IMG' || !t.closest('.slider-item')) return;
+        e.preventDefault();
+        openScreenshotLightbox(t.currentSrc || t.src, t.alt || '');
+      });
+      lightbox.addEventListener('click', function () {
+        closeScreenshotLightbox();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lightbox && !lightbox.hasAttribute('hidden')) {
+          closeScreenshotLightbox();
+        }
+      });
+    }
+  })();
+
+  (function () {
+    var pageGames = document.getElementById('page-games');
+    var pageCharacter = document.getElementById('page-character');
+    var pageMedia = document.getElementById('page-media');
+    var navGames = document.getElementById('nav-games');
+    var navCharacter = document.getElementById('nav-character');
+    var navMedia = document.getElementById('nav-media');
+    if (!pageGames || !pageCharacter || !pageMedia || !navGames || !navCharacter || !navMedia) return;
+
+    function showPage(page) {
+      pageGames.hidden = page !== 'games';
+      pageCharacter.hidden = page !== 'character';
+      pageMedia.hidden = page !== 'media';
+      navGames.classList.toggle('active', page === 'games');
+      navCharacter.classList.toggle('active', page === 'character');
+      navMedia.classList.toggle('active', page === 'media');
+      navGames.setAttribute('aria-current', page === 'games' ? 'page' : 'false');
+      navCharacter.setAttribute('aria-current', page === 'character' ? 'page' : 'false');
+      navMedia.setAttribute('aria-current', page === 'media' ? 'page' : 'false');
+      window.scrollTo(0, 0);
+    }
+
+    function getPageFromHash() {
+      var h = location.hash.toLowerCase();
+      if (h === '#media') return 'media';
+      if (h === '#character') return 'character';
+      return 'games';
+    }
+
+    function onNavClick(e) {
+      e.preventDefault();
+      var page = e.currentTarget.getAttribute('data-page');
+      var hash = '#' + page;
+      if (location.hash !== hash) location.hash = hash;
+      else showPage(page);
+    }
+
+    navGames.addEventListener('click', onNavClick);
+    navCharacter.addEventListener('click', onNavClick);
+    navMedia.addEventListener('click', onNavClick);
+    window.addEventListener('hashchange', function () {
+      showPage(getPageFromHash());
+    });
+
+    showPage(getPageFromHash());
   })();
   </script>
 </body>
 </html>
-
-
-
