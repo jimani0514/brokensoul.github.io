@@ -254,13 +254,15 @@
     .brand-link {
       display: inline-flex;
       align-items: center;
-      min-width: 144px;
+      min-width: 178px;
       text-decoration: none;
     }
 
     .brand-link img {
-      width: 164px;
+      width: 196px;
+      max-height: 42px;
       height: auto;
+      object-fit: contain;
     }
 
     .site-nav {
@@ -680,6 +682,43 @@
       box-shadow: var(--shadow);
     }
 
+    .feature-card.intro-card {
+      min-height: 430px;
+      padding: 0;
+      overflow: hidden;
+      justify-content: flex-start;
+    }
+
+    .intro-card-media {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: #050403;
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .intro-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .intro-card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .intro-card-body .feature-number {
+      margin-bottom: 14px;
+    }
+
+    .intro-card-body h3 {
+      margin-top: 0;
+    }
+
     .feature-card.visual-card {
       min-height: 360px;
       padding: 0;
@@ -1042,7 +1081,8 @@
       }
 
       .brand-link img {
-        width: 128px;
+        width: 136px;
+        max-height: 30px;
       }
 
       .ghost-link {
@@ -1133,6 +1173,14 @@
         min-height: 190px;
       }
 
+      .feature-card.intro-card {
+        min-height: auto;
+      }
+
+      .intro-card-body {
+        padding: 18px;
+      }
+
       .character-card {
         min-height: 360px;
       }
@@ -1169,7 +1217,7 @@
   <header class="site-header">
     <div class="nav-shell">
       <a class="brand-link" href="#top" aria-label="Broken Soul">
-        <img src="./logo.png" alt="Broken Soul" />
+        <img src="./logo_title.png" alt="Broken Soul" />
       </a>
       <nav class="site-nav" aria-label="Primary">
         <a href="#game" data-i18n="nav_game">Game</a>
@@ -1243,30 +1291,42 @@
           <p class="section-copy" data-i18n="game_copy">Broken Soul turns Soulslike pressure into grid-based 2D action. Dodge, parry, read attack patterns, find the safe lane, and counter when the boss finally leaves a wound in its rhythm.</p>
         </div>
         <div class="feature-grid">
-          <article class="feature-card">
-            <span class="feature-number">01</span>
-            <div>
+          <article class="feature-card intro-card">
+            <div class="intro-card-media">
+              <img src="./01.gif" alt="Broken Soul grid combat preview" loading="lazy" />
+            </div>
+            <div class="intro-card-body">
+              <span class="feature-number">01</span>
               <h3 data-i18n="feature_1_title">Grid-based combat</h3>
               <p data-i18n="feature_1_text">Episode 1 plays in a 3x2 vertical mobile grid. Episode 2 expands into a 5x2 PC grid with 16:9 remastered boss arenas.</p>
             </div>
           </article>
-          <article class="feature-card">
-            <span class="feature-number">02</span>
-            <div>
+          <article class="feature-card intro-card">
+            <div class="intro-card-media">
+              <img src="./02.gif" alt="Broken Soul dodge and parry preview" loading="lazy" />
+            </div>
+            <div class="intro-card-body">
+              <span class="feature-number">02</span>
               <h3 data-i18n="feature_2_title">Timing, dodge, parry</h3>
               <p data-i18n="feature_2_text">The fight is decided by timing and pattern reading, not button mashing.</p>
             </div>
           </article>
-          <article class="feature-card">
-            <span class="feature-number">03</span>
-            <div>
+          <article class="feature-card intro-card">
+            <div class="intro-card-media">
+              <img src="./03.png" alt="Broken Soul boss battle preview" loading="lazy" />
+            </div>
+            <div class="intro-card-body">
+              <span class="feature-number">03</span>
               <h3 data-i18n="feature_3_title">Bosses without filler</h3>
               <p data-i18n="feature_3_text">More than twenty boss-type monsters turn every stage into a test of nerve, memory, and precision.</p>
             </div>
           </article>
-          <article class="feature-card">
-            <span class="feature-number">04</span>
-            <div>
+          <article class="feature-card intro-card">
+            <div class="intro-card-media">
+              <img src="./04.png" alt="Broken Soul character combat preview" loading="lazy" />
+            </div>
+            <div class="intro-card-body">
+              <span class="feature-number">04</span>
               <h3 data-i18n="feature_4_title">Two combat classes</h3>
               <p data-i18n="feature_4_text">Nyra and Jiny carry different reach, tempo, and risk so each rematch asks for a new kind of courage.</p>
             </div>
@@ -2743,14 +2803,40 @@
       return LANG_ALIASES[String(value).trim().toLowerCase()] || null;
     }
 
+    function getStoredLanguage() {
+      try {
+        return normalizeLanguage(localStorage.getItem("brokenSoulLanguage"));
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function hasStoredLanguagePreference() {
+      try {
+        return localStorage.getItem("brokenSoulLanguageTouched") === "true";
+      } catch (error) {
+        return false;
+      }
+    }
+
+    function getBrowserLanguage() {
+      const candidates = navigator.languages && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language];
+      for (const candidate of candidates) {
+        const normalized = normalizeLanguage(candidate);
+        if (normalized) return normalized;
+      }
+      return null;
+    }
+
     function getInitialLanguage() {
       const params = new URLSearchParams(window.location.search);
       const fromUrl = normalizeLanguage(params.get("lang"));
       if (fromUrl) return fromUrl;
-      const fromStorage = normalizeLanguage(localStorage.getItem("brokenSoulLanguage"));
-      if (fromStorage) return fromStorage;
-      const fromBrowser = normalizeLanguage(navigator.language);
-      return fromBrowser || "en";
+      const fromStorage = getStoredLanguage();
+      if (hasStoredLanguagePreference() && fromStorage) return fromStorage;
+      return getBrowserLanguage() || "en";
     }
 
     function applyLanguage(lang) {
@@ -2792,7 +2878,11 @@
 
       const select = document.getElementById("languageSelect");
       if (select) select.value = safeLang;
-      localStorage.setItem("brokenSoulLanguage", safeLang);
+      try {
+        localStorage.setItem("brokenSoulLanguage", safeLang);
+      } catch (error) {
+        // Ignore storage failures so language switching still works in private contexts.
+      }
     }
 
     function updateLanguageUrl(lang) {
@@ -2810,6 +2900,11 @@
         languageSelect.addEventListener("change", (event) => {
           const selected = normalizeLanguage(event.target.value) || "en";
           applyLanguage(selected);
+          try {
+            localStorage.setItem("brokenSoulLanguageTouched", "true");
+          } catch (error) {
+            // Ignore storage failures so the selector remains usable.
+          }
           updateLanguageUrl(selected);
         });
       }
