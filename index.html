@@ -230,6 +230,18 @@
       transform: translateY(0);
     }
 
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
     .site-header {
       position: fixed;
       top: 0;
@@ -382,8 +394,8 @@
     }
 
     .hero-logo {
-      width: min(560px, 84vw);
-      margin-bottom: 24px;
+      width: min(620px, 88vw);
+      margin: 0;
       filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.72));
     }
 
@@ -1118,8 +1130,8 @@
       }
 
       .hero-logo {
-        width: min(320px, 82vw);
-        margin-bottom: 18px;
+        width: min(340px, 84vw);
+        margin: 0;
       }
 
       h1 {
@@ -1250,10 +1262,10 @@
   <section id="top" class="hero" aria-labelledby="hero-title">
     <div class="hero-inner">
       <div class="hero-copy">
-        <img class="hero-logo" src="./logo_title.png" alt="Broken Soul: Fragments of Hope" />
         <p class="eyebrow" data-i18n="hero_kicker">Dark fantasy 2D Soulslike</p>
-        <h1 id="hero-title" data-i18n="hero_title">BROKEN SOUL</h1>
-          <p class="hero-lead" data-i18n="hero_lead">Read the grid, dodge the pattern, and strike back at the exact moment in a 2D Soulslike where every mistake becomes the next route to victory.</p>
+        <h1 id="hero-title" class="sr-only" data-i18n="hero_title">BROKEN SOUL</h1>
+        <img class="hero-logo" src="./logo_title.png" alt="" aria-hidden="true" />
+        <p class="hero-lead" data-i18n="hero_lead">Read the grid, dodge the pattern, and strike back at the exact moment in a 2D Soulslike where every mistake becomes the next route to victory.</p>
         <div class="hero-actions" aria-label="Store links">
           <a class="store-link" href="https://play.google.com/store/apps/details?id=xyz.brokensoul.mygame" target="_blank" rel="noopener" data-i18n-aria="google_aria">
             <img src="./googleplay.png" alt="Get it on Google Play" data-i18n-alt="google_alt" />
@@ -1641,7 +1653,6 @@
         language_label: "언어",
         support: "문의",
         hero_kicker: "다크 판타지 2D 소울라이크",
-        hero_title: "BROKEN SOUL",
         hero_lead: "정밀한 회피, 냉혹한 패턴, 무너진 영혼 안에 남은 희망을 중심으로 설계된 보스 러시 액션 RPG에 진입하세요.",
         watch_trailer: "트레일러 보기",
         google_aria: "Google Play에서 Broken Soul 열기",
