@@ -31,7 +31,7 @@
   <meta property="og:url" content="https://brokensoul.xyz/" />
   <meta property="og:title" content="Broken Soul | 2D Soulslike RPG for Google Play and Steam" />
   <meta property="og:description" content="A dark fantasy 2D Soulslike series for mobile and PC players: Fragments of Hope on Google Play and Boss Rush on Steam PC." />
-  <meta property="og:image" content="https://brokensoul.xyz/assets/generated/hero-desktop-brokensoul.jpg" />
+  <meta property="og:image" content="https://brokensoul.xyz/assets/generated/hero-steam-sequel-desktop.jpg" />
   <meta property="og:image:alt" content="Broken Soul dark fantasy 2D Soulslike key art" />
   <meta property="og:site_name" content="Broken Soul" />
   <meta property="og:locale" content="en_US" />
@@ -48,14 +48,14 @@
   <meta name="twitter:url" content="https://brokensoul.xyz/" />
   <meta name="twitter:title" content="Broken Soul | 2D Soulslike RPG for Google Play and Steam" />
   <meta name="twitter:description" content="Fragments of Hope on Google Play. Boss Rush on Steam PC. A dark fantasy 2D Soulslike series from Double J Labs." />
-  <meta name="twitter:image" content="https://brokensoul.xyz/assets/generated/hero-desktop-brokensoul.jpg" />
+  <meta name="twitter:image" content="https://brokensoul.xyz/assets/generated/hero-steam-sequel-desktop.jpg" />
   <meta name="twitter:creator" content="@DoubleJLabs" />
   <meta name="twitter:site" content="@DoubleJLabs" />
 
   <link rel="icon" type="image/png" href="./logo.png" />
   <link rel="apple-touch-icon" href="./logo.png" />
-  <link rel="preload" as="image" href="./assets/generated/hero-desktop-brokensoul.jpg" media="(min-width: 761px)" />
-  <link rel="preload" as="image" href="./assets/generated/hero-mobile-brokensoul.jpg" media="(max-width: 760px)" />
+  <link rel="preload" as="image" href="./assets/generated/hero-steam-sequel-desktop.jpg" media="(min-width: 761px)" />
+  <link rel="preload" as="image" href="./assets/generated/hero-steam-sequel-mobile.jpg" media="(max-width: 760px)" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
   <link
@@ -102,7 +102,7 @@
         "name": "Broken Soul: Fragments of Hope",
         "alternateName": ["Broken Soul Google Play Version", "브로큰 소울: 희망의 조각", "ブロークンソウル: 希望の欠片", "破碎之魂: 希望碎片"],
         "description": "The Google Play version of Broken Soul is a dark fantasy 2D Soulslike action RPG for Android players, built around a 3x2 vertical mobile grid, casual boss battles, dodges, parries, timing, and pattern reading.",
-        "image": "https://brokensoul.xyz/assets/generated/hero-mobile-brokensoul.jpg",
+        "image": "https://brokensoul.xyz/assets/generated/hero-steam-sequel-mobile.jpg",
         "url": "https://brokensoul.xyz/?lang=en#series",
         "genre": ["Action", "RPG", "Soulslike", "Dark Fantasy", "Indie"],
         "gamePlatform": ["Android", "Google Play"],
@@ -132,7 +132,7 @@
         "name": "BROKEN SOUL: Boss Rush",
         "alternateName": ["Broken Soul Steam PC Version", "Broken Soul Steam", "BROKEN SOUL - Boss Rush"],
         "description": "The Steam PC version of Broken Soul is a boss rush with remastered graphics, a 16:9 horizontal view, an expanded 5x2 combat grid, precise Soulslike dodges and parries, fast retries, and deeper boss pattern mastery.",
-        "image": "https://brokensoul.xyz/assets/generated/hero-desktop-brokensoul.jpg",
+        "image": "https://brokensoul.xyz/assets/generated/hero-steam-sequel-desktop.jpg",
         "url": "https://store.steampowered.com/app/4424450/BROKEN_SOUL__Boss_Rush/",
         "genre": ["Action", "RPG", "Soulslike", "Boss Rush", "Dark Fantasy", "Indie"],
         "gamePlatform": ["Windows PC", "Steam"],
@@ -206,6 +206,7 @@
 
     body {
       margin: 0;
+      max-width: 100%;
       min-width: 320px;
       color: var(--bone);
       background:
@@ -383,7 +384,7 @@
       background:
         linear-gradient(90deg, rgba(5, 4, 3, 0.98) 0%, rgba(5, 4, 3, 0.74) 44%, rgba(5, 4, 3, 0.42) 70%, rgba(5, 4, 3, 0.86) 100%),
         linear-gradient(180deg, rgba(5, 4, 3, 0.24) 0%, rgba(5, 4, 3, 0.44) 60%, rgba(5, 4, 3, 1) 100%),
-        url("./assets/generated/hero-desktop-brokensoul.jpg") center 33% / cover no-repeat;
+        url("./assets/generated/hero-steam-sequel-desktop.jpg") center 33% / cover no-repeat;
     }
 
     .hero::before {
@@ -450,6 +451,16 @@
       text-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
     }
 
+    .hero-demo-note {
+      max-width: 680px;
+      margin: 14px 0 0;
+      color: rgba(247, 190, 90, 0.94);
+      font-size: 0.98rem;
+      font-weight: 800;
+      line-height: 1.55;
+      text-shadow: 0 8px 22px rgba(0, 0, 0, 0.82);
+    }
+
     .hero-actions {
       display: flex;
       align-items: center;
@@ -463,6 +474,9 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 10px;
+      color: var(--bone);
+      text-decoration: none;
       padding: 8px 12px;
       background: rgba(0, 0, 0, 0.72);
       border: 1px solid rgba(215, 182, 106, 0.36);
@@ -480,8 +494,26 @@
     }
 
     .store-link img {
-      height: 42px;
+      height: 34px;
       width: auto;
+    }
+
+    .store-link span {
+      min-width: 0;
+      color: rgba(241, 233, 218, 0.92);
+      font-size: 0.9rem;
+      font-weight: 900;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .steam-store-link {
+      border-color: rgba(124, 193, 181, 0.48);
+      background: rgba(5, 15, 20, 0.78);
+    }
+
+    .steam-store-link span {
+      color: #d7fff7;
     }
 
     .primary-link {
@@ -1098,6 +1130,38 @@
     }
 
     @media (max-width: 760px) {
+      html,
+      body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      .site-header,
+      .nav-shell,
+      .site-nav,
+      .nav-actions {
+        max-width: 100vw;
+      }
+
+      .site-nav {
+        min-width: 0;
+      }
+
+      .language-field {
+        max-width: 104px;
+        min-width: 0;
+      }
+
+      .language-field select {
+        min-width: 0;
+      }
+
+      .hero *,
+      .content-band * {
+        max-width: 100%;
+      }
+
       .nav-shell,
       .hero-inner,
       .section-inner,
@@ -1128,7 +1192,7 @@
       }
 
       .language-field select {
-        max-width: 118px;
+        max-width: 72px;
         font-size: 0.84rem;
       }
 
@@ -1138,16 +1202,37 @@
         font-size: 0.84rem;
       }
 
+      .hero-inner,
+      .section-inner,
+      .footer-inner {
+        width: calc(100vw - 24px);
+        max-width: calc(100vw - 24px);
+      }
+
+      .hero-copy,
+      .section-heading {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+      .hero-demo-note,
+      .hero-lead,
+      .section-copy,
+      .stat strong,
+      .stat span {
+        max-width: 100%;
+      }
+
       .hero {
         min-height: 84svh;
         padding: 146px 0 50px;
         background:
           linear-gradient(180deg, rgba(5, 4, 3, 0.66) 0%, rgba(5, 4, 3, 0.92) 70%, rgba(5, 4, 3, 1) 100%),
-          url("./assets/generated/hero-mobile-brokensoul.jpg") center top / cover no-repeat;
+          url("./assets/generated/hero-steam-sequel-mobile.jpg") center top / cover no-repeat;
       }
 
       .hero-logo {
-        width: min(340px, 84vw);
+        width: min(320px, 82vw);
         margin: 0;
       }
 
@@ -1156,21 +1241,40 @@
       }
 
       h2 {
-        font-size: 2.15rem;
+        max-width: 100%;
+        font-size: clamp(1.52rem, 7vw, 1.9rem);
+        line-height: 1.12;
+        word-break: normal;
+        overflow-wrap: anywhere;
       }
-
+      .hero-demo-note,
       .hero-lead,
       .section-copy {
-        font-size: 0.98rem;
+        max-width: 100%;
+        font-size: 0.96rem;
+        word-break: normal;
+        overflow-wrap: anywhere;
       }
 
       .hero-actions {
+        width: 100%;
         gap: 10px;
       }
 
+      .hero-actions > * {
+        max-width: 100%;
+      }
+
       .store-link {
+        width: min(100%, 320px);
         min-height: 54px;
         padding: 8px 10px;
+        justify-content: flex-start;
+      }
+
+      .store-link span {
+        white-space: normal;
+        overflow-wrap: anywhere;
       }
 
       .store-link img {
@@ -1263,7 +1367,7 @@
             <option value="en">English</option>
             <option value="ko">한국어</option>
             <option value="ja">日本語</option>
-            <option value="zh">简体中文</option>
+            <option value="zh">繁體中文</option>
             <option value="es">Español</option>
             <option value="pt">Português</option>
             <option value="de">Deutsch</option>
@@ -1283,19 +1387,22 @@
         <h1 id="hero-title" class="sr-only" data-i18n="hero_title">BROKEN SOUL</h1>
         <img class="hero-logo" src="./logo_title.png" alt="" aria-hidden="true" />
         <p class="hero-lead" data-i18n="hero_lead">Every dodge creates the next opening. Every defeat makes the boss pattern clearer. Survive a ruined world by reading the fight, choosing your timing, and striking back with intent.</p>
+        <p class="hero-demo-note" data-i18n="hero_demo_note">Play the DEMO on Steam and add Boss Rush to your wishlist.</p>
         <div class="hero-actions" aria-label="Store links">
-          <a class="store-link" href="https://play.google.com/store/apps/details?id=xyz.brokensoul.mygame" target="_blank" rel="noopener" data-i18n-aria="google_aria">
+          <a class="store-link google-store-link" href="https://play.google.com/store/apps/details?id=xyz.brokensoul.mygame" target="_blank" rel="noopener" data-i18n-aria="google_aria">
             <img src="./googleplay.png" alt="Get it on Google Play" data-i18n-alt="google_alt" />
+            <span data-i18n="google_cta">Play Fragments of Hope</span>
           </a>
-          <a class="store-link" href="https://store.steampowered.com/app/4424450?utm_source=homepage" target="_blank" rel="noopener" data-i18n-aria="steam_aria">
+          <a class="store-link steam-store-link steam-wishlist-link" href="https://store.steampowered.com/app/4424450?utm_source=homepage&utm_medium=web&utm_campaign=homepage_steam_followup" target="_blank" rel="noopener" data-i18n-aria="steam_aria" data-steam-link>
             <img src="./steam.png" alt="Available on Steam" data-i18n-alt="steam_alt" />
+            <span data-i18n="steam_cta">Wishlist Boss Rush</span>
           </a>
           <a class="primary-link" href="#videos" data-i18n="watch_trailer">Watch trailer</a>
         </div>
         <div class="hero-stats" aria-label="Game highlights">
           <div class="stat">
-            <strong data-i18n="stat_platform_title">From Google Play to Steam PC</strong>
-            <span data-i18n="stat_platform_text">Start with fast mobile battles, then face a wider and deeper boss rush on PC.</span>
+            <strong data-i18n="stat_platform_title">Wider arenas</strong>
+            <span data-i18n="stat_platform_text">The 5x2 grid demands cleaner reads, faster decisions, and sharper boss mastery.</span>
           </div>
           <div class="stat">
             <strong data-i18n="stat_combat_title">Pattern-driven boss fights</strong>
@@ -1379,16 +1486,16 @@
               <p class="series-subtitle" data-i18n="series_mobile_subtitle">Fragments of Hope</p>
               <p data-i18n="series_mobile_text">A casual Soulslike action version shaped for mobile. Read compact boss patterns inside a 3x2 vertical grid and recover fragments of hope one attempt at a time.</p>
             </div>
-            <a class="series-action" href="https://play.google.com/store/apps/details?id=xyz.brokensoul.mygame" target="_blank" rel="noopener" data-i18n="series_mobile_action">Play on Google Play</a>
+            <a class="series-action" href="https://play.google.com/store/apps/details?id=xyz.brokensoul.mygame" target="_blank" rel="noopener" data-i18n="series_mobile_action">Play Fragments of Hope</a>
           </article>
-          <article class="series-card" style="--series-image: url('./assets/generated/hero-desktop-brokensoul.jpg');">
+          <article class="series-card" style="--series-image: url('./assets/generated/hero-steam-sequel-desktop.jpg');">
             <div>
               <span class="series-label" data-i18n="series_pc_label">Steam PC Version</span>
               <h3>BROKEN SOUL</h3>
               <p class="series-subtitle" data-i18n="series_pc_subtitle">Boss Rush</p>
               <p data-i18n="series_pc_text">A deeper Soulslike action version remastered for PC. Fight in 16:9 arenas with a 5x2 grid, larger boss patterns, sharper timing, and harder-earned victories.</p>
             </div>
-            <a class="series-action" href="https://store.steampowered.com/app/4424450?utm_source=homepage" target="_blank" rel="noopener" data-i18n="series_pc_action">Open on Steam</a>
+            <a class="series-action steam-wishlist-link" href="https://store.steampowered.com/app/4424450?utm_source=homepage&utm_medium=web&utm_campaign=homepage_steam_followup" target="_blank" rel="noopener" data-i18n="series_pc_action" data-steam-link>Wishlist Boss Rush</a>
           </article>
         </div>
       </div>
@@ -1549,13 +1656,15 @@
       <div class="section-inner final-cta">
         <p class="section-kicker" data-i18n="cta_kicker">Available now</p>
         <h2 data-i18n="cta_title">Recover the fragments of hope.</h2>
-        <p class="section-copy" data-i18n="cta_copy">Start with the Google Play version, or challenge the deeper Steam PC version.</p>
+        <p class="section-copy" data-i18n="cta_copy">Play the demo on Steam and add Boss Rush to your wishlist.</p>
         <div class="hero-actions">
-          <a class="store-link" href="https://play.google.com/store/apps/details?id=xyz.brokensoul.mygame" target="_blank" rel="noopener" data-i18n-aria="google_aria">
+          <a class="store-link google-store-link" href="https://play.google.com/store/apps/details?id=xyz.brokensoul.mygame" target="_blank" rel="noopener" data-i18n-aria="google_aria">
             <img src="./googleplay.png" alt="Get it on Google Play" data-i18n-alt="google_alt" />
+            <span data-i18n="google_cta">Play Fragments of Hope</span>
           </a>
-          <a class="store-link" href="https://store.steampowered.com/app/4424450?utm_source=homepage" target="_blank" rel="noopener" data-i18n-aria="steam_aria">
+          <a class="store-link steam-store-link steam-wishlist-link" href="https://store.steampowered.com/app/4424450?utm_source=homepage&utm_medium=web&utm_campaign=homepage_steam_followup" target="_blank" rel="noopener" data-i18n-aria="steam_aria" data-steam-link>
             <img src="./steam.png" alt="Available on Steam" data-i18n-alt="steam_alt" />
+            <span data-i18n="steam_cta">Wishlist Boss Rush</span>
           </a>
         </div>
       </div>
@@ -3706,6 +3815,364 @@
       I18N[lang] = Object.assign({}, I18N[lang], I18N_NATURAL_COPY_POLISH[lang]);
     });
 
+    const I18N_STEAM_FOLLOWUP_COPY = {
+      "en": {
+            "meta_title": "Broken Soul | Steam PC Follow-Up to the 2D Soulslike Action RPG",
+            "meta_description": "Broken Soul returns on Steam as the PC follow-up to the Google Play version. The mobile 3x2 vertical combat expands into a 5x2, 16:9 boss-rush action RPG built for deeper pattern reading, dodges, parries, and timing.",
+            "hero_kicker": "The Steam PC follow-up to Broken Soul",
+            "hero_lead": "The Google Play version began as compact 3x2 mobile boss battles. The Steam PC version expands that idea into wider 16:9 arenas, a 5x2 combat grid, sharper timing, and a deeper boss-rush trial.",
+            "hero_demo_note": "Play the DEMO on Steam and add Boss Rush to your wishlist.",
+            "google_cta": "Play Fragments of Hope",
+            "steam_cta": "Wishlist Boss Rush",
+            "google_aria": "Play Broken Soul: Fragments of Hope on Google Play",
+            "steam_aria": "Wishlist Broken Soul: Boss Rush on Steam",
+            "stat_platform_title": "Wider arenas",
+            "stat_platform_text": "The 5x2 grid demands cleaner reads, faster decisions, and sharper boss mastery.",
+            "stat_combat_title": "Built for PC boss mastery",
+            "stat_combat_text": "Wider arenas, stricter openings, and pattern reads with every retry.",
+            "stat_roster_title": "Two heroes, harder trials",
+            "stat_roster_text": "Nyra and Jiny return with distinct reach, tempo, and risk.",
+            "game_title": "Read the pattern. Break the boss.",
+            "game_copy": "Broken Soul compresses Soulslike tension into grid-based 2D action. Read the arena, dodge the pattern, parry with intent, and punish the moment a boss rhythm opens.",
+            "feature_1_title": "From 3x2 to 5x2",
+            "feature_1_text": "Google Play uses a mobile-friendly 3x2 vertical grid. Steam uses a wider 5x2 grid with 16:9 boss arenas built for PC play.",
+            "feature_2_title": "Dodge, parry, timing",
+            "feature_2_text": "The Steam version is built around deliberate reads and precise inputs, not frantic button mashing.",
+            "feature_3_title": "Boss-rush scale",
+            "feature_3_text": "More than twenty boss-type monsters become a PC-focused test of memory, nerves, and precision.",
+            "feature_4_title": "Two returning combat styles",
+            "feature_4_text": "Nyra and Jiny change how you manage distance, pressure, and risk in every rematch.",
+            "series_kicker": "Platforms",
+            "series_title": "Choose your arena.",
+            "series_copy": "Broken Soul is playable across Google Play and Steam, with each platform tuned for its own rhythm: compact mobile battles on Google Play and wider boss-rush arenas on Steam.",
+            "series_mobile_label": "Google Play",
+            "series_mobile_text": "A compact mobile action RPG with a 3x2 vertical grid, fast retries, and readable boss patterns for short sessions.",
+            "series_mobile_action": "Play Fragments of Hope",
+            "series_pc_label": "Steam PC",
+            "series_pc_text": "A PC boss-rush action RPG with 16:9 arenas, an expanded 5x2 grid, larger boss patterns, sharper timing, and harder-earned victories.",
+            "series_pc_action": "Wishlist Boss Rush",
+            "cta_kicker": "Steam PC",
+            "cta_title": "Wishlist the next Broken Soul trial.",
+            "cta_copy": "Play the demo on Steam and add Boss Rush to your wishlist."
+      },
+      "ko": {
+            "meta_title": "Broken Soul | Google Play에서 이어지는 Steam 출시 예정",
+            "meta_description": "Broken Soul은 Google Play 모바일 원작에서 시작해 Steam 출시 예정으로 확장됩니다. 3x2 세로 전투는 5x2, 16:9 보스 러시 액션 RPG로 넓어지고, 회피, 패링, 타이밍, 패턴 읽기가 더 깊어집니다.",
+            "hero_kicker": "Google Play에서 이어지는 Steam 출시 예정",
+            "hero_lead": "Google Play의 3x2 모바일 보스전이 Steam PC에서 16:9 아레나와 5x2 보스 러시로 확장됩니다.",
+            "hero_demo_note": "Steam에서 DEMO를 플레이하고 위시리스트를 추가해보세요!",
+            "google_cta": "Fragments of Hope 플레이",
+            "steam_cta": "Boss Rush 위시리스트 추가",
+            "google_aria": "Google Play에서 Broken Soul: Fragments of Hope 플레이",
+            "steam_aria": "Steam에서 Broken Soul: Boss Rush 위시리스트 추가",
+            "stat_platform_title": "넓어진 전장",
+            "stat_platform_text": "5x2 전투는 더 정교한 패턴 읽기와 빠른 판단을 요구합니다.",
+            "stat_combat_title": "PC 보스 숙련을 위한 전투",
+            "stat_combat_text": "넓어진 아레나와 선명한 패턴 읽기.",
+            "stat_roster_title": "두 영웅, 더 어려운 시련",
+            "stat_roster_text": "Nyra와 Jiny가 서로 다른 거리, 템포, 리스크로 돌아옵니다.",
+            "game_title": "패턴을 읽고, 보스를 무너뜨리세요.",
+            "game_copy": "Broken Soul은 소울라이크의 긴장감을 그리드 기반 2D 액션으로 압축합니다. 패턴을 읽고, 피하고, 패링하며 보스의 빈틈을 노리세요.",
+            "feature_1_title": "3x2에서 5x2로",
+            "feature_1_text": "Google Play는 모바일에 맞춘 3x2 세로 그리드를 사용합니다. Steam은 PC 플레이에 맞춘 5x2 그리드와 16:9 보스 아레나를 제공합니다.",
+            "feature_2_title": "회피, 패링, 타이밍",
+            "feature_2_text": "Steam 버전은 무작정 누르는 전투가 아니라, 읽고 판단한 뒤 정확히 입력하는 전투를 지향합니다.",
+            "feature_3_title": "보스 러시의 규모",
+            "feature_3_text": "20종 이상의 보스형 몬스터가 기억력, 침착함, 정밀함을 시험하는 PC 중심 전투로 다시 구성됩니다.",
+            "feature_4_title": "돌아오는 두 전투 스타일",
+            "feature_4_text": "Nyra와 Jiny는 매 전투마다 거리, 압박, 리스크를 다르게 관리하게 만듭니다.",
+            "series_kicker": "플랫폼 선택",
+            "series_title": "전장을 선택하세요.",
+            "series_copy": "Broken Soul은 Google Play와 Steam에서 각 플랫폼의 리듬에 맞춰 플레이할 수 있습니다. Google Play는 짧고 밀도 높은 모바일 전투에, Steam은 넓은 보스 러시 아레나에 집중합니다.",
+            "series_mobile_label": "Google Play",
+            "series_mobile_text": "3x2 세로 그리드, 빠른 재도전, 읽기 쉬운 보스 패턴을 짧은 플레이 세션에 맞춘 모바일 액션 RPG입니다.",
+            "series_mobile_action": "Fragments of Hope 플레이",
+            "series_pc_label": "Steam 출시 예정",
+            "series_pc_text": "16:9 아레나, 확장된 5x2 그리드, 더 큰 보스 패턴, 더 날카로운 타이밍, 더 어렵게 얻는 승리를 제공하는 PC 보스 러시 액션 RPG입니다.",
+            "series_pc_action": "Boss Rush 위시리스트 추가",
+            "cta_kicker": "Steam 출시 예정",
+            "cta_title": "다음 Broken Soul 시련을 위시리스트에 추가하세요.",
+            "cta_copy": "Steam에서 DEMO를 플레이하고 위시리스트를 추가해보세요!"
+      },
+      "ja": {
+            "meta_title": "Broken Soul | Google Play版から続くSteam PC",
+            "meta_description": "Broken SoulはGoogle Playのモバイル版から始まり、Steam PCへ拡張されます。3x2の縦型戦闘は5x2、16:9のボスラッシュアクションRPGへ広がり、回避、パリィ、タイミング、パターン読みがさらに深まります。",
+            "hero_kicker": "Google Play版から続くSteam PC",
+            "hero_lead": "Google Play版は短く濃い3x2のモバイルボス戦から始まりました。Steam PC版ではその戦闘を16:9のボスアリーナ、5x2の戦闘グリッド、より鋭いタイミング、より深いボスラッシュへ拡張します。",
+            "hero_demo_note": "SteamでDEMOをプレイして、Boss Rushをウィッシュリストに追加しましょう。",
+            "google_cta": "Fragments of Hopeをプレイ",
+            "steam_cta": "Boss Rushをウィッシュリストに追加",
+            "google_aria": "Google PlayでBroken Soul: Fragments of Hopeをプレイ",
+            "steam_aria": "SteamでBroken Soul: Boss Rushをウィッシュリストに追加",
+            "stat_platform_title": "広がった戦場",
+            "stat_platform_text": "5x2の戦闘は、より正確なパターン読みと素早い判断を求めます。",
+            "stat_combat_title": "PC向けボス攻略のための戦闘",
+            "stat_combat_text": "広いアリーナ、厳しい隙、再挑戦ごとに深まるパターン読み。",
+            "stat_roster_title": "二人の英雄、より厳しい試練",
+            "stat_roster_text": "NyraとJinyが異なる間合い、テンポ、リスクで戻ってきます。",
+            "game_title": "パターンを読み、ボスを砕け。",
+            "game_copy": "Broken Soulはソウルライクの緊張をグリッド型2Dアクションへ凝縮します。アリーナを読み、パターンを避け、意図してパリィし、ボスのリズムが開く一瞬を狙ってください。",
+            "feature_1_title": "3x2から5x2へ",
+            "feature_1_text": "Google Play版はモバイル向けの3x2縦型グリッドを使用します。Steam PC版では、5x2グリッドと16:9のボスアリーナで戦います。",
+            "feature_2_title": "回避、パリィ、タイミング",
+            "feature_2_text": "Steam版は連打ではなく、読み、判断し、正確に入力する戦闘を重視します。",
+            "feature_3_title": "ボスラッシュのスケール",
+            "feature_3_text": "20種以上のボスタイプのモンスターが、記憶、冷静さ、精度を試すPC向け戦闘として再構成されます。",
+            "feature_4_title": "戻ってくる二つの戦闘スタイル",
+            "feature_4_text": "NyraとJinyは、再戦ごとに間合い、圧力、リスクの管理を変えます。",
+            "series_kicker": "プラットフォーム",
+            "series_title": "戦う場所を選べ。",
+            "series_copy": "Broken SoulはGoogle PlayとSteamで、それぞれのプレイリズムに合わせて楽しめます。Google Playは短く濃いモバイル戦闘、Steamは広いボスラッシュアリーナに焦点を当てます。",
+            "series_mobile_label": "Google Play",
+            "series_mobile_text": "3x2の縦型グリッド、素早い再挑戦、読みやすいボスパターンを短いプレイ向けにまとめたモバイルアクションRPGです。",
+            "series_mobile_action": "Fragments of Hopeをプレイ",
+            "series_pc_label": "Steam PC",
+            "series_pc_text": "16:9アリーナ、拡張された5x2グリッド、大きなボスパターン、より鋭いタイミング、より重い勝利を備えたPCボスラッシュアクションRPGです。",
+            "series_pc_action": "Boss Rushをウィッシュリストに追加",
+            "cta_kicker": "Steam PC",
+            "cta_title": "次のBroken Soulの試練をウィッシュリストへ。",
+            "cta_copy": "SteamでDEMOをプレイして、Boss Rushをウィッシュリストに追加しましょう。"
+      },
+      "zh": {
+            "meta_title": "Broken Soul | 承接Google Play的Steam PC",
+            "meta_description": "Broken Soul从Google Play移动原作开始，并扩展为Steam PC。3x2竖屏战斗扩展为5x2、16:9的Boss Rush动作RPG，回避、格挡、时机与模式阅读变得更深入。",
+            "hero_kicker": "承接Google Play的Steam PC",
+            "hero_lead": "Google Play以紧凑的3x2移动Boss战开始。Steam PC版本将这一战斗扩展为16:9 Boss竞技场、5x2战斗网格、更锋利的时机判断，以及更深入的Boss Rush试炼。",
+            "hero_demo_note": "在Steam游玩DEMO，并将Boss Rush加入愿望单。",
+            "google_cta": "游玩 Fragments of Hope",
+            "steam_cta": "将 Boss Rush 加入愿望单",
+            "google_aria": "在Google Play游玩Broken Soul: Fragments of Hope",
+            "steam_aria": "在Steam将Broken Soul: Boss Rush加入愿望单",
+            "stat_platform_title": "更宽阔的战场",
+            "stat_platform_text": "5x2战斗要求更精准的模式阅读与更快速的判断。",
+            "stat_combat_title": "为PC Boss精通而设计",
+            "stat_combat_text": "更宽的竞技场、更严格的破绽，以及反复挑战中更清晰的模式阅读。",
+            "stat_roster_title": "两位英雄，更艰难的试炼",
+            "stat_roster_text": "Nyra与Jiny以不同的距离、节奏和风险回归。",
+            "game_title": "读懂模式，击溃Boss。",
+            "game_copy": "Broken Soul将类魂的紧张压缩为网格型2D动作。阅读竞技场，躲避模式，有意识地格挡，并抓住Boss节奏露出破绽的一瞬间。",
+            "feature_1_title": "从3x2到5x2",
+            "feature_1_text": "Google Play版本采用适合移动端的3x2竖向网格。Steam PC版本使用5x2网格与16:9 Boss竞技场。",
+            "feature_2_title": "回避、格挡、时机",
+            "feature_2_text": "Steam版本强调阅读、判断和精准输入，而不是无目的连按。",
+            "feature_3_title": "Boss Rush规模",
+            "feature_3_text": "二十多种Boss型怪物被重新构成为面向PC的记忆、冷静与精度考验。",
+            "feature_4_title": "回归的两种战斗风格",
+            "feature_4_text": "Nyra与Jiny会让你在每次再战中以不同方式管理距离、压迫和风险。",
+            "series_kicker": "平台",
+            "series_title": "选择你的战场。",
+            "series_copy": "Broken Soul可在Google Play与Steam游玩，并针对不同平台节奏调整：Google Play强调紧凑移动战斗，Steam强调更宽阔的Boss Rush竞技场。",
+            "series_mobile_label": "Google Play",
+            "series_mobile_text": "面向短时间游玩的移动动作RPG：3x2竖向网格、快速重试，以及易读的Boss模式。",
+            "series_mobile_action": "游玩 Fragments of Hope",
+            "series_pc_label": "Steam PC",
+            "series_pc_text": "面向PC的Boss Rush动作RPG：16:9竞技场、扩展的5x2网格、更大的Boss模式、更精准的时机，以及更来之不易的胜利。",
+            "series_pc_action": "将 Boss Rush 加入愿望单",
+            "cta_kicker": "Steam PC",
+            "cta_title": "将下一场Broken Soul试炼加入愿望单。",
+            "cta_copy": "在Steam游玩DEMO，并将Boss Rush加入愿望单。"
+      },
+      "es": {
+            "meta_title": "Broken Soul | Secuela para Steam PC del action RPG 2D Soulslike",
+            "meta_description": "Broken Soul vuelve en Steam como continuacion para PC del original de Google Play. El combate movil vertical 3x2 se expande a un boss rush 5x2 en 16:9 con mas lectura de patrones, esquivas, parries y timing.",
+            "hero_kicker": "La continuacion para Steam PC de Broken Soul",
+            "hero_lead": "El original de Google Play empezo con combates de jefe compactos en un grid movil 3x2. La version Steam PC expande esa idea con arenas 16:9, grid 5x2, timing mas exigente y una prueba boss-rush mas profunda.",
+            "hero_demo_note": "Juega la DEMO en Steam y anade Boss Rush a tu wishlist.",
+            "google_cta": "Jugar Fragments of Hope",
+            "steam_cta": "Anadir Boss Rush a la wishlist",
+            "google_aria": "Jugar Broken Soul: Fragments of Hope en Google Play",
+            "steam_aria": "Anadir Broken Soul: Boss Rush a la wishlist en Steam",
+            "stat_platform_title": "Arenas mas amplias",
+            "stat_platform_text": "El grid 5x2 exige lecturas mas limpias, decisiones mas rapidas y mayor dominio de jefes.",
+            "stat_combat_title": "Dominio de jefes en PC",
+            "stat_combat_text": "Arenas mas amplias, ventanas mas estrictas y lectura en cada intento.",
+            "stat_roster_title": "Dos heroes, pruebas mas duras",
+            "stat_roster_text": "Nyra y Jiny vuelven con alcance, tempo y riesgo distintos.",
+            "game_title": "Lee el patron. Rompe al jefe.",
+            "game_copy": "Broken Soul condensa la tension Soulslike en accion 2D por grid. Lee la arena, esquiva el patron, haz parry con intencion y castiga el instante en que se abre el ritmo del jefe.",
+            "feature_1_title": "De 3x2 a 5x2",
+            "feature_1_text": "La version Google Play usa un grid vertical 3x2 pensado para mobile. La version Steam PC usa un grid 5x2 con arenas de jefe en 16:9.",
+            "feature_2_title": "Esquiva, parry, timing",
+            "feature_2_text": "La version Steam se basa en lectura deliberada e inputs precisos, no en machacar botones.",
+            "feature_3_title": "Escala boss-rush",
+            "feature_3_text": "Mas de veinte monstruos tipo jefe se convierten en una prueba para PC de memoria, nervios y precision.",
+            "feature_4_title": "Dos estilos de combate regresan",
+            "feature_4_text": "Nyra y Jiny cambian como gestionas distancia, presion y riesgo en cada revancha.",
+            "series_kicker": "Plataformas",
+            "series_title": "Elige tu arena.",
+            "series_copy": "Broken Soul se juega en Google Play y Steam, con cada plataforma ajustada a su ritmo: combates moviles compactos en Google Play y arenas boss-rush mas amplias en Steam.",
+            "series_mobile_label": "Google Play",
+            "series_mobile_text": "Un RPG de accion movil con grid vertical 3x2, reintentos rapidos y patrones de jefe legibles para sesiones cortas.",
+            "series_mobile_action": "Jugar Fragments of Hope",
+            "series_pc_label": "Steam PC",
+            "series_pc_text": "Un RPG de accion boss-rush para PC con arenas 16:9, grid 5x2 expandido, patrones de jefe mayores, timing mas afilado y victorias mas ganadas.",
+            "series_pc_action": "Anadir Boss Rush a la wishlist",
+            "cta_kicker": "Steam PC",
+            "cta_title": "Anade la siguiente prueba de Broken Soul a tu wishlist.",
+            "cta_copy": "Juega la DEMO en Steam y anade Boss Rush a tu wishlist."
+      },
+      "pt": {
+            "meta_title": "Broken Soul | Sequencia para Steam PC do action RPG 2D Soulslike",
+            "meta_description": "Broken Soul retorna na Steam como sequencia para PC do original do Google Play. O combate mobile vertical 3x2 se expande para um boss rush 5x2 em 16:9 com leitura de padroes, desvios, parries e timing mais profundos.",
+            "hero_kicker": "A sequencia para Steam PC de Broken Soul",
+            "hero_lead": "O original do Google Play comecou com batalhas compactas em grid mobile 3x2. A versao Steam PC expande essa ideia para arenas 16:9, grid 5x2, timing mais afiado e uma provacao boss-rush mais profunda.",
+            "hero_demo_note": "Jogue a DEMO na Steam e adicione Boss Rush a sua wishlist.",
+            "google_cta": "Jogar Fragments of Hope",
+            "steam_cta": "Adicionar Boss Rush a wishlist",
+            "google_aria": "Jogar Broken Soul: Fragments of Hope no Google Play",
+            "steam_aria": "Adicionar Broken Soul: Boss Rush a wishlist na Steam",
+            "stat_platform_title": "Arenas maiores",
+            "stat_platform_text": "O grid 5x2 exige leituras mais limpas, decisoes mais rapidas e maior dominio dos chefes.",
+            "stat_combat_title": "Dominio de chefes no PC",
+            "stat_combat_text": "Arenas maiores, brechas mais rigorosas e leitura a cada tentativa.",
+            "stat_roster_title": "Dois herois, provas mais duras",
+            "stat_roster_text": "Nyra e Jiny retornam com alcance, tempo e risco diferentes.",
+            "game_title": "Leia o padrao. Derrube o chefe.",
+            "game_copy": "Broken Soul condensa a tensao Soulslike em acao 2D por grid. Leia a arena, desvie do padrao, apare com intencao e puna o instante em que o ritmo do chefe se abre.",
+            "feature_1_title": "De 3x2 para 5x2",
+            "feature_1_text": "A versao Google Play usa um grid vertical 3x2 pensado para mobile. A versao Steam PC usa grid 5x2 com arenas de chefe em 16:9.",
+            "feature_2_title": "Desvio, parry, timing",
+            "feature_2_text": "A versao Steam e baseada em leitura deliberada e inputs precisos, nao em apertar botoes sem pensar.",
+            "feature_3_title": "Escala boss-rush",
+            "feature_3_text": "Mais de vinte monstros tipo chefe viram uma prova de PC para memoria, nervos e precisao.",
+            "feature_4_title": "Dois estilos de combate retornam",
+            "feature_4_text": "Nyra e Jiny mudam como voce gerencia distancia, pressao e risco em cada revanche.",
+            "series_kicker": "Plataformas",
+            "series_title": "Escolha sua arena.",
+            "series_copy": "Broken Soul pode ser jogado no Google Play e na Steam, com cada plataforma ajustada ao seu ritmo: batalhas mobile compactas no Google Play e arenas boss-rush maiores na Steam.",
+            "series_mobile_label": "Google Play",
+            "series_mobile_text": "Um RPG de acao mobile com grid vertical 3x2, tentativas rapidas e padroes de chefe legiveis para sessoes curtas.",
+            "series_mobile_action": "Jogar Fragments of Hope",
+            "series_pc_label": "Steam PC",
+            "series_pc_text": "Um RPG de acao boss-rush para PC com arenas 16:9, grid 5x2 expandido, padroes de chefe maiores, timing mais afiado e vitorias mais conquistadas.",
+            "series_pc_action": "Adicionar Boss Rush a wishlist",
+            "cta_kicker": "Steam PC",
+            "cta_title": "Adicione a proxima prova de Broken Soul a wishlist.",
+            "cta_copy": "Jogue a DEMO na Steam e adicione Boss Rush a sua wishlist."
+      },
+      "de": {
+            "meta_title": "Broken Soul | Steam PC des 2D-Soulslike-Action-RPG",
+            "meta_description": "Broken Soul kehrt auf Steam als PC-Fortsetzung des Google Plays zuruck. Der mobile 3x2-Vertikalkampf wird zu einem 5x2-Boss-Rush in 16:9 mit tieferem Musterlesen, Ausweichen, Parieren und Timing.",
+            "hero_kicker": "Die Steam-PC-Version von Broken Soul",
+            "hero_lead": "Die Google-Play-Version begann mit kompakten 3x2-Bosskampfen fur Mobile. Die Steam-PC-Version erweitert diese Idee zu 16:9-Arenen, einem 5x2-Kampfraster, scharferem Timing und einer tieferen Boss-Rush-Prufung.",
+            "hero_demo_note": "Spiele die DEMO auf Steam und setze Boss Rush auf deine Wunschliste.",
+            "google_cta": "Fragments of Hope spielen",
+            "steam_cta": "Boss Rush wünschen",
+            "google_aria": "Broken Soul: Fragments of Hope auf Google Play spielen",
+            "steam_aria": "Broken Soul: Boss Rush auf Steam zur Wunschliste hinzufugen",
+            "stat_platform_title": "Weitere Arenen",
+            "stat_platform_text": "Das 5x2-Raster verlangt sauberere Reads, schnellere Entscheidungen und mehr Boss-Meisterung.",
+            "stat_combat_title": "Fur Boss-Meisterung am PC gebaut",
+            "stat_combat_text": "Weitere Arenen, strengere Fenster und Musterlesen bei jedem Versuch.",
+            "stat_roster_title": "Zwei Helden, hartere Prufungen",
+            "stat_roster_text": "Nyra und Jiny kehren mit eigener Reichweite, Tempo und Risiko zuruck.",
+            "game_title": "Lies das Muster. Brich den Boss.",
+            "game_copy": "Broken Soul verdichtet Soulslike-Spannung zu rasterbasierter 2D-Action. Lies die Arena, weiche dem Muster aus, pariere bewusst und bestrafe den Moment, in dem der Bossrhythmus aufbricht.",
+            "feature_1_title": "Von 3x2 zu 5x2",
+            "feature_1_text": "Die Google-Play-Version nutzt ein mobiles 3x2-Vertikalraster. Die Steam-PC-Version nutzt ein 5x2-Raster mit 16:9-Bossarenen.",
+            "feature_2_title": "Ausweichen, Parieren, Timing",
+            "feature_2_text": "Die Steam-Version setzt auf bewusstes Lesen und prazise Eingaben, nicht auf Button-Mashing.",
+            "feature_3_title": "Boss-Rush-Umfang",
+            "feature_3_text": "Mehr als zwanzig bossartige Monster werden zur PC-Prufung fur Gedachtnis, Nerven und Prazision.",
+            "feature_4_title": "Zwei Kampfstile kehren zuruck",
+            "feature_4_text": "Nyra und Jiny verandern, wie du Distanz, Druck und Risiko in jedem Rematch steuerst.",
+            "series_kicker": "Plattformen",
+            "series_title": "Wahle deine Arena.",
+            "series_copy": "Broken Soul ist auf Google Play und Steam spielbar, jeweils auf den Rhythmus der Plattform abgestimmt: kompakte Mobile-Kampfe auf Google Play und weitere Boss-Rush-Arenen auf Steam.",
+            "series_mobile_label": "Google Play",
+            "series_mobile_text": "Ein mobiles Action-RPG mit 3x2-Vertikalraster, schnellen Wiederholungen und lesbaren Bossmustern fur kurze Sessions.",
+            "series_mobile_action": "Fragments of Hope spielen",
+            "series_pc_label": "Steam PC",
+            "series_pc_text": "Ein Boss-Rush-Action-RPG fur PC mit 16:9-Arenen, erweitertem 5x2-Raster, grosseren Bossmustern, scharferem Timing und schwerer verdienten Siegen.",
+            "series_pc_action": "Boss Rush wünschen",
+            "cta_kicker": "Steam PC",
+            "cta_title": "Setze die nachste Broken-Soul-Prufung auf die Wunschliste.",
+            "cta_copy": "Spiele die DEMO auf Steam und setze Boss Rush auf deine Wunschliste."
+      },
+      "fr": {
+            "meta_title": "Broken Soul | Steam PC de l'action RPG 2D Soulslike",
+            "meta_description": "Broken Soul revient sur Steam comme suite PC de l'original Google Play. Le combat mobile vertical 3x2 s'etend en boss rush 5x2 en 16:9, avec lecture de patterns, esquives, parades et timing plus profonds.",
+            "hero_kicker": "La suite Steam PC de Broken Soul",
+            "hero_lead": "L'original Google Play a commence avec des combats de boss mobiles compacts en 3x2. La version Steam PC elargit cette idee en arenes 16:9, grille de combat 5x2, timing plus net et epreuve boss-rush plus profonde.",
+            "hero_demo_note": "Jouez a la DEMO sur Steam et ajoutez Boss Rush a votre wishlist.",
+            "google_cta": "Jouer a Fragments of Hope",
+            "steam_cta": "Ajouter Boss Rush a la wishlist",
+            "google_aria": "Jouer a Broken Soul: Fragments of Hope sur Google Play",
+            "steam_aria": "Ajouter Broken Soul: Boss Rush a la wishlist Steam",
+            "stat_platform_title": "Arenes plus larges",
+            "stat_platform_text": "La grille 5x2 demande des lectures plus nettes, des decisions plus rapides et une meilleure maitrise des boss.",
+            "stat_combat_title": "Maitrise des boss sur PC",
+            "stat_combat_text": "Arenes plus larges, ouvertures plus strictes et lecture a chaque essai.",
+            "stat_roster_title": "Deux heros, des epreuves plus dures",
+            "stat_roster_text": "Nyra et Jiny reviennent avec portee, tempo et risque distincts.",
+            "game_title": "Lisez le pattern. Brisez le boss.",
+            "game_copy": "Broken Soul concentre la tension Soulslike dans une action 2D sur grille. Lisez l'arene, esquivez le pattern, parez avec intention et punissez l'instant ou le rythme du boss s'ouvre.",
+            "feature_1_title": "De 3x2 a 5x2",
+            "feature_1_text": "La version Google Play utilise une grille verticale 3x2 adaptee au mobile. La version Steam PC utilise une grille 5x2 avec arenes de boss en 16:9.",
+            "feature_2_title": "Esquive, parade, timing",
+            "feature_2_text": "La version Steam repose sur une lecture volontaire et des inputs precis, pas sur le matraquage.",
+            "feature_3_title": "L'ampleur du boss-rush",
+            "feature_3_text": "Plus de vingt monstres de type boss deviennent une epreuve PC de memoire, sang-froid et precision.",
+            "feature_4_title": "Deux styles de combat reviennent",
+            "feature_4_text": "Nyra et Jiny changent votre gestion de la distance, de la pression et du risque a chaque revanche.",
+            "series_kicker": "Plateformes",
+            "series_title": "Choisissez votre arene.",
+            "series_copy": "Broken Soul se joue sur Google Play et Steam, avec un rythme adapte a chaque plateforme: combats mobiles compacts sur Google Play et arenes boss-rush plus larges sur Steam.",
+            "series_mobile_label": "Google Play",
+            "series_mobile_text": "Un RPG d'action mobile avec grille verticale 3x2, reprises rapides et patterns de boss lisibles pour sessions courtes.",
+            "series_mobile_action": "Jouer a Fragments of Hope",
+            "series_pc_label": "Steam PC",
+            "series_pc_text": "Un RPG d'action boss-rush pour PC avec arenes 16:9, grille 5x2 elargie, plus grands patterns de boss, timing plus tranchant et victoires plus meritees.",
+            "series_pc_action": "Ajouter Boss Rush a la wishlist",
+            "cta_kicker": "Steam PC",
+            "cta_title": "Ajoutez la prochaine epreuve Broken Soul a votre wishlist.",
+            "cta_copy": "Jouez a la DEMO sur Steam et ajoutez Boss Rush a votre wishlist."
+      },
+      "ru": {
+            "meta_title": "Broken Soul | PC-продолжение для Steam после Google Playа",
+            "meta_description": "Broken Soul возвращается в Steam как PC-продолжение Google Playа. Мобильный бой 3x2 расширяется до 5x2, 16:9 boss rush action RPG с более глубоким чтением паттернов, уклонениями, парированием и таймингом.",
+            "hero_kicker": "PC-продолжение Broken Soul для Steam",
+            "hero_lead": "Google Play начался с компактных мобильных боев с боссами на сетке 3x2. Steam PC версия расширяет эту идею до арен 16:9, боевой сетки 5x2, более строгого тайминга и глубокого boss-rush испытания.",
+            "hero_demo_note": "Сыграйте в DEMO в Steam и добавьте Boss Rush в wishlist.",
+            "google_cta": "Играть в Fragments of Hope",
+            "steam_cta": "Добавить Boss Rush в wishlist",
+            "google_aria": "Играть в Broken Soul: Fragments of Hope в Google Play",
+            "steam_aria": "Добавить Broken Soul: Boss Rush в wishlist Steam",
+            "stat_platform_title": "Шире арены",
+            "stat_platform_text": "Сетка 5x2 требует чище читать паттерны, быстрее принимать решения и лучше владеть боем с боссами.",
+            "stat_combat_title": "Для мастерства над боссами на PC",
+            "stat_combat_text": "Шире арены, строже окна и чтение паттернов с каждой попыткой.",
+            "stat_roster_title": "Два героя, тяжелее испытания",
+            "stat_roster_text": "Nyra и Jiny возвращаются с разной дистанцией, темпом и риском.",
+            "game_title": "Читайте паттерн. Ломайте босса.",
+            "game_copy": "Broken Soul сжимает Soulslike-напряжение в 2D action по сетке. Читайте арену, уходите от паттерна, парируйте осознанно и бейте в момент, когда ритм босса открывается.",
+            "feature_1_title": "От 3x2 к 5x2",
+            "feature_1_text": "Google Play версия использует удобную для мобильной игры вертикальную сетку 3x2. Steam PC расширяет бой до сетки 5x2 и ремастер-арен 16:9.",
+            "feature_2_title": "Уклонение, парирование, тайминг",
+            "feature_2_text": "Steam версия строится на внимательном чтении и точных вводах, а не на хаотичном нажатии кнопок.",
+            "feature_3_title": "Масштаб boss-rush",
+            "feature_3_text": "Более двадцати монстров-боссов становятся PC-испытанием памяти, выдержки и точности.",
+            "feature_4_title": "Два боевых стиля возвращаются",
+            "feature_4_text": "Nyra и Jiny меняют то, как вы управляете дистанцией, давлением и риском в каждом реванше.",
+            "series_kicker": "Платформы",
+            "series_title": "Выберите арену.",
+            "series_copy": "Broken Soul доступна в Google Play и Steam, а каждая платформа настроена под свой ритм: компактные мобильные бои в Google Play и широкие boss-rush арены в Steam.",
+            "series_mobile_label": "Google Play",
+            "series_mobile_text": "Мобильная action RPG с вертикальной сеткой 3x2, быстрыми повторами и читаемыми паттернами боссов для коротких сессий.",
+            "series_mobile_action": "Играть в Fragments of Hope",
+            "series_pc_label": "Steam PC",
+            "series_pc_text": "Boss-rush action RPG для PC: арены 16:9, расширенная сетка 5x2, крупнее паттерны боссов, острее тайминг и тяжелее заработанные победы.",
+            "series_pc_action": "Добавить Boss Rush в wishlist",
+            "cta_kicker": "Steam PC",
+            "cta_title": "Добавьте следующее испытание Broken Soul в wishlist.",
+            "cta_copy": "Сыграйте в DEMO в Steam и добавьте Boss Rush в wishlist."
+      }
+};
+
+    Object.keys(I18N_STEAM_FOLLOWUP_COPY).forEach((lang) => {
+      I18N[lang] = Object.assign({}, I18N[lang], I18N_STEAM_FOLLOWUP_COPY[lang]);
+    });
+
     const LANG_ALIASES = {
       "en": "en",
       "en-us": "en",
@@ -3833,10 +4300,53 @@
       window.history.replaceState({}, "", url.toString());
     }
 
+    const GOOGLE_ADS_STEAM_CLICK_SEND_TO = "";
+    const STEAM_APP_URL = "https://store.steampowered.com/app/4424450";
+
+    function buildSteamWishlistUrl() {
+      const pageParams = new URLSearchParams(window.location.search);
+      const source = pageParams.get("utm_source") === "google" ? "google" : "homepage";
+      const medium = pageParams.get("utm_medium") || (source === "google" ? "cpc" : "web");
+      const campaign = pageParams.get("utm_campaign") || (source === "google" ? "steam_wishlist_google_ads" : "homepage_steam_followup");
+      const url = new URL(STEAM_APP_URL);
+      url.searchParams.set("utm_source", source);
+      url.searchParams.set("utm_medium", medium);
+      url.searchParams.set("utm_campaign", campaign);
+      return url.toString();
+    }
+
+    function updateSteamWishlistLinks() {
+      const steamUrl = buildSteamWishlistUrl();
+      document.querySelectorAll("[data-steam-link]").forEach((link) => {
+        link.setAttribute("href", steamUrl);
+      });
+    }
+
+    function trackSteamWishlistClick(event) {
+      const href = event.currentTarget && event.currentTarget.href ? event.currentTarget.href : buildSteamWishlistUrl();
+      if (typeof gtag !== "function") return;
+      gtag("event", "steam_wishlist_click", {
+        event_category: "steam",
+        event_label: href,
+        transport_type: "beacon"
+      });
+      if (GOOGLE_ADS_STEAM_CLICK_SEND_TO) {
+        gtag("event", "conversion", {
+          send_to: GOOGLE_ADS_STEAM_CLICK_SEND_TO,
+          event_callback: () => {},
+          transport_type: "beacon"
+        });
+      }
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
       const languageSelect = document.getElementById("languageSelect");
       const initialLanguage = getInitialLanguage();
       applyLanguage(initialLanguage);
+      updateSteamWishlistLinks();
+      document.querySelectorAll(".steam-wishlist-link").forEach((link) => {
+        link.addEventListener("click", trackSteamWishlistClick);
+      });
 
       if (languageSelect) {
         languageSelect.addEventListener("change", (event) => {
