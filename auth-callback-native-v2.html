@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; object-src 'none'">
+    <meta name="brokensoul-oauth-callback-version" content="2026-07-30-native-pkce-relay-v2">
+    <title>Processing login...</title>
+    <style>
+        body {
+            min-height: 100vh;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            width: min(100%, 600px);
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            margin: 20px auto;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .message {
+            margin-bottom: 20px;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .redirect-message {
+            margin-top: 24px;
+            opacity: 0.75;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .app-link {
+            display: inline-block;
+            margin-top: 22px;
+            padding: 12px 22px;
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            border-radius: 8px;
+            background: #303030;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .app-link[hidden] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <h1 id="statusTitle">Processing login</h1>
+        <div id="spinner" class="spinner" aria-hidden="true"></div>
+        <div id="statusMessage" class="message" role="status" aria-live="polite">
+            Processing your login information...
+        </div>
+        <div id="redirectMessage" class="redirect-message">Returning to the game shortly.</div>
+        <a id="openAppLink" class="app-link" href="#" hidden>Open game</a>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const APP_CALLBACK_URL = 'mygame://login-callback';
+            const SESSION_PARAMETER_KEYS = [
+                'access_token',
+                'refresh_token',
+                'expires_in',
+                'expires_at',
+                'token_type',
+                'type'
+            ];
+            const translations = {
+                ENG: {
+                    processingTitle: 'Processing login',
+                    processingMessage: 'Processing your login information...',
+                    returningMessage: 'Returning to the game shortly.',
+                    openApp: 'Open game',
+                    failedTitle: 'Login could not be completed',
+                    expiredMessage: 'This login session has already been used or has expired.',
+                    genericError: 'An error occurred while processing the login.',
+                    closeMessage: 'Close this page and start a new login from the game.',
+                    invalidMessage: 'No valid login information was found.'
+                },
+                KOR: {
+                    processingTitle: '로그인 처리 중',
+                    processingMessage: '로그인 정보를 처리하고 있습니다...',
+                    returningMessage: '잠시 후 게임으로 돌아갑니다.',
+                    openApp: '게임 열기',
+                    failedTitle: '로그인을 완료하지 못했습니다',
+                    expiredMessage: '이미 사용했거나 만료된 로그인 요청입니다.',
+                    genericError: '로그인 처리 중 오류가 발생했습니다.',
+                    closeMessage: '이 페이지를 닫고 게임에서 새로 로그인을 시작해 주세요.',
+                    invalidMessage: '유효한 로그인 정보를 찾을 수 없습니다.'
+                },
+                JPN: {
+                    processingTitle: 'ログイン処理中',
+                    processingMessage: 'ログイン情報を処理しています...',
+                    returningMessage: 'まもなくゲームに戻ります。',
+                    openApp: 'ゲームを開く',
+                    failedTitle: 'ログインを完了できませんでした',
+                    expiredMessage: 'このログイン要求は使用済み、または期限切れです。',
+                    genericError: 'ログイン処理中にエラーが発生しました。',
+                    closeMessage: 'このページを閉じ、ゲームから新しくログインしてください。',
+                    invalidMessage: '有効なログイン情報が見つかりません。'
+                },
+                CHN: {
+                    processingTitle: '正在处理登录',
+                    processingMessage: '正在处理您的登录信息...',
+                    returningMessage: '即将返回游戏。',
+                    openApp: '打开游戏',
+                    failedTitle: '无法完成登录',
+                    expiredMessage: '此登录请求已使用或已过期。',
+                    genericError: '处理登录时发生错误。',
+                    closeMessage: '请关闭此页面并从游戏中重新登录。',
+                    invalidMessage: '未找到有效的登录信息。'
+                },
+                CHT: {
+                    processingTitle: '正在處理登入',
+                    processingMessage: '正在處理您的登入資訊...',
+                    returningMessage: '即將返回遊戲。',
+                    openApp: '開啟遊戲',
+                    failedTitle: '無法完成登入',
+                    expiredMessage: '此登入請求已使用或已過期。',
+                    genericError: '處理登入時發生錯誤。',
+                    closeMessage: '請關閉此頁面並從遊戲中重新登入。',
+                    invalidMessage: '找不到有效的登入資訊。'
+                },
+                SPA: {
+                    processingTitle: 'Procesando inicio de sesión',
+                    processingMessage: 'Procesando la información de inicio de sesión...',
+                    returningMessage: 'Volviendo al juego en breve.',
+                    openApp: 'Abrir juego',
+                    failedTitle: 'No se pudo completar el inicio de sesión',
+                    expiredMessage: 'Esta solicitud de inicio de sesión ya se usó o ha caducado.',
+                    genericError: 'Ocurrió un error al procesar el inicio de sesión.',
+                    closeMessage: 'Cierra esta página e inicia una nueva sesión desde el juego.',
+                    invalidMessage: 'No se encontró información de inicio de sesión válida.'
+                },
+                POR: {
+                    processingTitle: 'Processando login',
+                    processingMessage: 'Processando suas informações de login...',
+                    returningMessage: 'Voltando ao jogo em breve.',
+                    openApp: 'Abrir jogo',
+                    failedTitle: 'Não foi possível concluir o login',
+                    expiredMessage: 'Esta solicitação de login já foi usada ou expirou.',
+                    genericError: 'Ocorreu um erro ao processar o login.',
+                    closeMessage: 'Feche esta página e inicie um novo login pelo jogo.',
+                    invalidMessage: 'Nenhuma informação de login válida foi encontrada.'
+                },
+                GER: {
+                    processingTitle: 'Anmeldung wird verarbeitet',
+                    processingMessage: 'Anmeldeinformationen werden verarbeitet...',
+                    returningMessage: 'Das Spiel wird gleich wieder geöffnet.',
+                    openApp: 'Spiel öffnen',
+                    failedTitle: 'Anmeldung konnte nicht abgeschlossen werden',
+                    expiredMessage: 'Diese Anmeldeanforderung wurde bereits verwendet oder ist abgelaufen.',
+                    genericError: 'Beim Verarbeiten der Anmeldung ist ein Fehler aufgetreten.',
+                    closeMessage: 'Schließe diese Seite und starte die Anmeldung erneut im Spiel.',
+                    invalidMessage: 'Keine gültigen Anmeldeinformationen gefunden.'
+                },
+                FRA: {
+                    processingTitle: 'Connexion en cours',
+                    processingMessage: 'Traitement des informations de connexion...',
+                    returningMessage: 'Retour au jeu dans un instant.',
+                    openApp: 'Ouvrir le jeu',
+                    failedTitle: 'Impossible de terminer la connexion',
+                    expiredMessage: 'Cette demande de connexion a déjà été utilisée ou a expiré.',
+                    genericError: 'Une erreur est survenue pendant la connexion.',
+                    closeMessage: 'Fermez cette page et relancez la connexion depuis le jeu.',
+                    invalidMessage: 'Aucune information de connexion valide trouvée.'
+                }
+            };
+
+            function detectLanguage() {
+                const locale = String(navigator.language || 'en').toLowerCase();
+                if (locale.startsWith('ko')) return 'KOR';
+                if (locale.startsWith('ja')) return 'JPN';
+                if (locale.startsWith('zh-tw') || locale.startsWith('zh-hk') || locale.startsWith('zh-mo')) return 'CHT';
+                if (locale.startsWith('zh')) return 'CHN';
+                if (locale.startsWith('es')) return 'SPA';
+                if (locale.startsWith('pt')) return 'POR';
+                if (locale.startsWith('de')) return 'GER';
+                if (locale.startsWith('fr')) return 'FRA';
+                return 'ENG';
+            }
+
+            const languageKey = detectLanguage();
+            const languageTags = {
+                ENG: 'en', KOR: 'ko', JPN: 'ja', CHN: 'zh-CN', CHT: 'zh-TW',
+                SPA: 'es', POR: 'pt', GER: 'de', FRA: 'fr'
+            };
+            const text = translations[languageKey];
+            document.documentElement.lang = languageTags[languageKey] || 'en';
+            const titleElement = document.getElementById('statusTitle');
+            const spinnerElement = document.getElementById('spinner');
+            const messageElement = document.getElementById('statusMessage');
+            const redirectElement = document.getElementById('redirectMessage');
+            const openAppLink = document.getElementById('openAppLink');
+            let automaticLaunchScheduled = false;
+
+            function showProcessing() {
+                document.title = text.processingTitle;
+                titleElement.textContent = text.processingTitle;
+                spinnerElement.hidden = false;
+                messageElement.textContent = text.processingMessage;
+                redirectElement.textContent = text.returningMessage;
+            }
+
+            function showFailure(message) {
+                document.title = text.failedTitle;
+                titleElement.textContent = text.failedTitle;
+                spinnerElement.hidden = true;
+                messageElement.textContent = message;
+                redirectElement.textContent = text.closeMessage;
+            }
+
+            function openNativeApp(deepLinkUrl) {
+                openAppLink.href = deepLinkUrl;
+                openAppLink.textContent = text.openApp;
+                openAppLink.hidden = false;
+
+                if (automaticLaunchScheduled) return;
+                automaticLaunchScheduled = true;
+
+                // 일회용 code와 세션 토큰이 브라우저 방문 기록에 남지 않도록 주소만 먼저 정리합니다.
+                try {
+                    const cleanCallbackUrl = `${window.location.origin}${window.location.pathname}`;
+                    window.history.replaceState(null, document.title, cleanCallbackUrl);
+                } catch (error) {
+                    // 기록 정리에 실패해도 이미 만든 수동 복귀 링크와 앱 복귀는 계속 진행합니다.
+                }
+
+                // 자동 호출은 한 번만 수행합니다. 실패한 경우 사용자가 표시된 링크로 다시 시도할 수 있습니다.
+                setTimeout(function () {
+                    window.location.replace(deepLinkUrl);
+                }, 100);
+            }
+
+            function firstCallbackValue(queryParams, hashParams, key) {
+                return queryParams.get(key) || hashParams.get(key);
+            }
+
+            function collectSessionParameters(sourceParams) {
+                const sessionParams = new URLSearchParams();
+                SESSION_PARAMETER_KEYS.forEach(function (key) {
+                    const value = sourceParams.get(key);
+                    if (value !== null && value !== '') {
+                        sessionParams.set(key, value);
+                    }
+                });
+                return sessionParams;
+            }
+
+            const queryParams = new URLSearchParams(window.location.search);
+            const hashParams = new URLSearchParams(window.location.hash ? window.location.hash.substring(1) : '');
+            const callbackError = firstCallbackValue(queryParams, hashParams, 'error');
+            const errorCode = firstCallbackValue(queryParams, hashParams, 'error_code');
+            const errorDescription = firstCallbackValue(queryParams, hashParams, 'error_description');
+            const errorUri = firstCallbackValue(queryParams, hashParams, 'error_uri');
+            const hasCallbackError = Boolean(callbackError || errorCode || errorDescription);
+            const code = hasCallbackError ? null : firstCallbackValue(queryParams, hashParams, 'code');
+            const sessionSource = queryParams.has('access_token') ? queryParams : hashParams;
+            const accessToken = hasCallbackError ? null : sessionSource.get('access_token');
+
+            showProcessing();
+
+            if (hasCallbackError) {
+                const isExpiredState = errorCode === 'flow_state_already_used';
+                const errorParams = new URLSearchParams();
+                if (callbackError) errorParams.set('error', callbackError);
+                if (errorCode) errorParams.set('error_code', errorCode);
+                if (errorDescription) errorParams.set('error_description', errorDescription);
+                if (errorUri) errorParams.set('error_uri', errorUri);
+
+                showFailure(isExpiredState ? text.expiredMessage : text.genericError);
+                openNativeApp(`${APP_CALLBACK_URL}?${errorParams.toString()}`);
+                return;
+            }
+
+            if (code) {
+                const codeParams = new URLSearchParams({ code });
+                openNativeApp(`${APP_CALLBACK_URL}?${codeParams.toString()}`);
+                return;
+            }
+
+            if (accessToken) {
+                const sessionParams = collectSessionParameters(sessionSource);
+                openNativeApp(`${APP_CALLBACK_URL}#${sessionParams.toString()}`);
+                return;
+            }
+
+            showFailure(text.invalidMessage);
+        });
+    </script>
+</body>
+
+</html>
