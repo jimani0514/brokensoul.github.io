@@ -1,40 +1,221 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Account and Data Deletion Guide</title>
+  <title>Account and Data Deletion | Broken Soul Games</title>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Request deletion of a Broken Soul or Broken Soul 2: Boss Rush account and associated data from Double J Labs.">
+  <link rel="canonical" href="https://brokensoul.xyz/deleteaccount.html">
   <style>
-    body { max-width: 600px; margin: 40px auto; font-family: 'Segoe UI', Arial, sans-serif; background: #181821; color: #eee; line-height: 1.6; }
-    h1 { color: #ffb940; }
-    a.button {
-      display: inline-block; padding: 12px 24px; margin: 16px 0;
-      background: #ff4e4e; color: #fff; font-weight: bold; text-decoration: none;
-      border-radius: 8px; transition: background 0.2s;
+    :root {
+      color-scheme: dark;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
     }
-    a.button:hover { background: #c93030; }
-    .warning { color: #ff4e4e; font-weight: bold; }
-    .note { color: #ccc; font-size: 0.98em; }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+      background: #181821;
+      color: #eee;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.25;
+    }
+
+    h1,
+    h2 {
+      color: #ffbf52;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    a {
+      color: #86b8ff;
+      overflow-wrap: anywhere;
+    }
+
+    .metadata,
+    .note {
+      color: #c8c8d0;
+    }
+
+    .app-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      padding-left: 20px;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      margin: 24px 0;
+      padding: 24px;
+      border: 1px solid #ffffff24;
+      border-radius: 12px;
+      background: #22222d;
+      scroll-margin-top: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 20px;
+      margin: 8px 8px 8px 0;
+      border-radius: 8px;
+      background: #c93f3f;
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      background: #3d527d;
+    }
+
+    .warning {
+      padding: 14px 16px;
+      border-left: 4px solid #ff6464;
+      background: #321f25;
+    }
+
+    code {
+      color: #f1d4a0;
+    }
+
+    @media (max-width: 560px) {
+      body {
+        padding: 24px 16px 48px;
+      }
+
+      .card {
+        padding: 20px 16px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Account & Data Deletion Request</h1>
-  <p>
-    If you wish to delete your Broken Soul game account and all associated data, please follow the instructions below:
-  </p>
-  <ol>
-    <li>Include your in-game account information (e.g., user ID or Google account) for verification.</li>
-    <li>Once your request is processed, <span class="warning">all data will be permanently deleted and cannot be restored under any circumstances</span>.</li>
-  </ol>
-  <p>
-    <a class="button" href="https://forms.gle/resoGy1TeoAYprGU9">
-      Send Account Deletion Request
-    </a>
-  </p>
-  <p class="warning">
-    Warning: After your account and all related data are deleted, <u>no recovery is possible</u>. Please make sure you want to proceed before submitting your request.
-  </p>
-  <p class="note">
-    For questions or assistance, contact our support: <a href="mailto:doublejlabs@gmail.com">doublejlabs@gmail.com</a>
-  </p>
+  <main>
+    <h1>Account &amp; Data Deletion</h1>
+    <p class="metadata">
+      <strong>Developer:</strong> Double J Labs<br>
+      <strong>Last updated:</strong> August 10, 2026
+    </p>
+    <p>
+      Use the section for your game. You can submit a deletion request without
+      reinstalling the app or signing in. Verified requests are normally completed
+      within 30 days.
+    </p>
+    <ul class="app-links">
+      <li><a href="#broken-soul-2">Broken Soul 2: Boss Rush</a></li>
+      <li><a href="#broken-soul">Broken Soul (Soulslike Action)</a></li>
+    </ul>
+
+    <section class="card" id="broken-soul-2">
+      <h2>Broken Soul 2: Boss Rush</h2>
+      <p><strong>Android package:</strong> <code>com.brokensoul2.mygame</code></p>
+
+      <h3>Delete from inside the game</h3>
+      <ol>
+        <li>Open the Game and sign in to the account you want to delete.</li>
+        <li>Open <strong>Settings &gt; Session &gt; Delete Account</strong>.</li>
+        <li>Review the warning and confirm the permanent deletion.</li>
+      </ol>
+      <p>
+        When the in-game process completes, the Supabase authentication account,
+        associated cloud save and player profile, and ranking records are deleted.
+        Account-related authentication, game-progress, and purchase-entitlement
+        state stored by the Game on that device is also removed.
+      </p>
+
+      <h3>Request deletion without the game</h3>
+      <p>
+        Use the request form below or email us. Identify
+        <strong>Broken Soul 2: Boss Rush</strong> and provide the Google account
+        email, in-game player name, or user ID needed to locate the account. We may
+        contact you to verify ownership before deletion.
+      </p>
+      <p>
+        <a class="button" href="https://forms.gle/resoGy1TeoAYprGU9">Open deletion request form</a>
+        <a class="button secondary" href="mailto:doublejmsoft@gmail.com?subject=Broken%20Soul%202%20account%20deletion">Email Double J Labs</a>
+      </p>
+
+      <h3>Data deleted and data that may remain</h3>
+      <ul>
+        <li>
+          <strong>Deleted:</strong> the Supabase authentication account and account
+          identifiers, cloud-save/player data, ranking records, and account-linked
+          purchase-entitlement and limited purchase-history data under our control.
+        </li>
+        <li>
+          <strong>Not deleted by this request:</strong> Google Play payment and order
+          records controlled independently by Google, and GA4 records that cannot
+          reasonably be linked to the account request. Aggregated or de-identified
+          analytics may remain.
+        </li>
+        <li>
+          <strong>Device-only preferences:</strong> language, audio, performance,
+          accessibility, consent, and similar non-account settings may remain. Clear
+          the Game's Android storage or uninstall it to remove local data from the
+          device after an external request.
+        </li>
+        <li>
+          <strong>Limited retention:</strong> deletion-request correspondence may be
+          retained for up to three years. Records required for legal, accounting,
+          dispute, chargeback, security, or fraud-prevention purposes may be retained
+          for up to five years. Temporary provider backups may remain until routine
+          backup rotation removes them.
+        </li>
+      </ul>
+      <p>
+        Read the complete
+        <a href="https://brokensoul.xyz/privacy.html#broken-soul-2">Broken Soul 2 privacy policy</a>
+        and its
+        <a href="https://brokensoul.xyz/privacy.html#broken-soul-2-account-deletion">account-deletion section</a>.
+      </p>
+    </section>
+
+    <section class="card" id="broken-soul">
+      <h2>Broken Soul (Soulslike Action)</h2>
+      <p><strong>Android package:</strong> <code>xyz.brokensoul.mygame</code></p>
+      <p>
+        Use the in-game account-deletion option where available, or submit the form
+        below and identify <strong>Broken Soul (Soulslike Action)</strong>. Provide
+        only the email, player name, or user ID reasonably needed to locate and
+        verify the account.
+      </p>
+      <p>
+        <a class="button" href="https://forms.gle/resoGy1TeoAYprGU9">Open deletion request form</a>
+        <a class="button secondary" href="mailto:support@brokensoul.xyz?subject=Broken%20Soul%20account%20deletion">Email support</a>
+      </p>
+      <p>
+        We delete the online account and account-linked game data under our control,
+        including cloud progress, profile, ranking, reward, and entitlement records
+        applicable to your version of the Service. Independently controlled Google
+        Play records, analytics that cannot reasonably be linked to the request,
+        aggregated information, legally required records, and temporary provider
+        backups may remain as described in the
+        <a href="https://brokensoul.xyz/privacy.html#broken-soul">Broken Soul privacy policy</a>.
+      </p>
+    </section>
+
+    <p class="warning">
+      Account deletion is permanent and cannot be undone. Never send us your Google
+      password, access token, purchase token, or full payment-card details.
+    </p>
+    <p class="note">
+      General privacy contact for Broken Soul 2: Boss Rush:
+      <a href="mailto:doublejmsoft@gmail.com">doublejmsoft@gmail.com</a>
+    </p>
+  </main>
 </body>
 </html>

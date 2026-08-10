@@ -13,8 +13,20 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://brokensoul.xyz/coupon.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://brokensoul.xyz/privacy.html</loc>
-    <lastmod>2025-01-01</lastmod>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://brokensoul.xyz/deleteaccount.html</loc>
+    <lastmod>2026-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

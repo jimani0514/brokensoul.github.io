@@ -65,7 +65,7 @@
     <h1>Privacy Policy for Broken Soul Games</h1>
     <p class="metadata">
       <strong>Effective date:</strong> August 8, 2026<br>
-      <strong>Last updated:</strong> August 9, 2026
+      <strong>Last updated:</strong> August 10, 2026
     </p>
 
     <p>
@@ -75,6 +75,7 @@
     </p>
     <ul class="app-links">
       <li><a href="#broken-soul-2">Broken Soul 2: Boss Rush</a></li>
+      <li><a href="#broken-soul-2-account-deletion">Delete a Broken Soul 2 account</a></li>
       <li><a href="#broken-soul">Broken Soul (Soulslike Action)</a></li>
     </ul>
 
@@ -85,48 +86,46 @@
         package name <code>com.brokensoul2.mygame</code> (the "Game").
       </p>
 
-      <h3>1. No account is required</h3>
+      <h3>1. Account and authentication</h3>
       <p>
-        The current version of the Game does not create or require a Double J Labs
-        account. It does not use real Google account sign-in and does not collect
-        your name, email address, phone number, contacts, or Google account
-        identifier through gameplay.
+        The Game uses Google Sign-In through Supabase Auth. When you sign in, we
+        and our service providers process your name or display name, email address,
+        Google sign-in identifier, Supabase user ID, and authentication and session
+        information. We use this information to authenticate you, manage your Game
+        account, associate cloud saves and ranking data with your account, and
+        protect the Service. We do not receive or store your Google password.
       </p>
 
-      <h3>2. Data stored locally on your device</h3>
+      <h3>2. Game, cloud-save, and ranking data</h3>
       <p>
-        The Game stores data locally on your device to provide game functionality.
-        This may include game progress, unlocked content, inventory, equipment,
-        upgrades, rewards, settings, preferences, language selection, locally
-        generated profile or authentication-like state used only by the Game,
-        purchase entitlements and purchase history needed to restore paid content,
-        and a non-reversible fingerprint of a Google Play purchase token used to
-        prevent the same purchase from being granted more than once.
+        The Game stores data on your device and synchronizes account-linked data
+        with Supabase. This may include your player name, game progress, save slots,
+        unlocked content, inventory, equipment, currencies, upgrades, rewards,
+        settings, language, scores, ranking history, purchase entitlements, and
+        purchase-related game state.
       </p>
       <p>
-        This local data is not uploaded to a Double J Labs account or game server.
-        You can delete it through Android's <em>Clear storage</em> or
-        <em>Clear app data</em> control for the Game, or by uninstalling the Game.
-        Uninstalling may permanently remove local progress unless your device
-        independently preserves application data through an Android backup feature.
+        Ranking features may display your player name, score, and rank to other
+        authenticated players. Account identifiers are used internally to associate
+        ranking records with the correct account.
       </p>
 
-      <h3>3. Google Play Billing</h3>
+      <h3>3. Google Play Billing and purchase data</h3>
       <p>
-        The Game uses Google Play Billing to offer optional digital products.
-        Google Play, not Double J Labs, handles your payment method and payment
-        account information. The Game may receive and process the product ID,
-        purchase state, purchase time, quantity, order-related purchase data,
-        purchase token, acknowledgement state, and signed purchase information
-        needed to deliver, restore, consume, or acknowledge the product.
+        The Game offers optional digital products through Google Play Billing.
+        Google Play processes your payment method and payment-account information.
+        The Game may process the product ID, order identifier, purchase state and
+        time, quantity, purchase token, acknowledgement or consumption state, and
+        signed purchase information needed to deliver, restore, or manage a
+        purchase.
       </p>
       <p>
-        Purchase information is processed to complete your transaction, grant the
-        content you bought, restore eligible permanent purchases, prevent duplicate
-        grants, and help resolve transaction issues. The current version processes
-        this information locally on your device and through Google Play Billing.
-        Double J Labs does not receive your full card number or other complete
-        payment credentials.
+        The raw purchase token is used on your device to communicate with Google
+        Play. A one-way token fingerprint and limited purchase-history fields,
+        including product or order identifiers, purchase time, quantity, and
+        verification status, may be stored in your local and cloud save to prevent
+        duplicate grants and restore eligible entitlements. Double J Labs does not
+        receive your full payment-card number or other complete payment credentials.
       </p>
 
       <h3>4. Google Analytics 4</h3>
@@ -166,25 +165,30 @@
         analytics.
       </p>
 
-      <h3>5. How analytics data is used</h3>
-      <p>We use analytics information only to:</p>
+      <h3>5. How we use information</h3>
+      <p>We use information described in this section to:</p>
       <ul>
-        <li>Measure general usage and engagement.</li>
-        <li>Understand which game screens, systems, and features are used.</li>
-        <li>Evaluate gameplay flow and balancing.</li>
-        <li>Identify general usability or performance issues.</li>
-        <li>Maintain and improve the Game.</li>
+        <li>Authenticate users and manage Game accounts.</li>
+        <li>Save and synchronize progress, purchases, settings, and rankings.</li>
+        <li>Operate leaderboards and provide Game features.</li>
+        <li>Deliver, restore, and support Google Play purchases.</li>
+        <li>Measure usage, understand gameplay, and improve the Game.</li>
+        <li>Diagnose technical or usability problems.</li>
+        <li>
+          Prevent fraud, abuse, and duplicate purchase grants; protect users and
+          the Service; and comply with applicable law.
+        </li>
       </ul>
-      <p>We do not use analytics data to provide targeted advertising.</p>
+      <p>We do not use Game data to provide targeted advertising.</p>
 
       <h3>6. Service providers and disclosure</h3>
       <p>
-        Analytics information is transmitted to and processed by Google LLC as
-        our analytics service provider. The Game also requests font resources
-        from Google's font hosting services, which may receive ordinary network
-        and device request information. Google may process information in countries
-        other than the country in which you live and handles that information under
-        its own terms, security measures, and privacy policy.
+        We use Google LLC for Google Sign-In, Google Play Billing, Google Analytics
+        4, and Google-hosted resources. We use Supabase for authentication,
+        database storage, cloud synchronization, and server functions. These
+        providers process information on our behalf to provide their services and
+        may process data in countries other than your country of residence under
+        their applicable privacy and security terms.
       </p>
       <ul>
         <li><a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
@@ -198,16 +202,24 @@
             Information about Google Analytics data collection
           </a>
         </li>
+        <li><a href="https://supabase.com/privacy">Supabase Privacy Policy</a></li>
       </ul>
       <p>
-        We do not sell personal information and do not provide Game data to data
-        brokers or third parties for their own advertising purposes. We may disclose
-        information when reasonably necessary to comply with law, respond to a valid
-        legal request, protect users, investigate abuse, or protect the rights and
+        We do not sell personal information or provide Game data to data brokers or
+        third parties for their own targeted advertising. We may disclose information
+        when reasonably necessary to comply with law, respond to a valid legal
+        request, prevent fraud or abuse, protect users, or protect the rights and
         security of Double J Labs.
       </p>
 
-      <h3>7. Services not used in the current version</h3>
+      <h3>7. Local storage, security, and services not used</h3>
+      <p>
+        The Game keeps authentication state, account information, game saves,
+        settings, and purchase-entitlement state on your device. Account-linked
+        data is transmitted to Supabase and service providers using HTTPS/TLS.
+        Access to cloud data under our control is restricted through access controls.
+        No transmission or storage system can be guaranteed to be completely secure.
+      </p>
       <p>The current version of the Game does not use:</p>
       <ul>
         <li>AdMob or other in-game advertising services.</li>
@@ -215,73 +227,95 @@
           Firebase Authentication, Firebase Cloud Messaging, Firebase Crashlytics,
           or other Firebase app services.
         </li>
-        <li>Supabase authentication, database storage, or server synchronization.</li>
-        <li>A Double J Labs online account system.</li>
         <li>Push notifications.</li>
+        <li>
+          Precise-location, camera, microphone, contacts, or photo-library access
+          for the data practices described in this section.
+        </li>
       </ul>
       <p>
         If these practices change in a future version, we will update this Privacy
         Policy and the Google Play Data safety declaration to reflect the change.
       </p>
 
-      <h3>8. Data retention and deletion</h3>
+      <h3 id="broken-soul-2-account-deletion">8. Data retention and account deletion</h3>
       <p>
-        Local gameplay data remains on your device until it is removed through
-        Android application storage controls, a device reset, or uninstallation.
+        Account-linked authentication, cloud-save, and ranking data is retained
+        while your Game account remains active or for as long as needed to provide
+        the Service, protect it, and meet the obligations described in this policy.
+        Local data remains on your device until removed by the Game, Android storage
+        controls, a device reset, or uninstallation.
       </p>
       <p>
-        Local purchase entitlements, purchase history, and token fingerprints are
-        retained on your device for as long as needed to deliver or restore paid
-        content and prevent duplicate grants. Clearing app data or uninstalling the
-        Game may remove this local record. Google Play may separately retain your
-        purchase history under Google's policies, and eligible permanent products
-        may be restored from Google Play after reinstallation.
+        You can permanently delete your Broken Soul 2: Boss Rush account from
+        <strong>Settings &gt; Session &gt; Delete Account</strong> in the Game. When
+        the in-game deletion completes, the Supabase authentication account and its
+        associated cloud save and ranking records are deleted, and account-related
+        local authentication and game-progress data are removed from that device.
+        This action cannot be undone.
       </p>
       <p>
-        GA4 retention is governed by the retention setting configured for our
-        Google Analytics property and by Google's applicable retention policies.
-        We retain analytics information only for as long as it remains reasonably
-        necessary to measure usage, understand gameplay, and improve the Game.
-        Aggregated reports that no longer identify a particular analytics client
-        or game installation may be retained for longer historical comparison.
+        If you cannot access the Game, submit a request through our
+        <a href="https://brokensoul.xyz/deleteaccount.html#broken-soul-2">account deletion request page</a>
+        or contact <a href="mailto:doublejmsoft@gmail.com">doublejmsoft@gmail.com</a>.
+        We may ask for the minimum information reasonably necessary to locate and
+        verify the account. Never send us your Google password, access token,
+        purchase token, or full payment-card details. Verified external requests
+        are normally completed within 30 days.
       </p>
       <p>
-        Because the Game does not use an account and does not send names or email
-        addresses to GA4, we generally cannot identify analytics records using an
-        email address alone. You may request deletion of analytics information by
-        contacting <a href="mailto:doublejmsoft@gmail.com">doublejmsoft@gmail.com</a>.
-        We will use available Google Analytics deletion tools for data that we can
-        reasonably identify. We may request limited, non-sensitive technical
-        information needed to locate the relevant analytics record and will explain
-        if a record cannot reasonably be linked to your request.
+        Deleting the Game account does not automatically delete records controlled
+        independently by Google, including Google Play payment and order records,
+        or GA4 data that cannot reasonably be linked to the account request. Google
+        retains those records under its own policies. Aggregated or de-identified
+        reports may also remain. Language, audio, performance, accessibility,
+        consent, and similar non-account device preferences may remain until you
+        clear the Game's Android storage or uninstall it.
+      </p>
+      <p>
+        We may retain deletion-request correspondence for up to three years to
+        document and protect the request. Where applicable law requires it, limited
+        transaction, accounting, dispute, chargeback, or fraud-prevention records
+        may be retained for up to five years. Such retained records are restricted
+        to those purposes and deleted or de-identified when the applicable period
+        ends. Temporary copies may remain in service-provider backups until they
+        are removed through the provider's routine backup-rotation process.
+      </p>
+      <p>
+        GA4 retention is governed by the retention settings configured for our
+        Google Analytics property and Google's applicable retention policies. We
+        generally cannot identify GA4 records using an email address alone. You may
+        request deletion of analytics information by contacting us; we will use
+        available deletion tools for records that we can reasonably identify.
       </p>
 
       <h3>9. Children's privacy</h3>
       <p>
         The Game is not directed to children under 13, or under the minimum age
-        required by applicable law in their country. We do not knowingly collect a
-        child's name, email address, or account information. If we learn that
-        information associated with a child has been collected contrary to
-        applicable law, we will take reasonable steps to delete it. A parent or
-        guardian may contact us using the email address below.
+        required by applicable law in their country. We do not knowingly permit
+        children below that age to create an account or provide personal
+        information. If we learn that a child's information has been collected
+        contrary to applicable law, we will take reasonable steps to delete it.
+        A parent or guardian may contact us using the email address below.
       </p>
 
       <h3>10. Security</h3>
       <p>
-        Analytics information is transmitted to Google using HTTPS/TLS encryption.
-        Access to analytics reports under our control is restricted to authorized
-        persons. Local save data is protected by the security controls provided by
-        Android and the user's device. However, no electronic transmission, device,
-        or storage system can be guaranteed to be completely secure.
+        Account, cloud-save, purchase-related, and analytics information is
+        transmitted to the applicable service provider using HTTPS/TLS encryption.
+        Access to systems and reports under our control is restricted to authorized
+        persons. Local data is also subject to the security controls provided by
+        Android and your device. However, no electronic transmission, device, or
+        storage system can be guaranteed to be completely secure.
       </p>
 
       <h3>11. International processing</h3>
       <p>
-        Google may process analytics information outside your country of residence.
-        Privacy and data-protection laws in those countries may differ from those in
-        your country. Google applies the safeguards described for its services, and
-        Double J Labs remains responsible for using those services consistently
-        with applicable law.
+        Google and Supabase may process information outside your country of
+        residence. Privacy and data-protection laws in those countries may differ
+        from those in your country. These providers apply the safeguards described
+        for their services, and Double J Labs remains responsible for using those
+        services consistently with applicable law.
       </p>
 
       <h3>12. Changes to this policy</h3>
@@ -363,7 +397,7 @@
     In the current version of the Service, these device, advertising, and analytics identifiers are collected as required for app operation because the Service does not provide a complete in-app opt-out that stops all related SDK collection. Users can control certain device-level settings provided by Android or Google, such as resetting or limiting advertising identifiers where available.
   </p>
 
-  <h3>5. User Choices and Account Deletion</h3>
+  <h3 id="broken-soul-account-deletion">5. User Choices and Account Deletion</h3>
   <p>
     You may disable push notifications through your device settings or in-app settings where available. Disabling push notifications may prevent you from receiving certain service messages or event notifications.
   </p>
