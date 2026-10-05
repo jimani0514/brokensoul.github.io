@@ -28,7 +28,8 @@
     nav?.setAttribute('aria-label',text('navGames'));
     document.querySelector('[role="tablist"]')?.setAttribute('aria-label',text('navGames'));
     if(legal)document.querySelector('.legal-nav')?.setAttribute('aria-label',language==='ko'?'문서 목차':'Document contents');
-    if(document.body.dataset.legalTitle) document.title = (language==='ko' ? document.body.dataset.legalTitle : document.body.dataset.legalTitleEn)+' | Broken Soul';
+    if(document.body.dataset.pageTitle) document.title=text(document.body.dataset.pageTitle)+' | Double J Labs';
+    if(document.body.dataset.legalTitle) document.title = (language==='ko' ? document.body.dataset.legalTitle : document.body.dataset.legalTitleEn)+' | Double J Labs';
     // Keep links usable without storage, including file previews and private browsing.
     document.querySelectorAll('a[href]').forEach(a => {
       const raw = a.getAttribute('href');

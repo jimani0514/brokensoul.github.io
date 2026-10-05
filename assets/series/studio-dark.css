@@ -1,0 +1,126 @@
+/* Default dark studio shell. Individual game identities remain scoped below. */
+:root{color-scheme:dark;--studio-paper:#090b0e;--studio-ink:#f3f4f0;--studio-muted:#a4aaa9;--studio-line:#ffffff26}
+html{color-scheme:dark;scroll-padding-top:100px}
+.site-header{background:#090b0ef5;color:#f3f4f0;border-color:#ffffff21;height:88px}
+.site-header .studio-brand strong{font-size:22px;letter-spacing:-.055em;font-weight:800;color:#f7f8f4}
+.site-header .studio-brand>span{color:#989f9f;font-size:8px;letter-spacing:.13em}
+.primary-nav{gap:42px}.primary-nav a{font-size:12px;color:#dddeda;letter-spacing:.05em}
+.primary-nav a:hover{color:#d1e6a6}
+.language-select,.language-select option{color:#eee;background:#090b0e}
+.header-cta{background:transparent;border:1px solid #747b79;border-radius:0;color:#f3f4f0;padding:10px 24px}
+.header-cta:hover{background:#f3f4f0;color:#090b0e}
+.menu-toggle span{background:#f3f4f0}
+.site-header a:focus-visible,.site-header button:focus-visible,.site-header select:focus-visible{outline-color:#d1e6a6}
+.studio-home{color-scheme:dark;--ink:#090b0e;--panel:#111518;--paper:#f3f4f0;--muted:#a4aaa9;--gold:#d1e6a6;--line:#ffffff26;background:#090b0e;color:#f3f4f0}
+.studio-home .eyebrow{color:#a5adaa;letter-spacing:.14em;font-size:10px}
+.studio-home .eyebrow>span:first-child{margin:0}
+.studio-home .section{padding-block:116px}
+.studio-home .section-heading{gap:60px;margin-bottom:45px}
+.studio-home .section-heading h2{color:#f3f4f0;font-size:clamp(35px,3.9vw,60px);font-weight:500;line-height:1.2;letter-spacing:-.055em;margin-top:21px}
+.studio-home .section-heading>p{color:#a5acaa;font-size:14px;max-width:370px}
+.studio-premiere{background:#090b0e;overflow:hidden}
+.premiere-heading{display:grid;grid-template-columns:1.5fr 1fr;gap:8vw;align-items:end;padding-block:65px 55px}
+.premiere-heading h1{font-size:clamp(58px,6.6vw,100px);font-weight:600;line-height:1.08;letter-spacing:-.065em;white-space:pre-line;margin-top:25px;color:#f3f4f0}
+.premiere-heading .eyebrow{font-size:10px;letter-spacing:.14em}
+.premiere-intro{max-width:405px;padding-bottom:5px}
+.premiere-intro p{font-size:14px;line-height:1.95;white-space:pre-line;color:#adb3b1}
+.premiere-cta{margin-top:27px;background:#e4e8df;color:#111713;border:1px solid #e4e8df;border-radius:0;font-size:12px;min-height:49px;gap:45px;padding:12px 23px}
+.premiere-cta:hover{background:#d1e6a6;border-color:#d1e6a6}
+.premiere-cta>span:last-child{transition:transform .25s}
+.premiere-cta:hover>span:last-child{transform:translate(3px,-3px)}
+.premiere-worlds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));height:clamp(360px,31vw,535px);gap:2px;background:#242a2b}
+.premiere-world{position:relative;overflow:hidden;min-width:0;background:#141a1c;isolation:isolate}
+.premiere-world>img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease;transform:scale(1.015)}
+.premiere-world:hover>img,.premiere-world:focus-visible>img{transform:scale(1.06)}
+.premiere-world:focus-visible{outline:2px solid #e1edcb;outline-offset:-5px}
+.premiere-world::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(0deg,#060a0dee,transparent 65%);pointer-events:none}
+.world-soul>img{object-position:31% center}
+.world-tactics>img{object-position:56% center}
+.world-flowers>img{object-position:center 19%}
+.premiere-world-caption{position:absolute;bottom:34px;left:32px;right:32px;display:flex;gap:16px;align-items:flex-end;color:#f3f4f0;z-index:1}
+.world-number{font-size:11px;line-height:1.7;color:#c5cbc9;align-self:flex-start;padding-top:2px;font-variant-numeric:tabular-nums}
+.premiere-world-caption>div{min-width:0}
+.premiere-world-caption small{display:block;color:#d4d9d5;font-size:10px;font-weight:400;line-height:1.5;margin-bottom:7px}
+.premiere-world-caption strong{font-size:clamp(21px,2vw,31px);font-weight:500;letter-spacing:-.04em;line-height:1.3;display:block}
+.world-arrow{margin-left:auto;font-size:25px;line-height:1.3;transition:transform .25s}
+.premiere-world:hover .world-arrow{transform:translate(3px,-3px)}
+.premiere-bottom{display:flex;align-items:center;justify-content:space-between;padding-block:23px;border-bottom:1px solid #ffffff26;font-size:10px;letter-spacing:.14em;color:#939e99}
+.premiere-bottom>a{display:flex;gap:40px;color:#d9ddd5;font-size:11px;letter-spacing:.03em}
+.studio-home .studio-catalog,.detail-related .studio-catalog{gap:32px}
+.catalog-top{border-color:#ffffff38;color:#abb5b0;padding-block:15px;font-size:10px}
+.catalog-cover{border-radius:0;aspect-ratio:1.18;outline:1px solid #ffffff0a;outline-offset:-1px}
+.catalog-cover>img{transition:transform .65s}
+.catalog-cover:hover>img{transform:scale(1.045)}
+.catalog-copy h3{color:#f3f4f0;font-size:clamp(23px,2.3vw,35px);line-height:1.25;font-weight:500;letter-spacing:-.045em;margin:24px 0 16px}
+.catalog-description{font-size:13px;color:#a5ada8;line-height:1.95;min-height:105px}
+.catalog-status{border-radius:0;border-color:#ffffff30;background:#101516d9;color:#ebeee6;font-size:10px;padding:5px 9px}
+.catalog-flowers .catalog-status{color:#ebeee6;background:#17251edd;border-color:#bccbb940}
+.catalog-platform{color:#c1cbc4;font-size:11px;margin-block:18px 13px}
+.catalog-link{border-color:#ffffff25;color:#eef0e7;font-weight:500;font-size:12px;letter-spacing:.025em;padding-block:19px}
+.catalog-link:hover{color:#d1e6a6}
+.catalog-link>span:last-child{transition:transform .25s}
+.catalog-link:hover>span:last-child{transform:translate(3px,-3px)}
+.studio-about{background:#121719;border-color:#ffffff24;position:relative}
+.studio-about-grid{grid-template-columns:1.05fr 1fr;gap:9vw;padding-block:110px 95px}
+.studio-about h2{font-size:clamp(36px,4.4vw,68px);line-height:1.25;letter-spacing:-.055em;font-weight:500;margin-top:26px}
+.studio-about-grid>div:last-child{padding-top:37px;max-width:580px}
+.studio-statement{font-size:22px;line-height:1.8;color:#d3dbd4}
+.studio-statement+p{font-size:14px;color:#9da7a0;margin-top:28px}
+.studio-signature{color:#b5c3b2;font:600 48px/1.1 var(--sans);letter-spacing:-.06em;margin-top:40px}
+.studio-contacts>a{border-color:#ffffff30;padding-block:28px}
+.studio-contacts h3{font-size:17px;color:#e0e6de;line-height:1.6}
+.studio-contacts a>span{color:#a4afa6;font-size:12px}
+.studio-contacts b{color:#d1e6a6;top:27px;font-weight:400}
+.studio-contacts a:hover h3{color:#d1e6a6}
+.studio-coupon{color:#a4afa6;border-color:#59615c}
+.studio-home .site-footer{background:#07090b;border-color:#ffffff21;padding-block:44px 30px}
+.studio-endmark{font:700 clamp(45px,10.1vw,158px)/1.05 var(--sans);letter-spacing:-.065em;color:#e1e5de;white-space:nowrap;padding-block:15px 70px}
+.site-footer .studio-brand strong{color:#f3f4f0}
+.site-footer .studio-brand>span,.footer-links a,.footer-links button,.footer-bottom{color:#9ea9a1}
+.footer-links a:hover,.footer-links button:hover{color:#eef1e9}
+.cookie-panel{background:#171d20;color:#eff2ea;border-color:#59625d;border-radius:0;box-shadow:0 12px 40px #0007}
+.cookie-panel h2{color:#f0f2eb}.cookie-panel p{color:#b6c0b8}
+.cookie-panel .button{background:#e3e9de;border-color:#e3e9de;color:#131a16;border-radius:0}
+.cookie-panel .button.outline{background:transparent;color:#e3e9de;border-color:#69736c}
+.cookie-panel .button:focus-visible{outline-color:#d1e6a6}
+/* Shared catalog is dark on game pages as well. */
+[data-game-detail] .detail-related{--paper:#f3f4f0;--muted:#a5ada8;--gold:#d1e6a6;--line:#ffffff26;background:#0b1012;color:#f3f4f0}
+[data-game-detail] .detail-related .catalog-copy h3{font-weight:500}
+[data-game-detail] .detail-related .line-link{border-color:#59615c}
+/* Warm low-light florist; preserve the photographic sunlight in its artwork. */
+.flowers-page{color-scheme:dark;--ink:#111b17;--panel:#19251d;--paper:#e8eadb;--muted:#b1bcab;--gold:#c3d3ab;--line:#b4c1a32b;background:#111b17;color:#e8eadb}
+.flowers-page .flowers-hero{background:#17211b;border-color:#b4c1a32b}
+.flowers-page .flowers-wordmark{color:#e7ebd6}
+.flowers-page .flowers-hero-copy h2{color:#cfdbb9}
+.flowers-page .flowers-hero-copy>p:not(.eyebrow){color:#b4bea9}
+.flowers-page .flowers-hero-art{border-radius:44% 44% 2px 2px;box-shadow:0 18px 55px #080e0855}
+.flowers-page .button{background:#c5d5af;border-color:#c5d5af;color:#1d3121}
+.flowers-page .button:hover{background:#dce6c9;border-color:#dce6c9}
+.flowers-page .button.outline{color:#e2e7d7;background:transparent;border-color:#97a58a}
+.flowers-page .flowers-showcase button{background:#223025;border-color:#6f82613d;box-shadow:0 8px 30px #0002}
+.flowers-page .flowers-showcase figcaption{color:#c7d1bd}
+.flowers-page .flowers-features article{border-color:#b4c1a32b}
+.flowers-page .flowers-story{background:#202b20;border-color:#b4c1a32b}
+.flowers-page .flowers-related{background:#172017}
+.flowers-page .site-footer{background:#0e1611;border-color:#b4c1a32b}
+.flowers-page .lightbox{background:#111b17;color:#e8eadb;border-color:#718166}
+.flowers-page .lightbox-bar button,.flowers-page .lightbox-stage button{color:#e8eadb}
+.flowers-page .lightbox-counter{color:#b6c7a4}
+.flowers-page .line-link{border-color:#a9b99855}
+/* Neutral studio header also applies to legal/service pages. */
+.legal-page .site-header,.coupon-page .site-header{color:#f3f4f0}
+@media(min-width:1800px){.premiere-heading{padding-block:90px 70px}}
+@media(max-width:1100px){.premiere-heading{gap:5vw;grid-template-columns:1.35fr 1fr}.premiere-heading h1{font-size:68px}.premiere-world-caption{left:20px;right:20px;bottom:25px;gap:11px}.premiere-world-caption strong{font-size:24px}.world-number{display:none}.studio-home .studio-catalog,.detail-related .studio-catalog{gap:22px}.catalog-description{min-height:125px}}
+@media(max-width:760px){
+ .site-header{height:72px}.site-header .studio-brand strong{font-size:18px}.site-header .studio-brand>span{font-size:7px}.primary-nav{top:71px;background:#111619;border-color:#ffffff25;box-shadow:0 15px 30px #0005}.primary-nav a{color:#e0e5dc;font-size:15px}.primary-nav a:focus-visible{outline-color:#d1e6a6}.language-select{font-size:11px;background:transparent}.studio-home .section{padding-block:70px}.studio-home .section-heading{gap:0;margin-bottom:30px}.studio-home .section-heading h2{font-size:34px;line-height:1.3}.studio-home .section-heading>p{font-size:13px;max-width:480px;margin-top:22px}
+ .premiere-heading{grid-template-columns:minmax(0,1fr);padding-block:42px 35px;gap:26px}.premiere-heading h1{font-size:clamp(46px,11.8vw,78px);letter-spacing:-.06em;line-height:1.14;margin-top:22px}.premiere-heading .eyebrow{font-size:8px;letter-spacing:.09em}.premiere-intro{padding:0;max-width:490px}.premiere-intro p{font-size:13px;line-height:1.9;white-space:normal}.premiere-cta{margin-top:24px;min-height:46px;font-size:12px;padding:11px 19px;gap:40px}.premiere-worlds{height:280px;gap:1px}.premiere-world-caption{left:11px;right:8px;bottom:15px;gap:0;display:block}.premiere-world-caption small{display:none}.premiere-world-caption strong{font-size:13px;line-height:1.5;letter-spacing:-.03em;max-width:100%;word-break:normal;overflow-wrap:anywhere}.world-arrow{display:none}.world-soul>img{object-position:27% center}.world-tactics>img{object-position:56% center}.world-flowers>img{object-position:54% center}.premiere-world::after{background:linear-gradient(0deg,#060a0dec,transparent 55%)}.premiere-bottom{padding-block:20px;font-size:8px}.premiere-bottom>a{font-size:10px;gap:20px}
+ .studio-home .studio-catalog,.detail-related .studio-catalog{gap:38px}.catalog-cover{aspect-ratio:1.16}.catalog-top{font-size:10px;padding-block:13px}.catalog-copy h3{font-size:29px;margin-top:24px}.catalog-description{min-height:0;font-size:13px}.catalog-platform{margin-block:17px 12px}.catalog-link{padding-block:18px}.studio-about-grid{grid-template-columns:minmax(0,1fr);gap:29px;padding-block:70px 60px}.studio-about h2{font-size:38px;line-height:1.3}.studio-about-grid>div:last-child{padding-top:0}.studio-statement{font-size:20px}.studio-statement+p{font-size:13px}.studio-signature{font-size:43px;margin-top:31px}.studio-contacts{gap:0}.studio-contacts>a{padding-block:23px 27px}.studio-contacts h3{font-size:16px}.studio-contacts b{top:23px}.studio-endmark{font-size:clamp(35px,9.1vw,68px);padding-block:5px 38px;letter-spacing:-.06em}.studio-home .site-footer{padding-block:38px 27px}
+}
+@media(max-width:380px){.site-header .studio-brand strong{font-size:15px}.site-header .studio-brand>span{font-size:6px}.premiere-heading h1{font-size:42px}.premiere-worlds{height:250px}.premiere-world-caption strong{font-size:12px}.premiere-world-caption{left:8px;right:5px}.studio-endmark{font-size:30px}}
+@media(prefers-reduced-motion:reduce){.premiere-world>img,.premiere-cta>span:last-child,.world-arrow,.catalog-link>span:last-child{transition:none;transform:none}}
+
+/* Reading scale balances large headlines with useful game information. */
+@media(min-width:761px){.premiere-intro p,.studio-home .section-heading>p{font-size:16px}.premiere-cta{font-size:13px}.catalog-description{font-size:14px;min-height:115px}.studio-statement+p{font-size:15px}}
+
+/* Each game has its own support form; business email is a separate secondary route. */
+.studio-business{display:flex;justify-content:space-between;align-items:center;gap:24px;border-top:1px solid #ffffff20;padding-top:26px;margin-top:30px;color:#a4afa6;font-size:13px}.studio-business a{color:#dce5d7;white-space:nowrap}.studio-business a:hover{color:#d1e6a6}.studio-business a span{margin-left:18px}@media(max-width:760px){.studio-business{align-items:flex-start;flex-direction:column;gap:10px;font-size:12px}}

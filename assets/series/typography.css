@@ -1,0 +1,17 @@
+/* Shared typography: loaded after each page's visual theme. Fonts are served locally. */
+:root{--sans:"Pretendard Variable",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--display:"Space Grotesk",var(--sans);--serif:var(--display)}
+html:lang(ja){--sans:"Noto Sans JP","Pretendard Variable",sans-serif}
+html:lang(zh){--sans:"Noto Sans SC","Pretendard Variable",sans-serif}
+body{font-family:var(--sans);font-optical-sizing:auto}
+button,input,select,textarea{font-family:inherit}
+h1,h2,h3,h4,.studio-brand strong,.brand-name,.premiere-world-caption strong,.studio-endmark,.studio-signature,.flowers-wordmark,.hero-line{font-family:var(--display)}
+.site-header .studio-brand strong,.site-footer .studio-brand strong{font-family:"Space Grotesk",var(--sans);font-weight:700;letter-spacing:-.045em}
+.premiere-heading h1{font-weight:600;letter-spacing:-.045em;line-height:1.12}
+.studio-home .section-heading h2,.studio-about h2{font-weight:600;letter-spacing:-.035em}
+.catalog-copy h3,.premiere-world-caption strong{letter-spacing:-.025em;font-weight:600}
+.studio-signature{font-family:"Space Grotesk",var(--sans);font-weight:500;letter-spacing:-.045em}
+.studio-endmark{font-family:"Space Grotesk",var(--sans);font-weight:600;letter-spacing:-.055em}
+.eyebrow,.catalog-top,.catalog-platform,.world-number,.premiere-bottom{font-variant-numeric:tabular-nums}
+.flowers-page .flowers-wordmark{font-weight:600;letter-spacing:-.04em}
+html:lang(ja) .premiere-heading h1,html:lang(zh) .premiere-heading h1{letter-spacing:-.035em}
+@media(max-width:760px){.premiere-heading h1{letter-spacing:-.04em;line-height:1.18}.studio-home .section-heading h2,.studio-about h2{letter-spacing:-.03em}.premiere-world-caption strong{letter-spacing:-.015em}.studio-endmark{letter-spacing:-.055em}}

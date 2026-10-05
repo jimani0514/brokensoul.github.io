@@ -8,6 +8,7 @@
   const query = new URLSearchParams(location.search);
   const aliases = { mobile: 'soul', steam: 'soul', sequel: 'tactics' };
   const games = {
+    flowers: { name: 'Today Flowers', nameKey: 'flowersName', image: 'today-flowers/eunwoo.webp', logo: 'soul-logo.webp', tag: 'flowersTag', line: 'flowersLine', desc: 'flowersDesc', genre: 'flowersGenre', status: 'flowersStatus', cta: 'flowersCta' },
     soul: { name: 'Broken Soul', nameKey: 'soulName', image: 'soul-world.webp', logo: 'soul-logo.webp', tag: 'soulTag', line: 'soulLine', desc: 'soulDesc', genre: 'soulGenre', status: 'available', cta: 'playNow', art: 'soul-combat-v3.webp' },
     tactics: { name: 'Broken Tactics', nameKey: 'tacticsName', image: 'tactics-world.webp', logo: 'tactics-logo.webp', tag: 'tacticsTag', line: 'tacticsLine', desc: 'tacticsDesc', genre: 'tacticsGenre', status: 'preregStatus', cta: 'preregister', art: 'tactics-combat-v4.webp' }
   };
@@ -17,7 +18,7 @@
     tactics: 'https://play.google.com/store/apps/details?id=com.brokensoul2.mygame'
   };
   const requested = aliases[query.get('game')] || query.get('game');
-  let selected = games[requested] ? requested : 'tactics';
+  let selected = games[requested] && (!detail || requested !== 'flowers') ? requested : 'tactics';
   const hero = document.getElementById('top');
   const image = document.getElementById('hero-image');
   const tabs = [...document.querySelectorAll('[data-game-tab]')];
@@ -50,10 +51,17 @@
     selected = id;
     const game = games[id];
     hero.dataset.activeGame = id;
+    if (detail) document.body.dataset.gameTheme = id;
+    window.SeriesSupport?.apply(id);
     hero.setAttribute('aria-label', game.name);
     const src = root + game.image;
     if (image.getAttribute('src') !== src) image.src = src;
     const logo = document.getElementById('hero-logo');
+    logo.hidden = id === 'flowers';
+    const textTitle = document.getElementById('hero-text-title');
+    if (textTitle) { textTitle.hidden = id !== 'flowers'; textTitle.textContent = t('flowersName'); }
+    const platformKind = document.getElementById('hero-platform-kind');
+    if (platformKind) { platformKind.dataset.i18n = id === 'flowers' ? 'flowersStatus' : 'mobilePC'; platformKind.textContent = t(platformKind.dataset.i18n); }
     const logoSrc = root + game.logo;
     if (logo.getAttribute('src') !== logoSrc) logo.src = logoSrc;
     logo.alt = game.name;
@@ -66,7 +74,12 @@
     translated('hero-cta-label', game.cta);
     document.getElementById('hero-platform-store').textContent = id === 'soul' ? 'Google Play · Steam' : 'Google Play';
     const cta = document.getElementById('hero-cta');
-    if (id === 'soul') {
+    if (id === 'flowers') {
+      cta.href = `./today-flowers.html?lang=${i18n.getLanguage()}`;
+      cta.removeAttribute('target');
+      cta.removeAttribute('rel');
+      delete cta.dataset.store;
+    } else if (id === 'soul') {
       cta.href = detail ? '#about' : `./game.html?game=soul&lang=${i18n.getLanguage()}#about`;
       cta.removeAttribute('target');
       cta.removeAttribute('rel');
@@ -77,7 +90,7 @@
       cta.rel = 'noopener noreferrer';
       cta.dataset.store = 'tactics';
     }
-    document.getElementById('hero-more').href = detail ? '#about' : `./game.html?game=${id}&lang=${i18n.getLanguage()}`;
+    document.getElementById('hero-more').href = id === 'flowers' ? `./today-flowers.html?lang=${i18n.getLanguage()}#flowers-play` : detail ? '#about' : `./game.html?game=${id}&lang=${i18n.getLanguage()}`;
     tabs.forEach(tab => {
       const active = tab.dataset.gameTab === id;
       tab.setAttribute('aria-selected', String(active));
@@ -101,6 +114,7 @@
       document.querySelectorAll('[data-detail-gallery] [data-gallery-game]').forEach(figure => {
         figure.hidden = figure.dataset.galleryGame !== id;
       });
+      document.querySelectorAll('[data-detail-tactics]').forEach(section => { section.hidden = id !== 'tactics'; });
       document.querySelectorAll('[data-detail-press]').forEach(section => { section.hidden = id !== 'soul'; });
     }
     const title = detail ? `${t(game.nameKey)} | Double J Labs` : t('siteTitle');
