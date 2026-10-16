@@ -52,6 +52,7 @@
     const game = games[id];
     hero.dataset.activeGame = id;
     if (detail) document.body.dataset.gameTheme = id;
+    document.querySelectorAll('[data-soul-event]').forEach(section => { section.hidden = id !== 'soul'; });
     window.SeriesSupport?.apply(id);
     hero.setAttribute('aria-label', game.name);
     const src = root + game.image;
