@@ -7,7 +7,7 @@
 .portal-home .header-cta,.portal-project .header-cta{background:var(--portal-accent);color:#18201b;border:0}
 .portal-home .studio-brand strong,.portal-project .studio-brand strong{letter-spacing:-.055em}
 .portal-home .eyebrow,.portal-project .eyebrow{color:var(--portal-accent);font-size:12px;line-height:1.6;letter-spacing:.13em}
-.portal-home .section-heading h2,.portal-project main h2{font-size:clamp(28px,3.3vw,46px);font-weight:550;letter-spacing:-.045em;line-height:1.2}
+.portal-home .section-heading h2,.portal-project :where(main) h2{font-size:clamp(28px,3.3vw,46px);font-weight:550;letter-spacing:-.045em;line-height:1.2}
 .portal-home p,.portal-project p{line-height:1.7}
 .portal-home [hidden],.portal-project [hidden]{display:none!important}
 .portal-intro{padding:60px 0 38px;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:end}
