@@ -1,0 +1,105 @@
+/* Detail artwork is editorial content: preserve the full composition. */
+.portal-project .project-cover {
+  width: min(100%, 1384px);
+  height: auto;
+  max-height: 780px;
+  object-fit: contain;
+  object-position: center;
+  margin-inline: auto;
+  background: transparent;
+}
+.portal-project[data-project="defense"] .project-cover {
+  max-height: min(760px, 85svh);
+  object-position: center;
+}
+
+/* Place copy beside the artwork on wide screens, below it on small screens. */
+[data-game-detail] .cinematic {
+  display: grid;
+  grid-template-columns: minmax(280px, .7fr) minmax(0, 1.7fr);
+  align-items: center;
+  gap: 24px 40px;
+  width: min(1600px, calc(100% - 96px));
+  margin-inline: auto;
+  padding-block: 40px 24px;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  overflow: visible;
+}
+[data-game-detail] .cinematic-image {
+  position: static;
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  z-index: auto;
+}
+[data-game-detail] .hero-shade { display: none; }
+[data-game-detail] .cinematic .hero-layout {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  padding: 20px 0;
+}
+[data-game-detail] .cinematic .hero-copy {
+  width: 100%;
+  max-width: none;
+}
+[data-game-detail] .cinematic .hero-logo { width: min(310px, 100%); margin-left: 0; }
+[data-game-detail] .cinematic .hero-caption {
+  position: static;
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: end;
+  transform: none;
+  writing-mode: horizontal-tb;
+}
+[data-game-detail] .cinematic .hero-back {
+  position: static;
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: start;
+}
+[data-game-detail] #detail-art {
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+[data-game-detail] .character > img { object-fit: contain; }
+[data-game-detail] .character:hover > img { transform: none; }
+/* Store graphics include text at the edges; keep hover from cropping it. */
+[data-game-detail] .screenshot-image > img { object-fit: contain; filter: none; }
+[data-game-detail] .screenshot-image:hover > img { transform: none; }
+
+.flowers-page .flowers-hero-art { aspect-ratio: auto; }
+.flowers-page .flowers-hero-art img {
+  height: auto;
+  object-fit: contain;
+}
+.flowers-page .flowers-story-inner > img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 620px;
+  justify-self: center;
+  object-fit: contain;
+  border-radius: 3px;
+}
+@media (max-width: 1000px) {
+  [data-game-detail] .cinematic {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    width: calc(100% - 48px);
+    padding-block: 24px;
+  }
+  [data-game-detail] .cinematic-image { order: 0; }
+  [data-game-detail] .cinematic .hero-layout { order: 1; padding: 12px 0; }
+  [data-game-detail] .cinematic .hero-back { order: 2; align-self: flex-start; }
+  [data-game-detail] .cinematic .hero-caption { order: 3; align-self: flex-end; }
+}

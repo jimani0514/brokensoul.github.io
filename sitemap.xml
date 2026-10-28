@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://brokensoul.xyz/</loc><lastmod>2026-10-17</lastmod></url>
-  <url><loc>https://brokensoul.xyz/game.html?game=soul</loc><lastmod>2026-10-17</lastmod></url>
-  <url><loc>https://brokensoul.xyz/game.html?game=tactics</loc><lastmod>2026-09-21</lastmod></url>
-  <url><loc>https://brokensoul.xyz/privacy.html</loc><lastmod>2026-09-21</lastmod></url>
-  <url><loc>https://brokensoul.xyz/terms.html</loc><lastmod>2026-09-21</lastmod></url>
-  <url><loc>https://brokensoul.xyz/deleteaccount.html</loc><lastmod>2026-09-21</lastmod></url>
-  <url><loc>https://brokensoul.xyz/today-flowers.html</loc><lastmod>2026-10-05</lastmod></url>
-  <url><loc>https://brokensoul.xyz/share-event.html</loc><lastmod>2026-10-17</lastmod></url>
+  <url><loc>https://brokensoul.xyz/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://brokensoul.xyz/game.html?game=soul</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://brokensoul.xyz/game.html?game=tactics</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://brokensoul.xyz/today-flowers.html</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://brokensoul.xyz/broken-defense.html</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://brokensoul.xyz/fantasista.html</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://brokensoul.xyz/dropship-battle.html</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://brokensoul.xyz/broken-hex.html</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://brokensoul.xyz/broken-survival.html</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://brokensoul.xyz/share-event.html</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://brokensoul.xyz/privacy.html</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://brokensoul.xyz/terms.html</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://brokensoul.xyz/deleteaccount.html</loc><lastmod>2026-10-27</lastmod></url>
 </urlset>

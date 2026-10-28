@@ -8,9 +8,9 @@
   const query = new URLSearchParams(location.search);
   const aliases = { mobile: 'soul', steam: 'soul', sequel: 'tactics' };
   const games = {
-    flowers: { name: 'Today Flowers', nameKey: 'flowersName', image: 'today-flowers/eunwoo.webp', logo: 'soul-logo.webp', tag: 'flowersTag', line: 'flowersLine', desc: 'flowersDesc', genre: 'flowersGenre', status: 'flowersStatus', cta: 'flowersCta' },
-    soul: { name: 'Broken Soul', nameKey: 'soulName', image: 'soul-world.webp', logo: 'soul-logo.webp', tag: 'soulTag', line: 'soulLine', desc: 'soulDesc', genre: 'soulGenre', status: 'available', cta: 'playNow', art: 'soul-combat-v3.webp' },
-    tactics: { name: 'Broken Tactics', nameKey: 'tacticsName', image: 'tactics-world.webp', logo: 'tactics-logo.webp', tag: 'tacticsTag', line: 'tacticsLine', desc: 'tacticsDesc', genre: 'tacticsGenre', status: 'preregStatus', cta: 'preregister', art: 'tactics-combat-v4.webp' }
+    flowers: { name: 'Today Flowers', nameKey: 'flowersName', image: 'portal/flowers-puzzle.webp', logo: 'soul-logo.webp', tag: 'flowersTag', line: 'flowersLine', desc: 'flowersDesc', genre: 'flowersGenre', status: 'flowersStatus', cta: 'flowersCta' },
+    soul: { name: 'Broken Soul', nameKey: 'soulName', image: 'google-play/20261028/soul-01.webp', logo: 'soul-logo.webp', tag: 'soulTag', line: 'soulLine', desc: 'soulDesc', genre: 'soulGenre', status: 'available', cta: 'playNow', art: 'google-play/20261028/soul-08.webp' },
+    tactics: { name: 'Broken Tactics', nameKey: 'tacticsName', image: 'google-play/20261028/tactics-01.webp', logo: 'tactics-logo.webp', tag: 'tacticsTag', line: 'tacticsLine', desc: 'tacticsDesc', genre: 'tacticsGenre', status: 'preregStatus', cta: 'preregister', art: 'google-play/20261028/tactics-05.webp' }
   };
   const links = {
     mobile: 'https://play.google.com/store/apps/details?id=xyz.brokensoul.mygame',
@@ -57,6 +57,11 @@
     hero.setAttribute('aria-label', game.name);
     const src = root + game.image;
     if (image.getAttribute('src') !== src) image.src = src;
+    if (detail) {
+      image.width = 1920;
+      image.height = 1080;
+      image.alt = `${t(game.nameKey)} — ${t('storeImages')}`;
+    }
     const logo = document.getElementById('hero-logo');
     logo.hidden = id === 'flowers';
     const textTitle = document.getElementById('hero-text-title');
@@ -105,13 +110,15 @@
       translated('detail-status', game.status);
       const art = document.getElementById('detail-art');
       art.src = root + game.art;
-      art.srcset = `${root + game.art.replace('.webp', '-960.webp')} 960w, ${root + game.art} 1536w`;
-      art.alt = t(id === 'soul' ? 'soulBattleArt' : 'tacticsBattleArt');
+      art.width = 1920;
+      art.height = 1080;
+      art.removeAttribute('srcset');
+      art.alt = `${t(game.nameKey)} — ${t('storeImages')}`;
       const stores = document.getElementById('detail-stores');
       stores.replaceChildren(...(id === 'soul' ? [storeLink('mobile', 'Google Play', 'mobilePC'), storeLink('steam', 'Steam', 'pcOnly')] : [storeLink('tactics', 'Google Play', 'mobilePC')]));
       translated('release-note', id === 'soul' ? 'platformNote' : 'preregisterNote');
       translated('detail-screens-intro', game.desc);
-      translated('detail-screens-note', id === 'soul' ? 'screenZoomNote' : 'screensNote');
+      translated('detail-screens-note', 'storeImagesNote');
       document.querySelectorAll('[data-detail-gallery] [data-gallery-game]').forEach(figure => {
         figure.hidden = figure.dataset.galleryGame !== id;
       });

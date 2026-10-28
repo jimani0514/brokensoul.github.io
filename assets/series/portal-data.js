@@ -1,0 +1,11 @@
+/* Public catalogue. Product status follows the studio's 2026-10-27 announcement. */
+window.PORTAL_GAMES = [
+  {id:'soul',name:'soulName',genre:'soulGenre',description:'soulDesc',line:'soulLine',status:'live',statusLabel:'portalOperating',art:'soul',page:'game.html?game=soul',platform:'Google Play · Steam',policy:'broken-soul',accent:'#c5a978'},
+  {id:'tactics',name:'tacticsName',genre:'tacticsGenre',description:'tacticsDesc',line:'tacticsLine',status:'prereg',statusLabel:'portalPrereg',art:'tactics-team',page:'game.html?game=tactics',platform:'Google Play',policy:'broken-soul-2',accent:'#b6cad3'},
+  {id:'flowers',name:'flowersName',genre:'flowersGenre',description:'flowersDesc',line:'flowersLine',status:'live',statusLabel:'portalLive',art:'flowers-puzzle',page:'today-flowers.html',platform:'Google Play',policy:'today-flowers',accent:'#ced8b2'},
+  {id:'defense',name:'defenseName',genre:'defenseGenre',description:'defenseDesc',line:'defenseLine',features:'defenseFeatures',status:'dev',statusLabel:'portalDev',art:'defense',page:'broken-defense.html',policy:'broken-defense',accent:'#d4b984',gallery:['defense-scene','defense-nyra']},
+  {id:'fantasista',name:'fantasistaName',genre:'fantasistaGenre',description:'fantasistaDesc',line:'fantasistaLine',features:'fantasistaFeatures',status:'dev',statusLabel:'portalDev',art:'fantasista',page:'fantasista.html',policy:'fantasista',accent:'#a9cabc',gallery:['fantasista-field','fantasista']},
+  {id:'dropship',name:'dropshipName',genre:'dropshipGenre',description:'dropshipDesc',line:'dropshipLine',features:'dropshipFeatures',status:'dev',statusLabel:'portalDev',art:'dropship',page:'dropship-battle.html',policy:'dropship-battle',accent:'#9ac5da',gallery:['dropship-hangar','dropship']},
+  {id:'hex',name:'hexName',genre:'hexGenre',description:'hexDesc',line:'hexLine',features:'hexFeatures',status:'dev',statusLabel:'portalDev',art:'hex',page:'broken-hex.html',policy:'broken-hex',accent:'#c2b2d8',gallery:['hex-card-1','hex-card-2','hex-card-3']},
+  {id:'survival',name:'survivalName',genre:'survivalGenre',description:'survivalDesc',line:'survivalLine',features:'survivalFeatures',status:'dev',statusLabel:'portalDev',art:'survival-horde',page:'broken-survival.html',policy:'broken-survival',accent:'#c09b91',gallery:['survival-world','survival-horde']}
+];

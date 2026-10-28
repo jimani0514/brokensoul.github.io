@@ -1,0 +1,4 @@
+.flowers-page .flowers-hero-layout{grid-template-columns:1fr 1.4fr;min-height:600px;gap:44px}
+.flowers-page .flowers-hero-art{height:auto;aspect-ratio:16/10;border-radius:3px;margin-block:40px}
+.flowers-page .flowers-hero-art img{width:100%;height:100%;object-fit:cover;object-position:center}
+@media(max-width:760px){.flowers-page .flowers-hero-layout{grid-template-columns:1fr;gap:0}.flowers-page .flowers-hero-art{margin-block:20px 35px;aspect-ratio:16/10}}
